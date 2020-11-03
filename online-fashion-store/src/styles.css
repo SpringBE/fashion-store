@@ -1,5 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+    height: 100%; 
+    background-color:#E8CEBF;
+}
+html{
+    overflow-x: hidden;
+}
+body { margin: 0px; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+/*::-webkit-scrollbar {
+    width: 10px;
+   
+}
+
+*::-webkit-scrollbar-track {
+    background: rgb(228, 225, 225);
+    border:1px solid rgb(228, 225, 225);
+    border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #101357;
+    border-radius: 20px;
+    border: 3px solid rgb(228, 225, 225);
+}*/
