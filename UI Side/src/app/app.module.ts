@@ -21,10 +21,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatTableModule} from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
+import { FooterComponent } from './footer/footer.component';
+import { DisplayComponent } from './display/display.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,

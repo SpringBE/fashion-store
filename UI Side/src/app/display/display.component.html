@@ -1,0 +1,76 @@
+<div class="side_bar">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Product Type
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <form action="#"class="filter_form">
+                <input type="checkbox">
+                <label>Formal Shirts</label><br>
+                <input type="checkbox">
+                <label>Casual Shirts</label><br>
+              </form>
+        </mat-nav-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Brand
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <form action="#"class="filter_form">
+                <input type="checkbox">
+                <label>Aura</label><br>
+                <input type="checkbox">
+                <label>BST</label><br>
+              </form>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Price
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <form action="#"class="filter_form">
+                <input type="number" placeholder="Min" min="0">
+                <input type="number" placeholder="Max" max="2500">
+              </form>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Size
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <form action="#"class="filter_form">
+                <input type="checkbox">
+                <label>S</label><br>
+                <input type="checkbox">
+                <label>M</label><br>
+              </form>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Color
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+            <form action="#"class="filter_form">
+                <input type="checkbox">
+                <label>Black</label><br>
+                <input type="checkbox">
+                <label>White</label><br>
+              </form>
+        </mat-nav-list>
+      </mat-expansion-panel>
+</div>
+<app-footer></app-footer>

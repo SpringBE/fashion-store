@@ -1,0 +1,15 @@
+.side_bar{
+    height:1000px;
+    width:220px;
+    background-color: white;
+}
+mat-expansion-panel{
+    box-shadow:none !important;
+  }
+
+.filter_form>input{
+    margin-right: 6px;
+}
+mat-nav-list{
+    border-bottom: 1px solid #f0f0f0;
+}
