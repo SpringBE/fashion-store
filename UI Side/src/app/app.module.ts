@@ -21,19 +21,17 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatTableModule} from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
-import { FooterComponent } from './footer/footer.component';
-import { DisplayComponent } from './display/display.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     DisplayComponent
-  ],
-  imports: [
+    HeaderComponent,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
 
     FormsModule,
     ReactiveFormsModule,

@@ -1,0 +1,40 @@
+mat-toolbar{
+    background-color:#FDF8F5;
+    height: 80px;
+    margin-top:0px;
+    padding:0px;
+    margin-right:0px;
+    margin-left:0px;
+  }
+
+  div{
+      display: flex;
+  }
+  
+  h1{
+    font-size: 37px;
+    margin-left: 10px !important;
+    margin-top:20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:  #ff5e6c;
+  }
+
+  a{
+    color: #4F4846 !important;
+    border:1px solid #4F4846;
+    font-size:13px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom:3px;
+    margin-right: 36px;
+  }
+  
+  .active{
+    border:1px solid #266150;
+    background-color:#266150;
+    color:#FDF8F5 !important;
+  }
+
+  a:hover{
+    border:1px solid #FDF8F5;
+  }
+  

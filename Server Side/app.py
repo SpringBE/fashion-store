@@ -1,0 +1,23 @@
+from flask import Flask, jsonify,request,send_from_directory
+from flask_cors import CORS, cross_origin
+from flask_pymongo import PyMongo
+import online_fashion_store_db as od
+import os
+import json
+from werkzeug.utils import secure_filename
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/categories/<section>')
+def get_sub_categories(section):
+    categories = od.get_categories(section)
+    return jsonify({'categories':categories})
+
+@app.route('/get-filters/<section>/<category_id>')
+def get_filters(section,category_id):
+    filters = od.get_filters_of_a_category(section,category_id)
+    return jsonify({'filters':filters})
+
+if __name__ == "__main__":
+    app.run(debug=True)
