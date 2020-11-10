@@ -14,4 +14,12 @@ export class ShopeaseService {
     let url = `${this.baseurl}get-filters/${sectionName}/${categoryName}`;
     return this.http.get(url);
   }
+  get_categories(sectionName): Observable<any> {
+    let url = `${this.baseurl}categories/${sectionName}`;
+    return this.http.get(url);
+  }
+  get_items(sectionName,categoryName): Observable<any> {
+    let url = `${this.baseurl}get_items/${sectionName}/${categoryName}`;
+    return this.http.get(url);
+  }
 }

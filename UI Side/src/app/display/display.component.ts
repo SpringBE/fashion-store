@@ -25,6 +25,8 @@ export class DisplayComponent implements OnInit {
       let id = params['id'];
       console.log(id);
       this.get_data();
+      this.get_items();
+      this.get_categories();
       });
 
   }
@@ -39,7 +41,16 @@ export class DisplayComponent implements OnInit {
       this.minPrice=filters.filters[0].Minimum_price;
     })
   }
-
+  get_items(){
+    this.shopeaseService.get_items(this.sectionName,this.categoryName).subscribe(items=>{
+      console.log(items);
+    })
+  }
+  get_categories(){
+    this.shopeaseService.get_categories(this.sectionName).subscribe(categories=>{
+      console.log(categories);
+    })
+  }
 }
 
 
