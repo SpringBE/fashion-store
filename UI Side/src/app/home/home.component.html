@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -75,14 +76,14 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <img src="assets/men1.png" height="150px" width="230px">
+        <a [routerLink]="[ '/display','Men']"><img src="assets/men1.png" height="150px" width="230px"></a>
         <div class = "category-circle"></div>
-        <a href="#">Men</a>
+        <a class="hovering-element" [routerLink]="[ '/display','Men']">Men</a>
       </div>
       <div class="col-md-6">
-        <img src="assets/women1.png" height="150px" width="230px">
+        <a [routerLink]="[ '/display','Women']"><img src="assets/women1.png" height="150px" width="230px"></a>
         <div class="category-circle"></div>
-        <a href="#">Women</a>
+        <a class="hovering-element" [routerLink]="[ '/display','Women']">Women</a>
       </div>
     </div>
   </div>
@@ -95,18 +96,28 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <img src="assets/boy1.png" height="150px" width="230px">
+        <a [routerLink]="[ '/display','Boy']"><img src="assets/boy1.png" height="150px" width="230px"></a>
         <div class="category-circle"></div>
-        <a href="#">Boy</a>
+        <a class="hovering-element" [routerLink]="[ '/display','Boy']">Boy</a>
       </div>
       <div class="col-md-6">
-        <img src="assets/girl1.png" height="150px" width="230px">
+        <a [routerLink]="[ '/display','Girl']"><img src="assets/girl1.png" height="150px" width="230px"></a>
         <div class="category-circle"></div>
-        <a href="#">Girl</a>
+        <a class = "hovering-element" [routerLink]="[ '/display','Girl']">Girl</a>
       </div>
     </div>
   </div>
 
 </div>
+
+
+<mat-card class = "pop-over hide">
+  <div class="arrow"></div>
+  <div class="pop-over-body">
+    <h3>Hello</h3>
+  </div>
+</mat-card>
+
+
+
 <app-footer></app-footer>
-<app-display></app-display>

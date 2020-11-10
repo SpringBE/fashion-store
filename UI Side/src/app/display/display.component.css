@@ -1,7 +1,11 @@
+.page{
+    display:flex;
+}
+
 .side_bar{
-    height:1000px;
-    width:220px;
+    width:180px;
     background-color: white;
+    line-height: 20px;
 }
 mat-expansion-panel{
     box-shadow:none !important;
@@ -13,3 +17,56 @@ mat-expansion-panel{
 mat-nav-list{
     border-bottom: 1px solid #f0f0f0;
 }
+*, ::after, ::before {
+    box-sizing: border-box;
+    line-height: 30px;
+}
+
+mat-card{
+    margin-left:50px !important;
+    margin-bottom:35px !important;
+    width:300px !important;
+    height:300px;
+  }
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+.scroll{
+    margin-top:15px !important;
+    height: 70vh !important;
+    overflow-y:auto !important;
+  }
+
+img{
+    height:180px !important;
+    width: -webkit-fill-available;
+  }
+  .menu{
+    width:80%;
+    padding-top: 30px;
+  }
+  .card_bottom{
+      display: flex;
+      float:right;
+  }
+  p{
+      padding-right: 50px;
+  }

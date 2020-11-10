@@ -20,6 +20,10 @@ mat-toolbar{
   }
 
   a{
+    text-decoration: none !important;
+  }
+
+  mat-toolbar > a{
     color: #4F4846 !important;
     border:1px solid #4F4846;
     font-size:13px;
@@ -34,7 +38,7 @@ mat-toolbar{
     color:#FDF8F5 !important;
   }
 
-  a:hover{
+  mat-toolbar > a:hover{
     border:1px solid #FDF8F5;
   }
   

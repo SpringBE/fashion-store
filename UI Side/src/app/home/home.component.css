@@ -53,7 +53,7 @@
     font-size:25px !important;
 }
 
-.category .col-md-6 a{
+.category .col-md-6 a:last-child{
     margin-top:15px !important;
     margin-left:93px;
     font-size:21px !important;
@@ -112,3 +112,34 @@ hr{
 .color:nth-child(even) h1{
     margin-left:25px;
 }
+
+.popover{
+    margin-top:300px;
+}
+
+.arrow{
+    width: 0;
+    height: 0;
+    margin-left:85px;
+    border-left: 5px solid transparent;
+    margin-top:-25px !important;
+	border-right: 5px solid transparent;
+    border-bottom: 10px solid #DDAF94;
+}
+
+.pop-over{
+    margin-left:55px;
+    margin-top:-33px;
+    width:44.3%;
+    background-color:#DDAF94;
+    opacity:60%;
+    margin-bottom: 20px;
+}
+
+/*.hide{
+    display: none !important;
+}
+
+.hovering-element:hover + .hide{
+    display: block !important;
+}*/

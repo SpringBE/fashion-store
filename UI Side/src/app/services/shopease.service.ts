@@ -8,6 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class ShopeaseService {
   baseurl = environment.baseUrl
-  constructor() { }
-  }
+  constructor(public http: HttpClient) { }
 
+  get_filters(sectionName,categoryName): Observable<any> {
+    let url = `${this.baseurl}get-filters/${sectionName}/${categoryName}`;
+    return this.http.get(url);
+  }
+}

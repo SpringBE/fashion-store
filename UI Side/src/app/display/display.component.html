@@ -1,77 +1,77 @@
 <app-header></app-header>
-<div class="side_bar">
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Product Type
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-            <form action="#"class="filter_form">
-                <input type="checkbox">
-                <label>Formal Shirts</label><br>
-                <input type="checkbox">
-                <label>Casual Shirts</label><br>
-              </form>
-        </mat-nav-list>
-    </mat-expansion-panel>
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Brand
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-            <form action="#"class="filter_form">
-                <input type="checkbox">
-                <label>Aura</label><br>
-                <input type="checkbox">
-                <label>BST</label><br>
-              </form>
-        </mat-nav-list>
-      </mat-expansion-panel>
+<div class="page">
+<!--Filter starts here-->
+  <div class="side_bar">
       <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Price
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-            <form action="#"class="filter_form">
-                <input type="number" placeholder="Min" min="0">
-                <input type="number" placeholder="Max" max="2500">
-              </form>
-        </mat-nav-list>
-      </mat-expansion-panel>
-      <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Size
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-            <form action="#"class="filter_form">
-                <input type="checkbox">
-                <label>S</label><br>
-                <input type="checkbox">
-                <label>M</label><br>
-              </form>
-        </mat-nav-list>
-      </mat-expansion-panel>
-      <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Color
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-            <form action="#"class="filter_form">
-                <input type="checkbox">
-                <label>Black</label><br>
-                <input type="checkbox">
-                <label>White</label><br>
-              </form>
-        </mat-nav-list>
-      </mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Brand
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list *ngIf="brandFilter">
+              <form *ngFor="let bF of brandFilter" action="#" class="filter_form">
+                  <input type="checkbox">
+                  <label>{{bF}}</label><br>
+                </form>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Price
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+              <form action="#"class="filter_form">
+                </form>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Size
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list *ngIf="sizeFilter">
+              <form *ngFor="let sF of sizeFilter" action="#"class="filter_form">
+                  <input type="checkbox">
+                  <label>{{sF}}</label><br>
+                </form>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Color
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list *ngIf="colorFilter">
+              <form *ngFor="let cF of colorFilter" action="#"class="filter_form">
+                  <input type="checkbox">
+                  <label>{{cF}}</label><br>
+                </form>
+          </mat-nav-list>
+        </mat-expansion-panel>
+  </div>
+  <!--Filter end here-->
+
+  <!--Item display starts here-->
+  <div class="menu">
+
+    <div class = "scroll row">
+      <mat-card class="col-md-3 example-card" role="button">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title class="text-center">Item1</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src = "" alt="">
+        <mat-card-content class="card_bottom">
+          <p><b>Brand : Aura</b></p>
+          <p><b>Price : 150/-</b></p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!--Item Display Ends here-->
 </div>
 <app-footer></app-footer>

@@ -41,19 +41,19 @@ def get_filters_of_a_category(section,category_id):
             "$group":{
                 "_id":"$Categories.category_id",
                 "Brands":{"$addToSet":"$Categories.Items.item_brand"},
-                "Item Size":{"$addToSet":"$Categories.Items.item_size"},
+                "Item_Size":{"$addToSet":"$Categories.Items.item_size"},
                 "Colors":{"$addToSet":"$Categories.Items.colors"},
-                "Maximum Price": {"$max":"$Categories.Items.item_price"},
-                "Minimum Price":{"$min":"$Categories.Items.item_price"}
+                "Maximum_Price": {"$max":"$Categories.Items.item_price"},
+                "Minimum_Price":{"$min":"$Categories.Items.item_price"}
             }
         },
         {
             "$project":{
                 "Brands":1,
-                "Item Size":1,
+                "Item_Size":1,
                 "Colors":1,
-                "Maximum Price":1,
-                "Minimum Price":1,
+                "Maximum_Price":1,
+                "Minimum_Price":1,
                 "_id":0
             }
         }
@@ -62,5 +62,4 @@ def get_filters_of_a_category(section,category_id):
     filters = []
     for row in filter_cursor:
         filters.append(row)
-    
     return filters
