@@ -63,3 +63,21 @@ def get_filters_of_a_category(section,category_id):
     for row in filter_cursor:
         filters.append(row)
     return filters
+
+def get_items_of_a_category(section_name,category_id):
+    items_cursor = products.find(
+        {
+            "section_name":section_name,
+            "Categories.category_id":category_id
+        },
+        {
+            "Categories.$.Items":1,
+            "_id":0
+        })
+    
+    items = []
+
+    for item in items_cursor:
+        items.append(item)
+    
+    return items

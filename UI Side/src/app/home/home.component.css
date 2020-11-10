@@ -113,33 +113,23 @@ hr{
     margin-left:25px;
 }
 
-.popover{
-    margin-top:300px;
-}
-
 .arrow{
     width: 0;
     height: 0;
     margin-left:85px;
     border-left: 5px solid transparent;
-    margin-top:-25px !important;
 	border-right: 5px solid transparent;
     border-bottom: 10px solid #DDAF94;
 }
 
-.pop-over{
+.popover-content{
     margin-left:55px;
-    margin-top:-33px;
     width:44.3%;
     background-color:#DDAF94;
-    opacity:60%;
+    opacity:0%;
     margin-bottom: 20px;
 }
 
-/*.hide{
-    display: none !important;
+.popover-wrapper a:hover .popover-content{
+    opacity: 60%;
 }
-
-.hovering-element:hover + .hide{
-    display: block !important;
-}*/

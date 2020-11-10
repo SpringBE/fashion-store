@@ -19,5 +19,15 @@ def get_filters(section,category_id):
     filters = od.get_filters_of_a_category(section,category_id)
     return jsonify({'filters':filters})
 
+@app.route('/get_items/<section>/<category_id>')
+def get_items(section,category_id):
+    items = od.get_items_of_a_category(section,category_id)
+    return jsonify({'items':items})
+
+@app.route('/images/<section>/<category>/<image_name>')
+def display_image(section,category,image_name):
+    #return send_from_directory('D:/angular/cafe/MusiCafe/Server Side/images/'+section+'/'+category+'/'+, filename = image_name)
+    return send_from_directory('F:/Web Mini Project/online fashion store/Server Side/images/'+section+'/'+category+'/', filename = image_name)
+
 if __name__ == "__main__":
     app.run(debug=True)
