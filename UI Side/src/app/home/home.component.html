@@ -78,7 +78,18 @@
       <div class="col-md-6">
         <a [routerLink]="[ '/display','Men']"><img src="assets/men1.png" height="150px" width="230px"></a>
         <div class = "category-circle"></div>
-        <a class="hovering-element" [routerLink]="[ '/display','Men']">Men</a>
+        <!--<a class="hovering-element" [routerLink]="[ '/display','Men']">Men</a>-->
+
+        <div class="popover-wrapper">
+          <a class="hovering-element" [routerLink]="[ '/display','Men']">Men</a>
+          <mat-card class = "popover-content">
+            <div class="arrow"></div>
+            <div class="pop-over-body">
+              <h3>Hello</h3>
+            </div>
+          </mat-card>
+        </div>
+        
       </div>
       <div class="col-md-6">
         <a [routerLink]="[ '/display','Women']"><img src="assets/women1.png" height="150px" width="230px"></a>
@@ -111,12 +122,6 @@
 </div>
 
 
-<mat-card class = "pop-over hide">
-  <div class="arrow"></div>
-  <div class="pop-over-body">
-    <h3>Hello</h3>
-  </div>
-</mat-card>
 
 
 

@@ -19,5 +19,10 @@ def get_filters(section,category_id):
     filters = od.get_filters_of_a_category(section,category_id)
     return jsonify({'filters':filters})
 
+@app.route('/get_items/<section>/<category_id>')
+def get_items(section,category_id):
+    items = od.get_items_of_a_category(section,category_id)
+    return jsonify({'items':items})
+
 if __name__ == "__main__":
     app.run(debug=True)
