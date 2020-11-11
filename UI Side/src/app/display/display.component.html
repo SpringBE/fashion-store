@@ -46,7 +46,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-nav-list *ngIf="colorFilter">
-              <form *ngFor="let cF of colorFilter" action="#"class="filter_form">
+              <form *ngFor="let cF of colorFilter;let item of items" action="#"class="filter_form">
                   <input type="checkbox">
                   <label>{{cF}}</label><br>
                 </form>
@@ -56,18 +56,18 @@
   <!--Filter end here-->
 
   <!--Item display starts here-->
-  <div class="menu">
+  <div class="disp">
 
-    <div class = "scroll row">
-      <mat-card class="col-md-3 example-card" role="button">
+    <div *ngIf="items imgURL" class = "row">
+      <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card" role="button">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="text-center">Item1</mat-card-title>
+          <mat-card-title class="text-center">{{item.item_name}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src = "" alt="">
+        <img mat-card-image src = "http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
         <mat-card-content class="card_bottom">
-          <p><b>Brand : Aura</b></p>
-          <p><b>Price : 150/-</b></p>
+          <p><b>Brand : {{item.item_brand}}</b></p>
+          <p><b>Price : {{item.item_price}}/-</b></p>
         </mat-card-content>
       </mat-card>
     </div>

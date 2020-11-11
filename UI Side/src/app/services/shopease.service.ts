@@ -22,4 +22,9 @@ export class ShopeaseService {
     let url = `${this.baseurl}get_items/${sectionName}/${categoryName}`;
     return this.http.get(url);
   }
+  get_images(sectionName,categoryName,image_name): Observable<any> {
+    let url = `${this.baseurl}images/${sectionName}/${categoryName}/${image_name}`;
+    console.log(url)
+    return this.http.get(url);
+  }
 }
