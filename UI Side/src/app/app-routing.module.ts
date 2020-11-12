@@ -16,7 +16,11 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
-    path:'display/:id',
+    path:'display/:section',
+    component:DisplayComponent
+  },
+  {
+    path:'display/:section/:category_id',
     component:DisplayComponent
   }
 ];

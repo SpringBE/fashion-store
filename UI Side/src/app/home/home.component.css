@@ -1,3 +1,6 @@
+a{
+    text-decoration: none !important;
+}
 .carousel{
     padding:10px 25px;
     padding-top:25px;
@@ -16,7 +19,6 @@
 .main-category{
    padding-left:40px;
    padding-right:25px;
-   padding-bottom:25px;
 }
 
 .category{
@@ -53,23 +55,21 @@
     font-size:25px !important;
 }
 
-.category .col-md-6 a:last-child{
-    margin-top:15px !important;
+.popover-wrapper .hovering-element{
     margin-left:93px;
     font-size:21px !important;
-    text-decoration:none;
     color:#4F4846 !important;
-}
-
-.category .col-md-6 a:hover{
-    text-decoration:underline;
-    text-decoration-color: #4F4846 !important;
 }
 
 hr{
    background-color: #FDF8F5 ;
    border:1px solid #FDF8F5;
-   margin:10px 25px;
+   margin:10px 25px !important;
+}
+
+.main-category + hr{
+    margin-top:0px !important;
+
 }
 
 .vertical-hr{
@@ -77,6 +77,8 @@ hr{
     margin-left: 20px;
     margin-right:20px;
     border-right:2.5px solid #FDF8F5;
+    padding:0px;
+    height:290px !important;
 }
 
 .fa-angle-right, .fa-angle-left{
@@ -87,7 +89,6 @@ hr{
 .carousel-indicators li{
     background-color:#266150 !important;
 }
-
 
 .color h1{
     padding-bottom:5px;
@@ -113,23 +114,48 @@ hr{
     margin-left:25px;
 }
 
+.popover-wrapper:hover > .hovering-element{
+    text-decoration:underline !important;
+    text-decoration-color: #4F4846 !important;
+}
+
+.popover-wrapper{
+    width:min-content;
+    height:250px !important;
+    margin-bottom: 10px;
+}
+.popover-content{
+    visibility: hidden;
+    width:0px;
+    height:0px;
+    position: absolute;
+}
+
 .arrow{
     width: 0;
-    height: 0;
-    margin-left:85px;
-    border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-    border-bottom: 10px solid #DDAF94;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+    border-bottom: 12px solid #DDAF94;
+    margin-left:105px;
+    margin-top:3px;
+    visibility: hidden;
 }
 
-.popover-content{
-    margin-left:55px;
-    width:44.3%;
+.popover-wrapper:hover .arrow{
+    visibility: visible;
+}
+
+.popover-wrapper:hover .popover-content{
+    position: relative;
+    visibility: visible;
     background-color:#DDAF94;
-    opacity:0%;
-    margin-bottom: 20px;
+    margin-left:30px;
+    width:max-content;
+    height:205px !important;
+    overflow-y:auto;
 }
 
-.popover-wrapper a:hover .popover-content{
-    opacity: 60%;
+.footer{
+    margin-top:20px !important;
 }

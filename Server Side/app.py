@@ -26,8 +26,11 @@ def get_items(section,category_id):
 
 @app.route('/images/<section>/<category>/<image_name>')
 def display_image(section,category,image_name):
-    return send_from_directory('D:/angular/ShopEase/Server Side/images/'+section+'/'+category+'/', filename = image_name)
-    #return send_from_directory('F:/Web Mini Project/online fashion store/Server Side/images/'+section+'/'+category+'/', filename = image_name)
+    #return send_from_directory('D:/angular/ShopEase/Server Side/images/'+section+'/'+category+'/', filename = image_name)
+    print(section)
+    print(category)
+    print(image_name)
+    return send_from_directory('F:/Web Mini Project/online fashion store/Server Side/images/'+section+'/'+category+'/', filename = image_name)
 
 if __name__ == "__main__":
     app.run(debug=True)
