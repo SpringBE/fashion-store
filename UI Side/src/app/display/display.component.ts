@@ -16,6 +16,8 @@ export class DisplayComponent implements OnInit {
   colorFilter:[];
   sizeFilter:[];
   items:[];
+  prev:number;
+  next:number;
   maxPrice:number;
   minPrice:number;
   imagePath: any;
@@ -46,16 +48,24 @@ export class DisplayComponent implements OnInit {
       this.minPrice=filters.filters[0].Minimum_price;
     })
   }
+  setPrevNext(categoryName: string) {
+    const index = 1;
+    this.prev = index+1;
+    this.next = index-1;
+  }
+  /*get the items*/
   get_items(){
     this.shopeaseService.get_items(this.sectionName,this.categoryName).subscribe(item_list=>{
       this.items=item_list.items[0].Categories[0].Items;
       console.log(this.items)
+      /*images retrieval*/
       for(var i=0;i<this.items.length;i++){
       this.color=item_list.items[0].Categories[0].Items[i].colors[0];
       this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][this.color]);}
       this.shopeaseService.get_images(this.sectionName,this.categoryName,this.imgURL[i])
     })
   }
+  /*get categories*/
   get_categories(){
     this.shopeaseService.get_categories(this.sectionName).subscribe(categories=>{
       console.log(categories);
