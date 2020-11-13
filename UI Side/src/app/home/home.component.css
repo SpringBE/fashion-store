@@ -19,6 +19,7 @@ a{
 .main-category{
    padding-left:40px;
    padding-right:25px;
+   height:min-content;
 }
 
 .category{
@@ -120,15 +121,12 @@ hr{
 }
 
 .popover-wrapper{
-    width:min-content;
-    height:250px !important;
     margin-bottom: 10px;
 }
 .popover-content{
     visibility: hidden;
     width:0px;
-    height:0px;
-    position: absolute;
+    height:0px !important;
 }
 
 .arrow{
@@ -147,13 +145,13 @@ hr{
 }
 
 .popover-wrapper:hover .popover-content{
-    position: relative;
     visibility: visible;
     background-color:#DDAF94;
     margin-left:30px;
     width:max-content;
     height:205px !important;
     overflow-y:auto;
+    margin-bottom:0px !important;
 }
 
 .footer{

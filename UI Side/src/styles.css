@@ -2,7 +2,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 html, body { 
-    height: 100%; 
+    height: min-content !important; 
     background-color:#E8CEBF;
 }
 html{

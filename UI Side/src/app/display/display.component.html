@@ -1,77 +1,88 @@
 <app-header></app-header>
 <div class="page">
-<!--Filter starts here-->
-  <div class="side_bar">
-      <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Brand
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-nav-list *ngIf="brandFilter">
-              <form *ngFor="let bF of brandFilter" action="#" class="filter_form">
-                  <input type="checkbox">
-                  <label>{{bF}}</label><br>
+    <!--Filter starts here-->
+    <div class="side_bar">
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Brand
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list *ngIf="brandFilter">
+                <form action="#" class="filter_form">
+                    <div *ngFor="let bF of brandFilter">
+                        <input type="checkbox" (change) = "filterSelectionItems('brand',bF)">
+                        <label>{{bF}}</label><br>
+                    </div>
                 </form>
-          </mat-nav-list>
+            </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Price
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-nav-list>
-              <form action="#"class="filter_form">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Price
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+                <form action="#" class="filter_form">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                 </form>
-          </mat-nav-list>
+            </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Size
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-nav-list *ngIf="sizeFilter">
-              <form *ngFor="let sF of sizeFilter" action="#"class="filter_form">
-                  <input type="checkbox">
-                  <label>{{sF}}</label><br>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Size
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list *ngIf="sizeFilter">
+                <form action="#" class="filter_form">
+                    <div *ngFor="let sF of sizeFilter" >
+                        <input type="checkbox" name = "Size" (change) = "filterSelectionItems('size',sF)">
+                        <label>{{sF}}</label><br>
+                    </div>
                 </form>
-          </mat-nav-list>
+            </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Color
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-nav-list *ngIf="colorFilter">
-              <form *ngFor="let cF of colorFilter" action="#"class="filter_form">
-                  <input type="checkbox">
-                  <label>{{cF}}</label><br>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Color
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list *ngIf="colorFilter">
+                <form action="#" class="filter_form">
+                    <div *ngFor="let cF of colorFilter">
+                        <input type="checkbox" name="Color" (change) = "filterSelectionItems('color',cF)">
+                        <label>{{cF}}</label><br>
+                    </div>
                 </form>
-          </mat-nav-list>
+            </mat-nav-list>
         </mat-expansion-panel>
-  </div>
-  <!--Filter end here-->
-
-  <!--Item display starts here-->
-  <div class="disp">
-
-    <div *ngIf="items imgURL" class = "row">
-      <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card" role="button">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title class="text-center">{{item.item_name}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src = "http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
-        <mat-card-content class="card_bottom">
-          <p><b>Brand : {{item.item_brand}}</b></p>
-          <p><b>Price : {{item.item_price}}/-</b></p>
-        </mat-card-content>
-      </mat-card>
     </div>
-  </div>
-  <!--Item Display Ends here-->
+    <!--Filter end here-->
+
+    <!--Item display starts here-->
+    <div class="disp">
+        <div *ngIf="items imgURL" class="row">
+            <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card" role="button">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title class="text-center">{{item.item_name}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
+                <mat-card-content class="card_bottom">
+                    <p><b>Brand : {{item.item_brand}}</b></p>
+                    <p><b>Price : {{item.item_price}}/-</b></p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <!--<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>-->
+    <!--Item Display Ends here-->
 </div>
 <app-footer></app-footer>

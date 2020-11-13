@@ -81,3 +81,35 @@ def get_items_of_a_category(section_name,category_id):
         items.append(item)
     
     return items
+
+def get_filtered_items(brand,size,color,section_name,category_id):
+    filtered_items_cursor = products.aggregate([
+        {
+            "$unwind":"$Categories"
+        },
+        {
+            "$unwind":"$Categories.Items"
+        },
+        {
+            "$match":{
+                "section_name": section_name,
+                "Categories.category_id": category_id,
+                "Categories.Items.colors":{ "$in": color },
+                "Categories.Items.item_brand": { "$in": brand },
+                "Categories.Items.item_size": { "$in": size }
+            }
+        },
+        { 
+            "$project":{
+                "filtered_items": "$Categories.Items",
+                "_id":0
+            }
+        }
+
+        ])
+    
+    filtered_items = []
+    for item in filtered_items_cursor:
+        filtered_items.append(item)
+    
+    return filtered_items

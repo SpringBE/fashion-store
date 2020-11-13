@@ -27,10 +27,15 @@ def get_items(section,category_id):
 @app.route('/images/<section>/<category>/<image_name>')
 def display_image(section,category,image_name):
     #return send_from_directory('D:/angular/ShopEase/Server Side/images/'+section+'/'+category+'/', filename = image_name)
-    print(section)
-    print(category)
-    print(image_name)
     return send_from_directory('F:/Web Mini Project/online fashion store/Server Side/images/'+section+'/'+category+'/', filename = image_name)
+
+@app.route('/filtered-items/<brand>/<size>/<color>/<section_name>/<category_id>')
+def get_filtered_data(brand,size,color,section_name,category_id):
+    brand = list(brand.split(','))
+    size = list(size.split(','))
+    color = list(color.split(','))
+    items = od.get_filtered_items(brand,size,color,section_name,category_id)
+    return jsonify({'filtered_items':items})
 
 if __name__ == "__main__":
     app.run(debug=True)
