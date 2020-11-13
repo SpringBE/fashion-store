@@ -6,6 +6,7 @@
     width:180px;
     background-color: white;
     line-height: 20px;
+    position: relative;
 }
 mat-expansion-panel{
     box-shadow:none !important;
@@ -62,5 +63,5 @@ img{
       float:right;
   }
   p{
-      padding-right: 30px;
+      padding-right: 25px;
   }

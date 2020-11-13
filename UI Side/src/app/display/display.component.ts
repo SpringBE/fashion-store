@@ -10,14 +10,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class DisplayComponent implements OnInit {
-  categoryName="mhd";
-  sectionName="Men";
+  categoryId="";
+  sectionName="";
   brandFilter:[];
   colorFilter:[];
   sizeFilter:[];
   items:[];
-  prev:number;
-  next:number;
   maxPrice:number;
   minPrice:number;
   imagePath: any;
@@ -29,17 +27,19 @@ export class DisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      let id = params['id'];
-      console.log(id);
-      this.get_data();
-      this.get_items();
-      this.get_categories();
+      this.sectionName = params['section'];
+      if(params['category_id']){
+          this.categoryId = params['category_id']
+      }
       });
-
+    
+    this.get_data();
+    this.get_items();
+    this.get_categories();
   }
   /*get the filters*/
   get_data(){
-    this.shopeaseService.get_filters(this.sectionName,this.categoryName).subscribe(filters=>{
+    this.shopeaseService.get_filters(this.sectionName,this.categoryId).subscribe(filters=>{
       console.log(filters);
       this.brandFilter=filters.filters[0].Brands.sort();
       this.colorFilter=filters.filters[0].Colors.sort();
@@ -48,29 +48,22 @@ export class DisplayComponent implements OnInit {
       this.minPrice=filters.filters[0].Minimum_price;
     })
   }
-  setPrevNext(categoryName: string) {
-    const index = 1;
-    this.prev = index+1;
-    this.next = index-1;
-  }
-  /*get the items*/
+
   get_items(){
-    this.shopeaseService.get_items(this.sectionName,this.categoryName).subscribe(item_list=>{
+    this.shopeaseService.get_items(this.sectionName,this.categoryId).subscribe(item_list=>{
       this.items=item_list.items[0].Categories[0].Items;
       console.log(this.items)
-      /*images retrieval*/
       for(var i=0;i<this.items.length;i++){
       this.color=item_list.items[0].Categories[0].Items[i].colors[0];
       this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][this.color]);}
-      this.shopeaseService.get_images(this.sectionName,this.categoryName,this.imgURL[i])
+      this.shopeaseService.get_images(this.sectionName,this.categoryId,this.imgURL[i])
     })
   }
-  /*get categories*/
+
   get_categories(){
     this.shopeaseService.get_categories(this.sectionName).subscribe(categories=>{
       console.log(categories);
     })
   }
+  
 }
-
-

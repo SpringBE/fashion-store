@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-html, body { 
-    height: 100%; 
+html, body {  
     background-color:#E8CEBF;
+    height: 100% !important;
 }
 html{
     overflow-x: hidden;

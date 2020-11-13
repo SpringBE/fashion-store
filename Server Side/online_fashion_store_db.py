@@ -10,7 +10,7 @@ products = mydb['Products']
 
 def get_categories(section):
     category_cursor = products.find({"section_name":section},
-    { "Categories.category_id":1, "Categories.category_name":1,"_id":0})
+    { "Categories.category_id":1, "Categories.category_name":1, "Categories.category_image":1,"_id":0})
     categories = []
     for category in category_cursor:
         categories.append(category)
