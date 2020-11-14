@@ -150,10 +150,41 @@ hr{
     margin-left:30px;
     width:max-content;
     height:205px !important;
+    opacity:80%;
     overflow-y:auto;
     margin-bottom:0px !important;
 }
 
 .footer{
-    margin-top:20px !important;
+    margin-top:700px !important;
+}
+
+.pop-over-body a {
+    color: #4F4846;
+    text-decoration: none;
+    background-color: transparent;
+    padding-left: 10px;
+}
+
+.pop-over-body img{
+    padding-top: 5px;
+}
+
+.pop-over-body a:hover{
+    text-decoration-line: underline !important;
+    text-decoration-color: #4F4846;
+}
+
+.popover-content::-webkit-scrollbar {
+    width: 10px !important; 
+}
+
+.popover-content::-webkit-scrollbar-track {
+    border-radius: 20px!important;
+    background-color: #FDF8F5 !important;
+}
+
+.popover-content::-webkit-scrollbar-thumb {
+    background-color: gray !important;
+    border-radius: 20px!important;
 }

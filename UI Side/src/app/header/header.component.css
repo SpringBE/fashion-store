@@ -16,7 +16,6 @@ mat-toolbar{
     margin-left: 10px !important;
     margin-top:20px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:  #ff5e6c;
   }
 
   a{
@@ -24,7 +23,7 @@ mat-toolbar{
   }
 
   mat-toolbar > a{
-    color: #4F4846 !important;
+    color: #4F4846;
     border:1px solid #4F4846;
     font-size:13px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

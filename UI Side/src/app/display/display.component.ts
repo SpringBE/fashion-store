@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-//import {PageEvent} from '@angular/material/paginator';
 
 @Component({
     selector: 'app-display',
@@ -27,7 +24,7 @@ export class DisplayComponent implements OnInit {
     Brand = [];
     Color = [];
 
-    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService, private sanitizer: DomSanitizer, private fb: FormBuilder,) {
+    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService) {
     }
 
     ngOnInit(): void {
@@ -131,5 +128,3 @@ export class DisplayComponent implements OnInit {
     }
 
 }
-
-

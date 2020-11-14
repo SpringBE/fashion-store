@@ -22,13 +22,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule} from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
-//import {PageEvent} from '@angular/material/paginator';
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayComponent } from './display/display.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShopeaseService } from './services/shopease.service';
+import { AboutComponent } from './about/about.component';
+import { CartComponent } from './cart/cart.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 
 @NgModule({
@@ -38,6 +40,9 @@ import { ShopeaseService } from './services/shopease.service';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    AboutComponent,
+    CartComponent,
+    ContactusComponent,
     
   ],
   imports: [
@@ -62,7 +67,6 @@ import { ShopeaseService } from './services/shopease.service';
     MatSidenavModule,
     MatGridListModule,
     MatIconModule,
-    //PageEvent
   ],
   providers: [ShopeaseService],
   bootstrap: [AppComponent]
