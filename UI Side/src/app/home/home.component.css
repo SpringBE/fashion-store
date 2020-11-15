@@ -122,7 +122,11 @@ hr{
 
 .popover-wrapper{
     margin-bottom: 10px;
+    width: min-content;
+    overflow-y: hidden !important;
+    overflow-x:hidden !important;
 }
+
 .popover-content{
     visibility: hidden;
     width:0px;
@@ -156,7 +160,7 @@ hr{
 }
 
 .footer{
-    margin-top:700px !important;
+    margin-top:20px !important;
 }
 
 .pop-over-body a {
@@ -167,8 +171,17 @@ hr{
 }
 
 .pop-over-body img{
-    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-top:10px;
 }
+
+/*.pop-over-body div{
+    border-top:2px solid #FDF8F5;
+}
+
+.pop-over-body div:last-child{
+    border-bottom:2px solid #FDF8F5;
+}*/
 
 .pop-over-body a:hover{
     text-decoration-line: underline !important;
