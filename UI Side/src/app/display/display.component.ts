@@ -56,12 +56,21 @@ export class DisplayComponent implements OnInit {
     get_items() {
         this.shopeaseService.get_items(this.sectionName, this.categoryId).subscribe(item_list => {
             this.items = item_list.items[0].Categories[0].Items;
-            console.log(this.items)
             for (var i = 0; i < this.items.length; i++) {
-                this.color = item_list.items[0].Categories[0].Items[i].colors[0];
-                this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][this.color]);
+                let all_colors = item_list.items[0].Categories[0].Items[i].colors;
+                if (all_colors.length > 1) {
+                    for (let j = 0; j < all_colors.length; j++) {
+                        this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][all_colors[j]])
+                        this.items.splice(i + j, 0, this.items[i]);
+                    }
+                    this.items.splice(i + all_colors.length, 1)
+                    i = i + all_colors.length - 1
+                }
+                else
+                    this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][all_colors[0]]);
             }
-            this.shopeaseService.get_images(this.sectionName, this.categoryId, this.imgURL[i])
+            console.log(this.items)
+            console.log(this.imgURL)
         })
     }
 
@@ -83,7 +92,7 @@ export class DisplayComponent implements OnInit {
                     if (item == value) this.Brand.splice(index, 1);
                 })
             }
-            else{
+            else {
                 this.Brand.push(value)
             }
         }
@@ -94,7 +103,7 @@ export class DisplayComponent implements OnInit {
                     if (item == value) this.Size.splice(index, 1);
                 })
             }
-            else{
+            else {
                 this.Size.push(value)
             }
         }
@@ -105,7 +114,7 @@ export class DisplayComponent implements OnInit {
                     if (item == value) this.Color.splice(index, 1);
                 })
             }
-            else{
+            else {
                 this.Color.push(value)
             }
         }
@@ -114,22 +123,38 @@ export class DisplayComponent implements OnInit {
         let filter_size = this.Size
         let filter_color = this.Color
 
-        if(this.Brand.length == 0)
+        if (this.Brand.length == 0)
             filter_brand = this.brandFilter
-        
-        if(this.Size.length == 0)
+
+        if (this.Size.length == 0)
             filter_size = this.sizeFilter
-        
-        if(this.Color.length == 0)
+
+        if (this.Color.length == 0)
             filter_color = this.colorFilter
 
-        this.shopeaseService.get_filtered_items(filter_brand,filter_size,filter_color,this.sectionName,this.categoryId).subscribe(data=>{
-            console.log(data['filtered_items']);
+        this.shopeaseService.get_filtered_items(filter_brand, filter_size, filter_color, this.sectionName, this.categoryId).subscribe(data => {
             this.items = []
-            for(let i of data['filtered_items']){
-                this.items.push(i['filtered_items'])
+            this.imgURL = []
+            for (let item of data['filtered_items']) {
+                let i = this.items.length - 1
+                let all_colors = item['filtered_items'].colors;
+                if (all_colors.length > 1) {
+                    for (let j = 0; j < all_colors.length; j++) {
+                        if (filter_color.includes(all_colors[j])) {
+                            this.imgURL.push(item['filtered_items'].item_image[0][all_colors[j]])
+                            this.items.splice(i + j, 0, this.items[i]);
+                        }
+                    }
+                    i = i + all_colors.length - 1
+                }
+                else {
+                    this.items.push(item['filtered_items'])
+                    this.imgURL.push(item['filtered_items'].item_image[0][all_colors[0]]);
+
+                }
             }
             console.log(this.items)
+            console.log(this.imgURL);
         })
     }
 
