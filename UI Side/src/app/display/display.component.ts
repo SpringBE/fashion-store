@@ -10,6 +10,8 @@ import { ShopeaseService } from '../services/shopease.service';
 
 export class DisplayComponent implements OnInit {
     categoryId = "";
+    category_name=[];
+    categories=[];
     sectionName = "";
     brandFilter: [];
     colorFilter: [];
@@ -65,7 +67,11 @@ export class DisplayComponent implements OnInit {
 
     get_categories() {
         this.shopeaseService.get_categories(this.sectionName).subscribe(categories => {
-            console.log(categories);
+        this.categories=categories['categories'][0]['Categories']
+        for(var i=0;i<this.categories.length;i++){
+            this.category_name[i]=this.categories[i]['category_name']
+        }
+        console.log(this.category_name)
         })
     }
 

@@ -5,6 +5,20 @@
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
+                    Categories
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list *ngIf="category_name||sectionName">
+                <form action="#" class="filter_form">
+                    <div *ngFor="let cgF of category_name">
+                    <a>{{cgF}}</a>
+                    </div>
+                </form>
+            </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
                     Brand
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -64,7 +78,7 @@
 
     <!--Item display starts here-->
     <div class="disp">
-        <div *ngIf="items imgURL" class="row">
+        <div *ngIf="items imgURL" class="row scroll">
             <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card" role="button">
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
