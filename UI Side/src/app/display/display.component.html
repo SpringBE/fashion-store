@@ -8,12 +8,10 @@
                     Categories
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-nav-list *ngIf="category_name||sectionName">
-                <form action="#" class="filter_form">
-                    <div *ngFor="let cgF of category_name">
-                    <a>{{cgF}}</a>
+            <mat-nav-list *ngIf="categories">
+                    <div *ngFor="let category of categories">
+                    <a [routerLink]="[ '/display',sectionName, category.category_id]">{{category.category_name}}</a>
                     </div>
-                </form>
             </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel [expanded]="true">
@@ -39,7 +37,10 @@
             </mat-expansion-panel-header>
             <mat-nav-list>
                 <form action="#" class="filter_form">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
+                    <label>Minimum Price</label><input type="text" class="form-control" value={{minPrice}} id="minprice">
+                    <label>Maximum Price</label><input type="text" class="form-control" value={{maxPrice}} id="maxprice"> 
+                    <button mat-raised-button color="primary" (click)="filterSelectionItems('price',0)">Apply</button>
                 </form>
             </mat-nav-list>
         </mat-expansion-panel>

@@ -6,7 +6,8 @@
     width:180px;
     background-color: white;
     line-height: 20px;
-    position: relative;
+    height:1025px;
+    overflow-y: scroll;
 }
 mat-expansion-panel{
     box-shadow:none !important;
@@ -46,8 +47,8 @@ mat-card{
   
 
 .scroll{
-    margin-top:15px !important;
-    height: 220vh !important;
+    
+    height: 900px !important;
     overflow-y: auto !important;
   }
 
@@ -55,8 +56,10 @@ img{
     height:250px !important;
   }
   .disp{
+    margin-top:15px !important;
     width:80%;
     padding-top: 50px;
+    height:1000px;
   }
   .card_bottom{
       display: flex;
@@ -81,6 +84,14 @@ img{
   .slider:hover {
     opacity: 1;
   }
+  .form-control{
+    width: 70px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+button{
+  margin-bottom:15px;
+}
   
   /*Chrome Browser Depedent*/
   .slider::-webkit-slider-thumb {

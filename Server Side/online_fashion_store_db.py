@@ -82,7 +82,7 @@ def get_items_of_a_category(section_name,category_id):
     
     return items
 
-def get_filtered_items(brand,size,color,section_name,category_id):
+def get_filtered_items(brand,size,color,minprice,maxprice,section_name,category_id):
     filtered_items_cursor = products.aggregate([
         {
             "$unwind":"$Categories"
@@ -96,7 +96,8 @@ def get_filtered_items(brand,size,color,section_name,category_id):
                 "Categories.category_id": category_id,
                 "Categories.Items.colors":{ "$in": color },
                 "Categories.Items.item_brand": { "$in": brand },
-                "Categories.Items.item_size": { "$in": size }
+                "Categories.Items.item_size": { "$in": size },
+                "Categories.Items.item_price": { "$gte": minprice, "$lte":maxprice  }
             }
         },
         { 
@@ -111,5 +112,4 @@ def get_filtered_items(brand,size,color,section_name,category_id):
     filtered_items = []
     for item in filtered_items_cursor:
         filtered_items.append(item)
-    
     return filtered_items

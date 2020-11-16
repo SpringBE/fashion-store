@@ -26,8 +26,8 @@ export class ShopeaseService {
         let url = `${this.baseurl}images/${sectionName}/${categoryName}/${image_name}`;
         return this.http.get(url);
     }
-    get_filtered_items(brand,size,color,sectionName,categoryName):Observable<any>{
-        let url = `${this.baseurl}filtered-items/${brand}/${size}/${color}/${sectionName}/${categoryName}`;
+    get_filtered_items(brand,size,color,minprice,maxprice,sectionName,categoryName):Observable<any>{
+        let url = `${this.baseurl}filtered-items/${brand}/${size}/${color}/${minprice}/${maxprice}/${sectionName}/${categoryName}`;
         return this.http.get(url);
     }
 
