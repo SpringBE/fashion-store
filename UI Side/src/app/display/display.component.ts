@@ -84,6 +84,9 @@ export class DisplayComponent implements OnInit {
     
 
     filterSelectionItems(filterType, value) {
+        let min_price = this.minPrice
+        let max_price = this.maxPrice
+
         if (filterType === 'brand') {
             if (this.Brand.includes(value)) {
                 console.log("hello")
@@ -117,21 +120,22 @@ export class DisplayComponent implements OnInit {
                 this.Color.push(value)
             }
         }
-        else if(filterType=='price')
+        else if(filterType ==='price')
         {
             var s=(<HTMLInputElement>document.getElementById("minprice")).value
             var l=(<HTMLInputElement>document.getElementById("maxprice")).value
-            this.pricedItems.push(s,l)
-                
+            if(!isNaN(parseInt(s))){
+                min_price = parseInt(s)
+            }
+
+            if(!isNaN(parseInt(l))){
+                max_price = parseInt(l)
+            }
         }
-        if(this.pricedItems.length==0)
-                this.pricedItems.push(this.minPrice,this.maxPrice)
+
         let filter_brand = this.Brand
         let filter_size = this.Size
         let filter_color = this.Color
-        let min_price = this.pricedItems[0]
-        let max_price=this.pricedItems[1]
-        this.pricedItems=[];
 
         if (this.Brand.length == 0)
             filter_brand = this.brandFilter
@@ -145,14 +149,14 @@ export class DisplayComponent implements OnInit {
         this.shopeaseService.get_filtered_items(filter_brand, filter_size, filter_color,min_price,max_price, this.sectionName, this.categoryId).subscribe(data => {
             this.items = []
             this.imgURL = []
+            let i = 0;
             for (let item of data['filtered_items']) {
-                let i = this.items.length - 1
                 let all_colors = item['filtered_items'].colors;
                 if (all_colors.length > 1) {
                     for (let j = 0; j < all_colors.length; j++) {
                         if (filter_color.includes(all_colors[j])) {
                             this.imgURL.push(item['filtered_items'].item_image[0][all_colors[j]])
-                            this.items.splice(i + j, 0, this.items[i]);
+                            this.items.splice(i + j, 0,item['filtered_items']);
                         }
                     }
                     i = i + all_colors.length - 1
@@ -160,7 +164,7 @@ export class DisplayComponent implements OnInit {
                 else {
                     this.items.push(item['filtered_items'])
                     this.imgURL.push(item['filtered_items'].item_image[0][all_colors[0]]);
-
+                    i += 1
                 }
             }
             console.log(this.items)

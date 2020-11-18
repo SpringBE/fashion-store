@@ -9,7 +9,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="categories">
-                    <div *ngFor="let category of categories">
+                    <div class="category" *ngFor="let category of categories">
                     <a [routerLink]="[ '/display',sectionName, category.category_id]">{{category.category_name}}</a>
                     </div>
             </mat-nav-list>

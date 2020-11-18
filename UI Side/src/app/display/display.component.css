@@ -38,6 +38,11 @@ mat-card{
     font-family: system-ui;
     height:50px;
 }
+
+.category{
+    line-height: 40px;
+}
+
 .mat-card-header-text {
   margin: 0px 15px;
 }
