@@ -1,13 +1,15 @@
 .page{
     display:flex;
 }
-
 .side_bar{
     width:180px;
     background-color: white;
     line-height: 20px;
     height:1025px;
     overflow-y: scroll;
+}
+.category{
+  line-height: 40px;
 }
 mat-expansion-panel{
     box-shadow:none !important;

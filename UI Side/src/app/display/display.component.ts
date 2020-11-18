@@ -23,7 +23,7 @@ export class DisplayComponent implements OnInit {
     imgURL = [];
     color: string;
     Size = [];
-    Brand = [];
+    Brand = []
     Color = [];
     pricedItems=[];
     constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService) {
