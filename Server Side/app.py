@@ -39,5 +39,19 @@ def get_filtered_data(brand,size,color,minprice,maxprice,section_name,category_i
     items = od.get_filtered_items(brand,size,color,minprice,maxprice,section_name,category_id)
     return jsonify({'filtered_items':items})
 
+@app.route('/sign-in/<email>/<password>')
+def confirm_sign_in(email,password):
+    confirmation = od.sign_in_confirmation(email,password)
+    return jsonify({'flag':confirmation})
+
+@app.route('/sign-up/<name>/<phone>/<email>/<password>')
+def registration(name,phone,email,password):
+    isEmailExist = od.email_confirmation(email)
+    if isEmailExist:
+        return jsonify({'emailExist':True,'addRecord':False})
+    else:
+        confirmation = od.addUser(name,phone,email,password)
+        return jsonify({'emailExist':False, 'addRecord':confirmation})
+
 if __name__ == "__main__":
     app.run(debug=True)

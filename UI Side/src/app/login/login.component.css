@@ -1,0 +1,103 @@
+.signin-container, .signup-container{
+    background-color: #003b46;
+    height:525px !important;
+    margin:-25px -24px !important;
+    padding:0px !important;
+    color:aliceblue !important;
+    outline: none !important;
+}
+
+.header{
+    padding:25px;
+    padding-top:55px;
+}
+
+.login-form{
+    height: 398px;
+    background-color: white !important;
+    border-top-left-radius: 35px ;
+    border-top-right-radius: 35px;
+}
+
+.form-contents{
+    padding:60px 35px;
+    padding-bottom:5px;
+}
+
+label{
+    color: #003b46 !important;
+    font-size: medium;
+    font-weight: bold;
+}
+
+input, .submit{
+    width: 95%;
+    outline: none !important;
+}
+
+.signup-submit{
+    margin-left:20px;
+    width: 80%;
+}
+
+input{
+    padding:7px;
+    margin-bottom:40px ;
+    border:1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none !important;
+}
+
+input::placeholder{
+    color: #d3d3d3 !important;
+}
+
+.submit, .signup-submit{
+    background-color: #003b46 !important;
+    color: aliceblue !important;
+    padding: 5px;
+    margin-bottom: 34px;
+}
+
+p{
+    color: #003b46 !important;
+    margin-right: 10px !important;
+}
+
+p button{
+    text-decoration: underline;
+    text-decoration-color: #003b46 !important;
+    color:#003b46 !important;
+    font-weight: bold;
+    background-color: transparent;
+    border:none !important;
+}
+
+.close span{
+    margin:10px;
+    color: white !important;
+    float: right;
+}
+
+.right,.left{
+    width:30px !important;
+    background-color: white !important;
+    border: none !important;
+    color:#003b46 !important;
+}
+
+.right{
+    margin-top: 10px;
+    float: right;
+}
+
+.left{
+    margin-top: 10px;
+    float: left;
+}
+
+button{
+    outline: none !important;
+}

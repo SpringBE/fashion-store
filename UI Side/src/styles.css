@@ -3,6 +3,7 @@
 
 html, body {  
     background-color:#E8CEBF;
+    /*background-color: #f5e0d4fb;*/
     height: 100% !important;
 }
 
@@ -11,6 +12,21 @@ html{
 }
 
 body { margin: 0px; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+@font-face {
+    font-family:gabriola;
+    src: url(assets/fonts/gabriola-Font-Download.ttf);
+
+    font-family:Nilland;
+    src: url(assets/fonts/Nilland.ttf);
+
+    /**/
+  }  
+
+  @font-face{
+    font-family:Raleway;
+    src: url(assets/fonts/Raleway-Regular.ttf);
+  }
 
 /*::-webkit-scrollbar {
     width: 10px;
@@ -28,3 +44,173 @@ body { margin: 0px; font-family: Roboto, "Helvetica Neue", sans-serif;}
     border-radius: 20px;
     border: 3px solid rgb(228, 225, 225);
 }*/
+
+/* <!--<hr>
+
+    <div class="row main-category">
+
+        <div class="category">
+            <div class="row">
+                <div class="col-md-6">
+                    <a [routerLink]="[ '/display','Men']"><img src="assets/men1.png" height="150px" width="230px"></a>
+                    <div class="category-circle"></div>
+                    <div class="popover-wrapper">
+                        <a class="hovering-element" [routerLink]="[ '/display','Men']">Men</a>
+                        <div class="arrow"></div>
+                        <mat-card class="popover-content">
+                            <div class="pop-over-body">
+                                <div *ngFor="let men of men_categories">
+                                    <img src="http://localhost:5000/images/{{men.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Men', men.category_id]"><b>{{men.category_name}}</b></a>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a [routerLink]="[ '/display','Women']"><img src="assets/women1.png" height="150px"
+                            width="230px"></a>
+                    <div class="category-circle"></div>
+                    <div class="popover-wrapper">
+                        <a class="hovering-element" [routerLink]="[ '/display','Women']">Women</a>
+                        <div class="arrow"></div>
+                        <mat-card class="popover-content">
+                            <div class="pop-over-body">
+                                <div *ngFor="let women of women_categories">
+                                    <img src="http://localhost:5000/images/{{women.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Women', women.category_id]"><b>{{women.category_name}}</b></a>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vertical-hr"></div>
+
+        <div class="category">
+            <div class="row">
+                <div class="col-md-6">
+                    <a [routerLink]="[ '/display','Boys']"><img src="assets/boy1.png" height="150px" width="230px"></a>
+                    <div class="category-circle"></div>
+                    <div class="popover-wrapper">
+                        <a class="hovering-element" [routerLink]="[ '/display','Boys']">Boys</a>
+                        <div class="arrow"></div>
+                        <mat-card class="popover-content">
+                            <div class="pop-over-body">
+                                <div *ngFor="let boy of boys_categories">
+                                    <img src="http://localhost:5000/images/{{boy.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Boys', boy.category_id]"><b>{{boy.category_name}}</b></a>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a [routerLink]="[ '/display','Girls']"><img src="assets/girl1.png" height="150px"
+                            width="230px"></a>
+                    <div class="category-circle"></div>
+                    <div class="popover-wrapper">
+                        <a class="hovering-element" [routerLink]="[ '/display','Girls']">Girls</a>
+                        <div class="arrow"></div>
+                        <mat-card class="popover-content">
+                            <div class="pop-over-body">
+                                <div *ngFor="let girl of girls_categories">
+                                    <img src="http://localhost:5000/images/{{girl.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Girls', girl.category_id]"><b>{{girl.category_name}}</b></a>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>-->
+</div>
+<!--
+<div class="footer">
+    <app-footer></app-footer>
+</div>-->*/
+
+/*
+<!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="row">
+                <div class="col-md-6 color">
+                    <h1>ShopEase brings you a wide</h1>
+                    <h1>range of trendy shirts,</h1>
+                    <h1> trousers, and many more,</h1>
+                    <h1>all at affordable prices</h1>
+                    <h1>to make them accessible to you.</h1>
+                </div>
+                <div class="col-md-6">
+                    <img src="assets/temp1.jpeg" height="450px" class="d-block w-100" alt="...">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="assets/carasol11.png" height="450px" class="d-block w-100" alt="...">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-md-6 color">
+                    <h1>Pick Your Favourite </h1>
+                    <h1>Clothes From Various Categories</h1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="row">
+                <div class="col-md-6 color">
+                    <h1>Add Clothes Which Are</h1>
+                    <h1>Picked To Cart</h1>
+                </div>
+                <div class="col-md-6">
+                    <img src="assets/carasol13.png" height="450px" class="d-block w-100" alt="...">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="assets/carasol12.png" height="450px" class="d-block w-100" alt="...">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-md-6 color">
+                    <h1>Provide Destination Address</h1>
+                    <h1>For The Home Delivery</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span><b><i class="fa fa-angle-left" aria-hidden="true"></i></b></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span><b><i class="fa fa-angle-right" aria-hidden="true"></i></b></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>-->*/

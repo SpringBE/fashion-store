@@ -1,203 +1,32 @@
-a{
-    text-decoration: none !important;
-}
-.carousel{
-    padding:10px 25px;
-    padding-top:25px;
-}
-
-.color{
-    height:450px;
-    background-color: #DDAF94 !important;
+.shop-card{
+    margin-top:-500px !important;
+    height:500px;
+    width:400px;
+    padding:40px;
+    background-color: #EBD6C5;
+    opacity:70%;
+    font-family:gabriola !important;
+    color: #201a2b !important;
 }
 
-.carousel-item .row .col-md-6{
-    margin:0px;
-    padding:0px;
+.shop-card h1:first-child{
+    margin-top:110px;
+    margin-left:45px;
 }
 
-.main-category{
-   padding-left:40px;
-   padding-right:25px;
-   height:min-content;
+.shop-card :nth-child(even){
+    margin-left:65px;
 }
 
-.category{
-    margin-top:10px;
-    height:250px;
-    width:47.8%;
-    padding-left:25px;
-    padding-right:0px;
-    margin-right:0px;
-    background-color:#FDF8F5;
+.shop-card h1{
+    font-family:gabriola !important;
+    color: #201a2b !important;
+    font-size:55px !important;
+    margin-bottom: 15px;
 }
 
-.category img{
-    border-radius: 50%;
-}
-
-.category-circle{
-    width:234px;
-    height:154px;
-    margin-top:-152px;
-    margin-left:-2px;
-    border:5px solid #4F4846;
-    border-radius:50%;
-}
-
-.category-header{
-    margin-left:255px;
-    color:#4F4846;
-    margin-top:15px;
-    padding:0px;
-}
-
-.category-header > h3{
+.shop-card p{
     font-size:25px !important;
-}
-
-.popover-wrapper .hovering-element{
-    margin-left:93px;
-    font-size:21px !important;
-    color:#4F4846 !important;
-}
-
-hr{
-   background-color: #FDF8F5 ;
-   border:1px solid #FDF8F5;
-   margin:10px 25px !important;
-}
-
-.main-category + hr{
-    margin-top:0px !important;
-
-}
-
-.vertical-hr{
-    margin-top:-10px;
-    margin-left: 20px;
-    margin-right:20px;
-    border-right:2.5px solid #FDF8F5;
-    padding:0px;
-    height:290px !important;
-}
-
-.fa-angle-right, .fa-angle-left{
-    font-size:35px;
-    color: #266150 !important;
-}
-
-.carousel-indicators li{
-    background-color:#266150 !important;
-}
-
-.color h1{
-    padding-bottom:5px;
-    font-size:35px !important;
-    color:#4F4846 !important;
-}
-
-.carousel-item:first-child .row:first-child .color:first-child h1:first-child{
-    margin-top:50px;
-    font-size:42px !important;
-    padding-bottom: 25px !important;
-}
-
-.color h1:first-child{
-    margin-top:150px;
-}
-
-.color:nth-child(odd) h1{
-    margin-left:125px;
-}
-
-.color:nth-child(even) h1{
-    margin-left:25px;
-}
-
-.popover-wrapper:hover > .hovering-element{
-    text-decoration:underline !important;
-    text-decoration-color: #4F4846 !important;
-}
-
-.popover-wrapper{
-    margin-bottom: 10px;
-    width: min-content;
-    overflow-y: hidden !important;
-    overflow-x:hidden !important;
-}
-
-.popover-content{
-    visibility: hidden;
-    width:0px;
-    height:0px !important;
-}
-
-.arrow{
-    width: 0;
-	height: 0;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-    border-bottom: 12px solid #DDAF94;
-    margin-left:105px;
-    margin-top:3px;
-    visibility: hidden;
-}
-
-.popover-wrapper:hover .arrow{
-    visibility: visible;
-}
-
-.popover-wrapper:hover .popover-content{
-    visibility: visible;
-    background-color:#DDAF94;
-    margin-left:30px;
-    width:max-content;
-    height:205px !important;
-    opacity:80%;
-    overflow-y:auto;
-    margin-bottom:0px !important;
-}
-
-.footer{
-    margin-top:20px !important;
-}
-
-.pop-over-body a {
-    color: #4F4846;
-    text-decoration: none;
-    background-color: transparent;
-    padding-left: 10px;
-}
-
-.pop-over-body img{
-    padding-bottom: 10px;
-    padding-top:10px;
-}
-
-/*.pop-over-body div{
-    border-top:2px solid #FDF8F5;
-}
-
-.pop-over-body div:last-child{
-    border-bottom:2px solid #FDF8F5;
-}*/
-
-.pop-over-body a:hover{
-    text-decoration-line: underline !important;
-    text-decoration-color: #4F4846;
-}
-
-.popover-content::-webkit-scrollbar {
-    width: 10px !important; 
-}
-
-.popover-content::-webkit-scrollbar-track {
-    border-radius: 20px!important;
-    background-color: #FDF8F5 !important;
-}
-
-.popover-content::-webkit-scrollbar-thumb {
-    background-color: gray !important;
-    border-radius: 20px!important;
+    margin-top:5px;
+    line-height: 30px;
 }

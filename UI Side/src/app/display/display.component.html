@@ -9,7 +9,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="categories">
-                    <div class="category" *ngFor="let category of categories">
+                    <div class="category1" *ngFor="let category of categories">
                     <a [routerLink]="[ '/display',sectionName, category.category_id]">{{category.category_name}}</a>
                     </div>
             </mat-nav-list>
@@ -79,7 +79,7 @@
 
     <!--Item display starts here-->
     <div class="disp">
-        <div *ngIf="items imgURL" class="row scroll">
+        <div *ngIf="items && imgURL" class="row scroll">
             <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card" role="button">
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
@@ -92,6 +92,11 @@
                 </mat-card-content>
             </mat-card>
         </div>
+        <!--<div *ngIf = "!items || !imgURL">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+        </div>-->
     </div>
 </div>
 <app-footer></app-footer>

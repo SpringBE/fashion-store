@@ -7,7 +7,7 @@ mat-toolbar{
     margin-left:0px;
   }
 
-  div{
+  .heading{
       display: flex;
   }
   
@@ -15,29 +15,68 @@ mat-toolbar{
     font-size: 37px;
     margin-left: 10px !important;
     margin-top:20px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:Nilland !important;
+    letter-spacing: 0.1em;
   }
 
   a{
     text-decoration: none !important;
   }
 
-  mat-toolbar > a{
+  .navigation, .popover-content a{
     color: #4F4846;
-    border:1px solid #4F4846;
-    font-size:13px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-bottom:3px;
-    margin-right: 36px;
-  }
-  
-  .active{
-    border:1px solid #266150;
-    background-color:#266150;
-    color:#FDF8F5 !important;
+    font-size:16px;
+    font-family: Raleway !important;
+    /*background-color:#266150;*/
   }
 
-  mat-toolbar > a:hover{
-    border:1px solid #FDF8F5;
+  mat-toolbar > .navigation{
+    width:100px !important;  
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  .dropdown {
+    position: relative;
+    width:100px !important;
+    margin-right:20px;
+    text-align: center;
+    display: inline-block;
   }
   
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 12px 16px;
+    z-index: 1;
+    margin-left:-20px;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover, mat-toolbar > .navigation:hover{
+    border-top:2px solid #4F4846 !important;
+  }
+
+  .popover-content a{
+      font-size:15px !important;
+  }
+
+  table{
+      padding:10px;
+  }
+
+  td{
+      margin-right:20px;
+  }
+
+  tr > div{
+      padding:5px;
+      width:max-content;
+  }
+ 
+  tr > div img{
+      margin-right:5px;
+  }
