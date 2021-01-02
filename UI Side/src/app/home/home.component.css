@@ -95,12 +95,12 @@ hr{
     padding-bottom:5px;
     font-size:35px !important;
     color:#4F4846 !important;
+    font-family: auto;
 }
 
 .carousel-item:first-child .row:first-child .color:first-child h1:first-child{
-    margin-top:50px;
-    font-size:42px !important;
-    padding-bottom: 25px !important;
+    margin-top:93px;
+    
 }
 
 .color h1:first-child{

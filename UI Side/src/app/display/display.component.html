@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="page">
+<div [hidden]="detail" class="page">
     <!--Filter starts here-->
     <div class="side_bar">
         <mat-expansion-panel [expanded]="true">
@@ -9,7 +9,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="categories">
-                    <div class="category" *ngFor="let category of categories">
+                    <div class="category1" *ngFor="let category of categories">
                     <a [routerLink]="[ '/display',sectionName, category.category_id]">{{category.category_name}}</a>
                     </div>
             </mat-nav-list>
@@ -29,21 +29,21 @@
                 </form>
             </mat-nav-list>
         </mat-expansion-panel>
-        <!--<mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Price
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list>
-                <form action="#" class="filter_form">-->
+                <form action="#" class="filter_form">
                     <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
-                    <!--<label>Minimum Price</label><input type="text" class="form-control" value={{minPrice}} id="minprice">
+                    <label>Minimum Price</label><input type="text" class="form-control" value={{minPrice}} id="minprice">
                     <label>Maximum Price</label><input type="text" class="form-control" value={{maxPrice}} id="maxprice"> 
                     <button mat-raised-button color="primary" (click)="filterSelectionItems('price',0)">Apply</button>
                 </form>
             </mat-nav-list>
-        </mat-expansion-panel>-->
+        </mat-expansion-panel>
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -80,18 +80,44 @@
     <!--Item display starts here-->
     <div class="disp">
         <div *ngIf="items imgURL" class="row scroll">
-            <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card" role="button">
+            <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card matcard1" role="button" (click)="product_detail(item.item_id)">
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
                     <mat-card-title class="text-center">{{item.item_name}}</mat-card-title>
                 </mat-card-header>
-                <img mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
+                <img class="img1" mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
                 <mat-card-content class="card_bottom">
                     <p><b>Brand : {{item.item_brand}}</b></p>
                     <p><b>Price : {{item.item_price}}/-</b></p>
                 </mat-card-content>
             </mat-card>
         </div>
+    </div>
+</div>
+<div [hidden]="!detail">
+    <button class="button1" (click)="go_back()"><span class="fa fa-chevron-left"><b class="b1">Back</b></span></button>
+    <div *ngIf="selectedItem selectedimage" class="detail">
+        
+        <mat-card *ngFor="let item of selectedItem" class="detailcard">
+            <div class="left">
+                <img class="imgcard" mat-card-image  src="http://localhost:5000/images/{{selectedimage}}" alt="item.item_name">
+            </div>
+            <div class="right">
+                <h2>{{item.item_name}}</h2>
+                <p>Brand: {{item.item_brand}}</p>
+                <p>Price: {{item.item_price}}</p>
+                <p>Product Details</p>
+                <ul>
+                    <li>{{item.item_details}}</li>
+                </ul>
+                <p>Color: {{item.colors}}</p>
+                <p>Available Size</p>
+                <ul>
+                    <li>{{item.item_size}}</li>
+                </ul>
+            </div>
+        </mat-card>
+    
     </div>
 </div>
 <app-footer></app-footer>
