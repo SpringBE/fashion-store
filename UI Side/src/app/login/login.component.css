@@ -1,6 +1,6 @@
 .signin-container, .signup-container{
     background-color: #003b46;
-    height:525px !important;
+    height:535px !important;
     margin:-25px -24px !important;
     padding:0px !important;
     color:aliceblue !important;
@@ -13,7 +13,7 @@
 }
 
 .login-form{
-    height: 398px;
+    height: 408px;
     background-color: white !important;
     border-top-left-radius: 35px ;
     border-top-right-radius: 35px;
@@ -31,7 +31,7 @@ label{
 }
 
 input, .submit{
-    width: 95%;
+    width: 93%;
     outline: none !important;
 }
 
@@ -41,13 +41,21 @@ input, .submit{
 }
 
 input{
+    outline: none !important;
     padding:7px;
-    margin-bottom:40px ;
     border:1px solid black;
     border-top: none;
     border-left: none;
     border-right: none;
     box-shadow: none !important;
+}
+
+.signin-container .form-field{
+    margin-bottom:30px;
+}
+
+.signup-container .form-field{
+    height:110px;
 }
 
 input::placeholder{
@@ -100,4 +108,8 @@ p button{
 
 button{
     outline: none !important;
+}
+
+.submit:disabled, .signup-submit:disabled{
+    opacity: 50%;
 }

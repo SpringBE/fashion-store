@@ -31,4 +31,14 @@ export class ShopeaseService {
         return this.http.get(url);
     }
 
+    user_login_validation(details){
+        let url = `${this.baseurl}sign-in`;
+        return this.http.post(url, details);
+    }
+
+    registration_process(details){
+        let url = `${this.baseurl}sign-up`;
+        return this.http.post(url, details);
+    }
+
 }

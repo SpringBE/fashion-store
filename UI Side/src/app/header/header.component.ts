@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   login_popUp(){
     const popUp = this.dialogRef.open(LoginComponent, {
       width: '350px',
-      height: '525px',
+      height: '535px',
       disableClose: true,
     });
    popUp.afterClosed().subscribe((result) => {
