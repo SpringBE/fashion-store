@@ -22,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule} from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -69,6 +70,7 @@ import { LoginComponent } from './login/login.component';
     MatSidenavModule,
     MatGridListModule,
     MatIconModule,
+    MatSnackBarModule
   ],
   providers: [ShopeaseService],
   bootstrap: [AppComponent]
