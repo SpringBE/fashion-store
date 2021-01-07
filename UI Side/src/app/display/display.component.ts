@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-display',
@@ -19,6 +20,7 @@ export class DisplayComponent implements OnInit {
     maxPrice: number;
     minPrice: number;
     detail:boolean;
+    multi_image:boolean;
     imgURL = [];
     color: string;
     Size = [];
@@ -27,7 +29,13 @@ export class DisplayComponent implements OnInit {
     pricedItems=[];
     selectedItem=[];
     selectedimage=[];
-    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService) {
+    cartDetails:FormGroup;
+    cart_item=[];
+    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService,private fb: FormBuilder) {
+        this.cartDetails = this.fb.group({
+            size: ['', Validators.required],
+            color: ['', Validators.required],
+          });
     }
 
     ngOnInit(): void {
@@ -37,9 +45,8 @@ export class DisplayComponent implements OnInit {
                 this.imgURL=[];
                 this.categoryId = params['category_id']
                 this.get_data();
-                this.get_categories();
-                this.get_items();
-                
+                this.get_categories();       
+                this.get_items();     
             }
         });
 
@@ -55,6 +62,7 @@ export class DisplayComponent implements OnInit {
             this.sizeFilter = filters.filters[0].Item_Size.sort();
             this.maxPrice = filters.filters[0].Maximum_Price;
             this.minPrice = filters.filters[0].Minimum_Price;
+            //this.filterSelectionItems('all_items', 0);
         })
     }
     get_categories() {
@@ -70,7 +78,7 @@ export class DisplayComponent implements OnInit {
             this.items = item_list.items[0].Categories[0].Items;
             for (var i = 0; i < this.items.length; i++) {
                 let all_colors = item_list.items[0].Categories[0].Items[i].colors;
-                if (all_colors.length > 1) {
+                /*if (all_colors.length > 1) {
                     for (let j = 0; j < all_colors.length; j++) {
                         this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][all_colors[j]])
                         this.items.splice(i + j, 0, this.items[i]);
@@ -78,8 +86,8 @@ export class DisplayComponent implements OnInit {
                     this.items.splice(i + all_colors.length, 1)
                     i = i + all_colors.length - 1
                 }
-                else
-                    this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][all_colors[0]]);
+                else*/
+                this.imgURL.push(item_list.items[0].Categories[0].Items[i].item_image[0][all_colors[0]]);
             }
             console.log(this.items)
             console.log(this.imgURL)
@@ -157,7 +165,7 @@ export class DisplayComponent implements OnInit {
             let i = 0;
             for (let item of data['filtered_items']) {
                 let all_colors = item['filtered_items'].colors;
-                if (all_colors.length > 1) {
+                if (all_colors.length > 1 && this.Color.length > 0) {
                     for (let j = 0; j < all_colors.length; j++) {
                         if (filter_color.includes(all_colors[j])) {
                             this.imgURL.push(item['filtered_items'].item_image[0][all_colors[j]])
@@ -187,11 +195,28 @@ export class DisplayComponent implements OnInit {
                 this.selectedItem.push(this.items[i])
             }
         }
-        this.selectedimage=this.selectedItem[0].item_image[0][this.selectedItem[0].colors[0]]
+        console.log(this.selectedItem)
+        var n=this.selectedItem[0].colors.length
+        if(n>1){
+            this.multi_image=true;
+            for(var i=0;i<n;i++){
+                this.selectedimage.push(this.selectedItem[0].item_image[0][this.selectedItem[0].colors[i]])}
+        }
+        else{
+            this.multi_image=false;
+            this.selectedimage=this.selectedItem[0].item_image[0][this.selectedItem[0].colors[0]]
+        }
+        console.log(this.selectedimage)
     }
    
     go_back(){
         this.detail=false;
+        this.cartDetails.reset();
+    }
+    cart_details(choice,element)
+    {
+        console.log(element)
+        console.log(choice)
     }
 
 }

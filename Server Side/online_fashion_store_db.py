@@ -7,6 +7,7 @@ db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net
 mydb = db.fashionstore
 
 products = mydb['Products']
+login = mydb['login']
 
 def get_categories(section):
     category_cursor = products.find({"section_name":section},
@@ -113,3 +114,27 @@ def get_filtered_items(brand,size,color,minprice,maxprice,section_name,category_
     for item in filtered_items_cursor:
         filtered_items.append(item)
     return filtered_items
+
+def sign_in_confirmation(email,password):
+    record_count = login.find({'email':email, 'password':password}).count()
+    if record_count == 1:
+        return True
+    else:
+        return False
+
+def email_confirmation(email):
+    r_count = login.find({'email':email})
+    record_count = 0
+    for count in r_count:
+        record_count = count
+    if record_count == 0:
+        return False
+    else:
+        return True
+
+def addUser(name,phone,email,password):
+    confirmation = login.insert({'name':name, 'phone':phone, 'email':email, 'password':password})
+    if confirmation:
+        return True
+    else:
+        return False

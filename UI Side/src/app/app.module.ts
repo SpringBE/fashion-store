@@ -31,6 +31,7 @@ import { ShopeaseService } from './services/shopease.service';
 import { AboutComponent } from './about/about.component';
 import { CartComponent } from './cart/cart.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ContactusComponent } from './contactus/contactus.component';
     AboutComponent,
     CartComponent,
     ContactusComponent,
+    LoginComponent,
     
   ],
   imports: [

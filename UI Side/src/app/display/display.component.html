@@ -85,39 +85,88 @@
                     <div mat-card-avatar class="example-header-image"></div>
                     <mat-card-title class="text-center">{{item.item_name}}</mat-card-title>
                 </mat-card-header>
-                <img class="img1" mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
+                <img class="img1" class="img1" mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
                 <mat-card-content class="card_bottom">
                     <p><b>Brand : {{item.item_brand}}</b></p>
                     <p><b>Price : {{item.item_price}}/-</b></p>
                 </mat-card-content>
             </mat-card>
         </div>
+        <!--<div *ngIf = "!items || !imgURL">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+        </div>-->
     </div>
 </div>
 <div [hidden]="!detail">
-    <button class="button1" (click)="go_back()"><span class="fa fa-chevron-left"><b class="b1">Back</b></span></button>
+    <button class="button1" (click)="go_back()"><span class="fa fa-arrow-left fa-2x"></span></button>
     <div *ngIf="selectedItem selectedimage" class="detail">
-        
         <mat-card *ngFor="let item of selectedItem" class="detailcard">
+        <div class="innerdiv">
             <div class="left">
-                <img class="imgcard" mat-card-image  src="http://localhost:5000/images/{{selectedimage}}" alt="item.item_name">
+                <div *ngIf="multi_image">
+                    <!--<div *ngFor="let image of selectedimage">
+                        <img class="imgcard" mat-card-image  src="http://localhost:5000/images/{{image}}" alt="item.item_name">
+                    </div>-->
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="imgcard" mat-card-image  src="http://localhost:5000/images/{{selectedimage[0]}}" alt="item.item_name">
+                          </div>
+                          <div class="carousel-item">
+                            <img class="imgcard" mat-card-image  src="http://localhost:5000/images/{{selectedimage[1]}}" alt="item.item_name">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
+                </div>
+                <div *ngIf="!multi_image">
+                        <img class="imgcard" mat-card-image  src="http://localhost:5000/images/{{selectedimage}}" alt="item.item_name">
+                </div>
             </div>
             <div class="right">
                 <h2>{{item.item_name}}</h2>
-                <p>Brand: {{item.item_brand}}</p>
-                <p>Price: {{item.item_price}}</p>
-                <p>Product Details</p>
-                <ul>
-                    <li>{{item.item_details}}</li>
-                </ul>
-                <p>Color: {{item.colors}}</p>
-                <p>Available Size</p>
-                <ul>
-                    <li>{{item.item_size}}</li>
-                </ul>
+                <p><b>Brand:</b> {{item.item_brand}}</p>
+                <p><i class="fa fa-inr fa-lg"></i>{{item.item_price}}</p>
+                <p><b>Product Details:</b></p>
+                <div *ngFor="let detail of item.item_details" class="product">
+                    <p>{{detail}}</p>
+                </div>
             </div>
+        
+        </div>
+        <hr> 
+        <form action="#" [formGroup]="cartDetails">
+        <div class="innerdiv"> 
+                <div class="right">
+                    <p><b>Available Size</b></p>
+                    <div *ngFor="let sze of item.item_size" >
+                        <input type="radio" formControlName = "size" [value]="sze" (change)="cart_details('size',sze)">
+                        <label>{{sze}}</label><br>
+                    </div>
+                </div>
+                <div class="right">
+                    <p><b>Available Color</b></p>
+                    <div *ngFor="let col of item.colors">
+                        <input type="radio" formControlName = "color" [value]="col" (change)="cart_details('color',col)" >
+                        <label>{{col}}</label><br>
+                    </div>
+                </div>
+                <div class="right">
+                    <button mat-button class="cart_button" [disabled]="cartDetails.invalid" (click)="cart_details('cart',item.item_id)" data-toggle="tooltip" data-placement="bottom" [title]='cartDetails.invalid?"Please select the size and color":""'>Add to Cart</button>
+                </div> 
+        </div>
+    </form>
         </mat-card>
-    
     </div>
+
 </div>
 <app-footer></app-footer>

@@ -112,49 +112,91 @@ margin-bottom:15px;
   background:none;
   outline:none;
   border: none;
-}
-.b1 {
-  padding-left: 5px!important;
-  font-size: medium!important;
-  
+  margin-top: 5px;
 }
 .detail{
-  display: flex;
+  display:flex;
   margin-top: 50px;
   font-family: 'Times New Roman', Times, serif;
 }
 .detailcard{
-  height:500px;
   margin:auto;
-}
-.detailcard {
   width: 1100px;
   padding:50px;
+  margin-bottom: 20px;
+  opacity:90%;
 }
 .imgcard{
   height:400px;
-  width:300px;
+  width:350px;
 
 }
 .left {
 	float: left;
   padding: 22px 0;
-  margin-left: 70px;
+  margin-left: 50px;
+  width:32%;
 }
 
 .right {
-	float: right;
+  padding-left: 180px;
+  font-family: 'Times New Roman', Times, serif;
+  padding-bottom: 15px;
+  text-transform:capitalize;
 }
 .right>h2{
   text-transform: uppercase;
-  font-family:   Vag Rounded Std;
-  font-size: x-large;
+  font-family: Johnston !important;
+  font-size: xx-large;
+  margin-bottom:50px;
 }
 .right>p{
-  font-size: medium;
+  font-size: large;
+  
+}
+i.fa.fa-inr.fa-lg {
+  color: red;
+  /* padding: 2px; */
+  margin-right: 10px;
+  font-size: x-large;
 }
 
+.product{
+  letter-spacing: 2px;
+  font-size: initial;
+  padding-top: 10px;
+  text-transform: capitalize;
+}
 
+input[type="radio"] {
+  margin-right: 5px;
+  margin-left: 30px;
+}
+.detailcard2>p{
+  font-family: 'Times New Roman', Times, serif;
+}
+.cart_button{
+  float:right;
+  background-color:gray;
+  margin-top: 140px;
+  outline: none;
+}
+.innerdiv{
+  display:flex;
+}
+hr{
+  border:1px solid black;
+}
+.carousel-control-prev-icon,.carousel-control-next-icon{
+  background-color: black;
+
+}
+button:disabled{
+  cursor: not-allowed;
+}
+button:hover {
+  transform: scale(1.1);
+}
 
 /*FireFox Browser Dependent*/
 /*.slider::-moz-range-thumb {

@@ -1,0 +1,51 @@
+<div class="signin-container" *ngIf = "sign_in">
+    <div class="close"><span  mat-dialog-close><i class="fa fa-times"></i></span></div>
+    <div class="header">
+        <h1>Sign In</h1>
+    </div>
+    <div class="login-form">
+        <form class="form-contents" [formGroup] = "loginDetails">
+            <label>Email</label><br>
+            <input type="email" placeholder="Enter Email" formControlName = "email" /><br>
+            <label>Password</label><br>
+            <input type="password" placeholder="Enter Password" formControlName = "password" /><br>
+            <button class="submit" mat-raised-button>Submit</button>
+            <p>Do not have a account <button (click)="signUp()">Sign up</button> here</p>
+        </form>
+    </div>
+</div>
+
+<div class="signup-container" id = "sign_up" *ngIf = "!sign_in">
+    <div class="close"><span  mat-dialog-close><i class="fa fa-times"></i></span></div>
+    <div class="header">
+        <h1>Sign Up</h1>
+    </div>
+    <div class="login-form">
+        <form class="form-contents" [formGroup] = "registrationDetails">
+            <div *ngIf = "first_page">
+                <label>First Name</label><br>
+                <input type="text" placeholder="First Name" formControlName = "firstName" /><br>
+                <label>Last Name</label><br>
+                <input type="text" placeholder="Last Name" formControlName = "lastName" /><br>
+                <button class = "right"><span><i class="fa fa-arrow-right fa-lg" (click) = "goTo_2page_signUp()"></i></span></button><br><br><br><br>
+            </div>
+            <div *ngIf = "second_page">
+                <label>Phone Number</label><br>
+                <input type="text" placeholder="Enter Number" formControlName = "phone" /><br>
+                <label>Email</label><br>
+                <input type="email" placeholder="Enter Email" formControlName = "email" /><br>
+                <button class="left"><span><i class="fa fa-arrow-left fa-lg" (click) = "goTo_1page_signUp()"></i></span></button>
+                <button class = "right"><span><i class="fa fa-arrow-right fa-lg" (click) = "goTo_3page_signUp()"></i></span></button><br><br><br><br>
+            </div>
+            <div *ngIf = "third_page">
+                <label>Password</label><br>
+                <input type="password" placeholder="Enter Password" formControlName = "password" /><br>
+                <label>Confirm Password</label><br>
+                <input type="password" placeholder="Re Enter Password" formControlName = "confirmPassword" /><br>
+                <button class="left"><span><i class="fa fa-arrow-left fa-lg" (click) = "goTo_2page_signUp()"></i></span></button>
+                <button class="signup-submit" mat-raised-button [disabled]="registrationDetails.invalid">Submit</button><br>
+            </div>
+            <p>Already a account <button (click) = "signIn()">Sign in</button> here</p>
+        </form>
+    </div>
+</div>
