@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-display',
@@ -10,7 +11,6 @@ import { ShopeaseService } from '../services/shopease.service';
 
 export class DisplayComponent implements OnInit {
     categoryId = "";
-    category_name=[];
     categories=[];
     sectionName = "";
     brandFilter: [];
@@ -19,14 +19,23 @@ export class DisplayComponent implements OnInit {
     items: any[] = [];
     maxPrice: number;
     minPrice: number;
-    imagePath: any;
+    detail:boolean;
+    multi_image:boolean;
     imgURL = [];
     color: string;
     Size = [];
     Brand = [];
     Color = [];
     pricedItems=[];
-    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService) {
+    selectedItem=[];
+    selectedimage=[];
+    cartDetails:FormGroup;
+    cart_item=[];
+    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService,private fb: FormBuilder) {
+        this.cartDetails = this.fb.group({
+            size: ['', Validators.required],
+            color: ['', Validators.required],
+          });
     }
 
     ngOnInit(): void {
@@ -45,6 +54,7 @@ export class DisplayComponent implements OnInit {
     }
     /*get the filters*/
     get_data() {
+        this.detail=false;
         this.shopeaseService.get_filters(this.sectionName, this.categoryId).subscribe(filters => {
             console.log(filters);
             this.brandFilter = filters.filters[0].Brands.sort();
@@ -56,12 +66,14 @@ export class DisplayComponent implements OnInit {
         })
     }
     get_categories() {
+        this.detail=false;
         this.shopeaseService.get_categories(this.sectionName).subscribe(categories => {
         this.categories=categories['categories'][0]['Categories']
         console.log(this.categories)
         })
     }
     get_items() {
+        this.detail=false;
         this.shopeaseService.get_items(this.sectionName, this.categoryId).subscribe(item_list => {
             this.items = item_list.items[0].Categories[0].Items;
             for (var i = 0; i < this.items.length; i++) {
@@ -84,6 +96,7 @@ export class DisplayComponent implements OnInit {
     
 
     filterSelectionItems(filterType, value) {
+        this.detail=false;
         let min_price = this.minPrice
         let max_price = this.maxPrice
 
@@ -170,6 +183,40 @@ export class DisplayComponent implements OnInit {
             console.log(this.items)
             console.log(this.imgURL);
         })
+    }
+    product_detail(id){
+        this.selectedimage=[];
+        this.selectedItem=[];
+        this.detail=true;
+        for(var i=0;i<this.items.length;i++)
+        {
+            if(id==this.items[i]['item_id'])
+            {
+                this.selectedItem.push(this.items[i])
+            }
+        }
+        console.log(this.selectedItem)
+        var n=this.selectedItem[0].colors.length
+        if(n>1){
+            this.multi_image=true;
+            for(var i=0;i<n;i++){
+                this.selectedimage.push(this.selectedItem[0].item_image[0][this.selectedItem[0].colors[i]])}
+        }
+        else{
+            this.multi_image=false;
+            this.selectedimage=this.selectedItem[0].item_image[0][this.selectedItem[0].colors[0]]
+        }
+        console.log(this.selectedimage)
+    }
+   
+    go_back(){
+        this.detail=false;
+        this.cartDetails.reset();
+    }
+    cart_details(choice,element)
+    {
+        console.log(element)
+        console.log(choice)
     }
 
 }
