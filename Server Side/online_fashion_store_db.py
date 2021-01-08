@@ -115,6 +115,14 @@ def get_filtered_items(brand,size,color,minprice,maxprice,section_name,category_
         filtered_items.append(item)
     return filtered_items
 
+def get_user_details(email):
+    detail_cursor = login.find({'email':email}, {'_id':0, 'password':0})
+    user = []
+    for detail in detail_cursor:
+        user.append(detail)
+    
+    return user
+
 def sign_in_confirmation(email,password):
     record_count = login.find({'email':email, 'password':password}).count()
     if record_count == 1:
@@ -122,19 +130,73 @@ def sign_in_confirmation(email,password):
     else:
         return False
 
-def email_confirmation(email):
-    r_count = login.find({'email':email})
-    record_count = 0
-    for count in r_count:
-        record_count = count
+def email_exists_confirmation(email):
+    record_count = login.find({'email':email}).count()
+
     if record_count == 0:
         return False
     else:
         return True
 
 def addUser(name,phone,email,password):
-    confirmation = login.insert({'name':name, 'phone':phone, 'email':email, 'password':password})
+    confirmation = login.insert({'name':name, 'phone':phone, 'email':email, 'password':password, 
+                        'addresses':[], 'dob':"", 'location':"", 'gender':"", 'alt_phone':""})
     if confirmation:
+        return True
+    else:
+        return False
+
+def save_address_toUser(email,address):
+    '''rec_count = 0
+    count_cursor = login.aggregate([
+    {
+        "$match":{
+            "email":"hmpsharma@gmail.com"
+        }
+    },
+    {
+        "$project":{
+        "address_count":{"$size":"$addresses"},
+        "_id":0
+        }
+    }])
+    
+    for count in count_cursor:
+        rec_count = count['address_count']
+
+    address_id = "a_" + rec_count  '''  
+
+    success = login.update(
+        {
+            "email":email
+        },
+        {
+            "$addToSet":{"addresses":{"name":address['name'], "phone":address['phone'], 
+                "city":address['city'], "address":address['address'], "state":address['state'],
+                "pincode":address['pincode'], "addressType":address['addressType']}}
+        }
+    )
+
+    if success['nModified']:
+        return True
+    else:
+        return False
+
+def updateUserProfile(req):
+    success = login.update(
+        {
+            "email":req['email']
+        },
+        {
+            "$set":{
+                "name":req['name'], "phone":req['phone'], "dob":req['dob'], 
+                "alt_phone":req['alt_phone'], "location":req['location'],
+                "gender":req['gender']
+            }
+        }
+    )
+
+    if success['nModified']:
         return True
     else:
         return False

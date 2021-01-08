@@ -43,17 +43,43 @@ def get_filtered_data(brand,size,color,minprice,maxprice,section_name,category_i
 def confirm_sign_in():
     req = request.get_json()
     confirmation = od.sign_in_confirmation(req['email'],req['password'])
-    return jsonify({'flag':confirmation})
+    if confirmation:
+        user = od.get_user_details(req['email'])
+        return jsonify({'flag':True, 'details':user})
+    else:
+        return jsonify({'flag':False})
 
 @app.route('/sign-up', methods = ['POST'])
 def registration():
     req = request.get_json()
-    isEmailExist = od.email_confirmation(req['email'])
+    isEmailExist = od.email_exists_confirmation(req['email'])
     if isEmailExist:
         return jsonify({'emailExist':True,'addRecord':False})
     else:
         confirmation = od.addUser((req['firstName'] + " " + req['lastName']),req['phone'],req['email'], req['password'])
-        return jsonify({'emailExist':False, 'addRecord':confirmation})
+        user = od.get_user_details(req['email'])
+        if(len(user) == 0):
+            return jsonify({'emailExist':False, 'addRecord':False})
+        else:
+            return jsonify({'emailExist':False, 'addRecord':True, 'user':user})
+
+@app.route('/save-address', methods = ['POST'])
+def save_address():
+    req = request.get_json()
+    print(req['email'], req['address'])
+    confirmation = od.save_address_toUser(req['email'], req['address'])
+    return jsonify({'saved':confirmation})
+
+@app.route('/get-userInfo/<email>')
+def get_user_info(email):
+    details = od.get_user_details(email)
+    return jsonify({'details':details})
+
+@app.route('/update-profile', methods = ['POST'])
+def update_user_profile():
+    req = request.get_json()
+    confirmation = od.updateUserProfile(req)
+    return jsonify({'updated':confirmation})
 
 if __name__ == "__main__":
     app.run(debug=True)

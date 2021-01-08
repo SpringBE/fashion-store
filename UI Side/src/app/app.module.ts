@@ -22,7 +22,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule} from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -33,6 +35,9 @@ import { AboutComponent } from './about/about.component';
 import { CartComponent } from './cart/cart.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginService } from './services/login.service';
 
 
 @NgModule({
@@ -46,6 +51,7 @@ import { LoginComponent } from './login/login.component';
     CartComponent,
     ContactusComponent,
     LoginComponent,
+    ProfileComponent,
     
   ],
   imports: [
@@ -70,9 +76,12 @@ import { LoginComponent } from './login/login.component';
     MatSidenavModule,
     MatGridListModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatDatepickerModule
   ],
-  providers: [ShopeaseService],
+  providers: [ShopeaseService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

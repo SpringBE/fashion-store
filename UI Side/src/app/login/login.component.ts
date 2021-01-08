@@ -3,12 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ShopeaseService } from '../services/shopease.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
+import { LoginService } from '../services/login.service';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
     sign_in;
     first_page;
@@ -17,15 +19,17 @@ export class LoginComponent implements OnInit {
     loginDetails: FormGroup;
     registrationDetails: FormGroup;
     fieldTextType: boolean = false;
+
     constructor(private fb: FormBuilder,
         private shoEaseService: ShopeaseService,
         private _snackBar: MatSnackBar,
-        public dialogRef: MatDialogRef<LoginComponent>) {
+        public dialogRef: MatDialogRef<LoginComponent>,
+        private loginService:LoginService) {
 
         this.loginDetails = this.fb.group({
-            email: ['', [Validators.required,
+            email: ['hmpsharma@gmail.com', [Validators.required,
             Validators.email]],
-            password: ['', [Validators.required,
+            password: ['123456789', [Validators.required,
             Validators.minLength(6)]],
         });
 
@@ -78,6 +82,7 @@ export class LoginComponent implements OnInit {
                 this._snackBar.open("Successfull Login", " ", {
                     duration: 2000,
                 });
+                this.loginService.sendUserData(data['details']);
                 this.loginDetails.reset();
             }
             else {
@@ -108,6 +113,7 @@ export class LoginComponent implements OnInit {
                         this._snackBar.open("Successfull Registration", " ", {
                             duration: 2000,
                         });
+                        this.loginService.sendUserData(data['user']);
                         this.registrationDetails.reset();
                     }
                     else{

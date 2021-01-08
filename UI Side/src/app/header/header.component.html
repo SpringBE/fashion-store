@@ -1,18 +1,3 @@
-<!--<mat-toolbar>
-    <div class="col-md-7 text-left">
-      <a routerLink = "/home"><img src="assets/logo.png" width="125px" height="70px"></a>
-      <a routerLink = "/home"><h1><b><span style="color:#C73044ff">S</span><span style="color:#4E919Dff">H</span>
-        <span  style="color:#CF628Cff">O</span><span  style="color:#445F3Fff">P</span>
-      <span  style="color:#744684ff">E</span><span  style="color:#A9441Cff">A</span>
-      <span style="color:#538F7Bff">S</span><span style="color:#BE9638">E</span></b></h1></a>
-    </div>
-    <a mat-button routerLink='/about' routerLinkActive="active"><span class="fa fa-lg fa-info-circle"><b> About Us</b></span></a>
-    <a mat-button routerLink='/contactus' routerLinkActive="active"><span class="fa fa-lg fa-mobile"><b> Contact Us</b></span></a>
-    <a mat-button routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"><b> Cart</b></span></a>
-    <a mat-button (click) = "login_popUp()"><span class="fa fa-lg fa-sign-out"><b> Login</b></span></a>
-</mat-toolbar>-->
-
-
 <mat-toolbar>
     <div class="col-md-6 text-left heading">
         <a routerLink="/home"><img src="assets/logo.png" width="125px" height="70px"></a>
@@ -101,7 +86,7 @@
                                 <tr *ngFor="let girl of girls_categories">
                                     <div >
                                         <img src="http://localhost:5000/images/{{girl.category_image}}" height="50px" width="50px">
-                                        <a [routerLink]="[ '/display','girl', girl.category_id]"><b>{{girl.category_name}}</b></a>
+                                        <a [routerLink]="[ '/display','Girls', girl.category_id]"><b>{{girl.category_name}}</b></a>
                                     </div>
                                 </tr>
                             </td>
@@ -113,5 +98,6 @@
 
     <a class="navigation" routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
         <b> Cart</b></a>
-    <a class="navigation" (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b> Login</b></a>
+    <a class="navigation" *ngIf = '!user' (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b> Login</b></a>
+    <a class="navigation" *ngIf = "user" routerLink = '/my/profile' routerLinkActive = "active"><span class="fa fa-lg fa-user"></span><b> Profile</b></a>
 </mat-toolbar>

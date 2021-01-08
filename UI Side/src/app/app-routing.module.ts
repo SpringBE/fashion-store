@@ -6,6 +6,7 @@ import { AboutComponent } from './about/about.component';
 import { CartComponent } from './cart/cart.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
       path:'login',
       component:LoginComponent
+  },
+  {
+      path:'my/:id',
+      component:ProfileComponent
   }
 ];
 

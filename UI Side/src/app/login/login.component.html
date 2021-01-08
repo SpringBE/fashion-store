@@ -1,3 +1,4 @@
+<!--Sign In-->
 <div class="signin-container" *ngIf = "sign_in">
     <div class="close"><span role="button" mat-dialog-close (click) = "loginDetails.reset()"><i class="fa fa-times"></i></span></div>
     <div class="header">
@@ -30,6 +31,7 @@
     </div>
 </div>
 
+<!--Sign Up-->
 <div class="signup-container" id = "sign_up" *ngIf = "!sign_in">
     <div class="close"><span role="button" (click) = "registrationDetails.reset()" mat-dialog-close><i class="fa fa-times"></i></span></div>
     <div class="header">

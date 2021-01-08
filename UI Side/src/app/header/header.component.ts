@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../services/login.service';
 import { ShopeaseService } from '../services/shopease.service';
 
 @Component({
@@ -13,13 +14,19 @@ export class HeaderComponent implements OnInit {
   women_categories:any[] = []
   boys_categories:any[] = []
   girls_categories:any[] = []
+  user:any;
 
   constructor(public dialogRef:MatDialog,
-    private shopEaseService:ShopeaseService) { }
+    private shopEaseService:ShopeaseService,
+    private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.shopEaseService.get_categories('Men').subscribe(data=>{
         this.men_categories = data['categories'][0]['Categories']
+    })
+
+    this.loginService.currentUser.subscribe(data=>{
+        this.user = data;
     })
 
     this.shopEaseService.get_categories('Women').subscribe(data=>{
