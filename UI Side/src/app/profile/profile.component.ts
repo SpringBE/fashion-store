@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
 
   submit_address_info(){
       let address_Data = {
-          "email":this.user['email'],
+          "email":this.user[0]['email'],
           "address":this.addressForm.value
       }
       this.shopEaseService.save_address(address_Data).subscribe(data=>{
@@ -125,8 +125,9 @@ export class ProfileComponent implements OnInit {
             this._snackBar.open("Address is saved successfully", "", {
                 duration: 2000,
             });
-            this.shopEaseService.get_currentUser_details("shettypooja2000@gmail.com").subscribe(data=>{
+            this.shopEaseService.get_currentUser_details(this.user[0].email).subscribe(data=>{
                 this.user = data['details'];
+                console.log(this.user)
             })
             this.goToAdress();
           }

@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
       path:'my/:id',
       component:ProfileComponent
+  },
+  {
+      path:'admin/:id',
+      component:AdminComponent
   }
 ];
 

@@ -19,14 +19,14 @@ body { margin: 0px; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
     font-family:Nilland;
     src: url(assets/fonts/Nilland.ttf);
-    
-    font-family:Johnston;
-    src: url(assets/fonts/P22_Johnston_Underground.ttf);
-
-    /**/
   }  
 
   @font-face{
     font-family:Raleway;
     src: url(assets/fonts/Raleway-Regular.ttf);
+  }
+
+  @font-face{
+    font-family:Johnston;
+    src: url(assets/fonts/P22_Johnston_Underground.ttf);
   }

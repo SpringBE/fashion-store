@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+<div class="profile-wrapper">
+    <div class="profile-card">
+        <div class="profile-heading">
+            <p class="acc-heading">Hello ShopEase Admin</p>
+            <hr>
+        </div>
+        <div class="profile-body">
+            <div class="side-nav">
+                <a [routerLink] = "['/admin', 'overview']" routerLinkActive = "active"
+                    (click) = "goToOverview()"><b>Overview</b></a>
+                <a [routerLink]="['/admin', 'add-product']" routerLinkActive="active" 
+                    (click)="goToAddProduct()"><b>Add Product</b></a>
+                <a [routerLink]="['/admin', 'delete-product']" routerLinkActive="active"
+                    (click)="goToDeleteProduct()"><b>Delete Product</b></a>
+                <a [routerLink]="['/admin', 'change-password']" routerLinkActive="active"
+                    (click)="goToChangePassword()"><b>Change Password</b></a>
+                <a (click) = "log_out()"><b>Logout</b></a>
+            </div>
+            <div class="add-info" *ngIf="addProduct">
+                <p>Add Product</p>
+                <hr>
+                <div class = "add-product-body">
+                    <form [formGroup] = "addProductForm">
+                        <div *ngIf = "descriptionPage">
+                      
+                            <mat-form-field appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input type="text" matInput formControlName = "name" required>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Choose Section</mat-label>
+                                <mat-select formControlName = "section" (selectionChange) = "get_categories()">
+                                    <mat-option value ="Men">Men</mat-option>
+                                    <mat-option value ="Women">Women</mat-option>
+                                    <mat-optgroup label="Kids">
+                                        <mat-option value ="Boys">Boys</mat-option>
+                                        <mat-option value = "Girls">Girls</mat-option>
+                                    </mat-optgroup>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Choose Category</mat-label>
+                                <mat-select formControlName = "category">
+                                    <mat-option [value]="category.category_name" *ngFor="let category of categories">
+                                        {{category.category_name}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field><br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Price</mat-label>
+                                <input type="text" matInput formControlName = "price" required>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Choose Brand</mat-label>
+                                <mat-select formControlName = "brand">
+                                    <mat-option [value]="b" *ngFor="let b of brands">
+                                        {{b}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Quantity</mat-label>
+                                <input type="text" matInput formControlName = "qty" required>
+                            </mat-form-field><br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Choose Size</mat-label>
+                                <mat-select formControlName="size" multiple>
+                                  <mat-option [value] = "s" *ngFor = "let s of sizes">{{s}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance = "outline">
+                                <mat-label>Description</mat-label>
+                                <textarea type = "text" matInput formControlName = 'details'></textarea>
+                            </mat-form-field>
+                            <button class = "next-button" mat-raised-button (click) = "goToColorPage()">Next</button>
+                        </div>
+                        <div *ngIf = "colorPage" class = "color-overflow">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Color</mat-label>
+                                <input type="text" matInput formControlName = "color" required>
+                            </mat-form-field>
+                            <mat-form-field appearance = "outline">
+                                <!--<ngx-mat-file-input formControlName="image" [multiple]="multiple"
+                                [color]="color">
+                                    <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+                                </ngx-mat-file-input>-->
+                                <mat-label>Color</mat-label>
+                                <input type="text" matInput formControlName = "color" required>
+                            </mat-form-field><br>
+                            <button class = "back-button" mat-raised-button (click) = "goToDescriptionPage()">Back</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="delete-product" *ngIf="deleteProduct">
+                <p>Delete Product</p>
+                <hr>
+            </div>
+            <div class="change-password" *ngIf="changePassword"></div>
+        </div>
+    </div>
+</div>

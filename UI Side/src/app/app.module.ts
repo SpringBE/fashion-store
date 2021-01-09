@@ -26,6 +26,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
+
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayComponent } from './display/display.component';
@@ -38,6 +41,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginService } from './services/login.service';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -52,6 +56,7 @@ import { LoginService } from './services/login.service';
     ContactusComponent,
     LoginComponent,
     ProfileComponent,
+    AdminComponent,
     
   ],
   imports: [
@@ -79,7 +84,8 @@ import { LoginService } from './services/login.service';
     MatSnackBarModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    NgxMatFileInputModule
   ],
   providers: [ShopeaseService, LoginService],
   bootstrap: [AppComponent]

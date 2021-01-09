@@ -140,7 +140,8 @@ def email_exists_confirmation(email):
 
 def addUser(name,phone,email,password):
     confirmation = login.insert({'name':name, 'phone':phone, 'email':email, 'password':password, 
-                        'addresses':[], 'dob':"", 'location':"", 'gender':"", 'alt_phone':""})
+                        'addresses':[], 'dob':"", 'location':"", 'gender':"", 'alt_phone':"",
+                        'isAdmin':False})
     if confirmation:
         return True
     else:
