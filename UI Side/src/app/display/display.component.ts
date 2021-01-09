@@ -17,6 +17,7 @@ export class DisplayComponent implements OnInit {
     colorFilter: [];
     sizeFilter: [];
     items: any[] = [];
+    cart_items=[];
     maxPrice: number;
     minPrice: number;
     detail:boolean;
@@ -26,11 +27,12 @@ export class DisplayComponent implements OnInit {
     Size = [];
     Brand = [];
     Color = [];
+    selectedsize:string;
+    selectedcolor:string;
     pricedItems=[];
     selectedItem=[];
     selectedimage=[];
     cartDetails:FormGroup;
-    cart_item=[];
     constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService,private fb: FormBuilder) {
         this.cartDetails = this.fb.group({
             size: ['', Validators.required],
@@ -215,8 +217,28 @@ export class DisplayComponent implements OnInit {
     }
     cart_details(choice,element)
     {
-        console.log(element)
-        console.log(choice)
+        let current_item={"item_id":"",
+        "item_name":"",
+        "item_brand":"",
+        "item_price":"",
+        "item_color":"",
+        "item_size":"",
+        "item_image":""};
+        if(choice=='size')
+            this.selectedsize=element;
+        else if(choice=='color')
+            this.selectedcolor=element;
+        else if(choice=='cart'){
+            current_item["item_id"]=element;
+            current_item["item_name"]=this.selectedItem[0].item_name;
+            current_item["item_brand"]=this.selectedItem[0].item_brand;
+            current_item["item_price"]=this.selectedItem[0].item_price;
+            current_item["item_color"]=this.selectedcolor;
+            current_item["item_size"]=this.selectedsize;
+            current_item["item_image"]=this.selectedItem[0].item_image[0][this.selectedcolor];
+            this.cart_items.push(current_item)
+            console.log(this.cart_items)   
+        }
     }
 
 }
