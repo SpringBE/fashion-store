@@ -24,10 +24,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-
-import { NgxMatFileInputModule } from '@angular-material-components/file-input';
-
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -42,6 +38,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginService } from './services/login.service';
 import { AdminComponent } from './admin/admin.component';
+import { DisplayService } from './services/display.service';
 
 
 @NgModule({
@@ -84,10 +81,8 @@ import { AdminComponent } from './admin/admin.component';
     MatSnackBarModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatDatepickerModule,
-    NgxMatFileInputModule
   ],
-  providers: [ShopeaseService, LoginService],
+  providers: [ShopeaseService, LoginService, DisplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

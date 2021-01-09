@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DisplayService } from '../services/display.service';
 
 @Component({
     selector: 'app-display',
@@ -33,7 +34,10 @@ export class DisplayComponent implements OnInit {
     selectedItem=[];
     selectedimage=[];
     cartDetails:FormGroup;
-    constructor(private route: ActivatedRoute, private shopeaseService: ShopeaseService,private fb: FormBuilder) {
+    constructor(private route: ActivatedRoute, 
+        private shopeaseService: ShopeaseService,
+        private fb: FormBuilder,
+        private displayService:DisplayService) {
         this.cartDetails = this.fb.group({
             size: ['', Validators.required],
             color: ['', Validators.required],
@@ -51,6 +55,12 @@ export class DisplayComponent implements OnInit {
                 this.get_items();     
             }
         });
+        this.displayService.allCartItems.subscribe(data=>{
+            this.cart_items = data;
+            if(this.cart_items == null){
+                this.cart_items = []
+            }
+        })
 
         
     }
@@ -238,6 +248,7 @@ export class DisplayComponent implements OnInit {
             current_item["item_image"]=this.selectedItem[0].item_image[0][this.selectedcolor];
             this.cart_items.push(current_item)
             console.log(this.cart_items)   
+            this.displayService.sendCartItemData(this.cart_items);
         }
     }
 
