@@ -66,6 +66,10 @@ export class CartComponent implements OnInit {
     console.log(this.email);
     console.log(this.grand_total)
     this.shopeaseService.add_cart_items(this.cart_items,this.grand_total,this.dateFormat,this.selectedAddress,this.email).subscribe(data=>{
-    })}
+    })
+    this._snackBar.open("Your order has been placed successfully", " ", {
+      duration: 5000,
+  });
+  }
   }
 }

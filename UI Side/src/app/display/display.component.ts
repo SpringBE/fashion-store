@@ -242,7 +242,9 @@ export class DisplayComponent implements OnInit {
         "item_color":"",
         "item_quantity":"",
         "item_size":"",
-        "item_image":""};
+        "item_image":"",
+        "item_section":"",
+        "item_category":""};
         if(choice=='size')
             this.selectedsize=element;
         else if(choice=='color')
@@ -258,6 +260,8 @@ export class DisplayComponent implements OnInit {
             current_item["item_quantity"]=this.selectedquantity;
             current_item["item_size"]=this.selectedsize;
             current_item["item_image"]=this.selectedItem[0].item_image[0][this.selectedcolor];
+            current_item["item_section"]=this.sectionName;
+            current_item["item_category"]=this.categoryId;
             this.cart_items.push(current_item)
             console.log(this.cart_items)   
             this.displayService.sendCartItemData(this.cart_items);
