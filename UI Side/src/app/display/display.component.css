@@ -71,7 +71,7 @@ margin: 0px 15px;
     float:right;
 }
 p{
-    padding-right: 25px;
+    padding-right: 32px;
 }
 
 .slider {
@@ -139,7 +139,7 @@ margin-bottom:15px;
 }
 
 .right {
-  padding-left: 180px;
+  padding-left: 120px;
   font-family: 'Times New Roman', Times, serif;
   padding-bottom: 15px;
   text-transform:capitalize;
@@ -196,6 +196,12 @@ button:disabled{
 }
 button:hover {
   transform: scale(1.1);
+}
+input#quantity {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 70px;
+  outline: none;
 }
 
 /*FireFox Browser Dependent*/

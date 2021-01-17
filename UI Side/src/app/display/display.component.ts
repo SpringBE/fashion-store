@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DisplayService } from '../services/display.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-display',
@@ -30,6 +31,7 @@ export class DisplayComponent implements OnInit {
     Color = [];
     selectedsize:string;
     selectedcolor:string;
+    selectedquantity:string;
     pricedItems=[];
     selectedItem=[];
     selectedimage=[];
@@ -37,10 +39,10 @@ export class DisplayComponent implements OnInit {
     constructor(private route: ActivatedRoute, 
         private shopeaseService: ShopeaseService,
         private fb: FormBuilder,
-        private displayService:DisplayService) {
+        private displayService:DisplayService,private _snackBar: MatSnackBar) {
         this.cartDetails = this.fb.group({
             size: ['', Validators.required],
-            color: ['', Validators.required],
+            color: ['', Validators.required]
           });
     }
 
@@ -232,23 +234,32 @@ export class DisplayComponent implements OnInit {
         "item_brand":"",
         "item_price":"",
         "item_color":"",
+        "item_quantity":"",
         "item_size":"",
         "item_image":""};
         if(choice=='size')
             this.selectedsize=element;
         else if(choice=='color')
             this.selectedcolor=element;
+        else if(choice=='quantity'){
+            this.selectedquantity=(<HTMLInputElement>document.getElementById("quantity")).value
+        console.log(this.selectedquantity)
+    console.log(element)}
         else if(choice=='cart'){
             current_item["item_id"]=element;
             current_item["item_name"]=this.selectedItem[0].item_name;
             current_item["item_brand"]=this.selectedItem[0].item_brand;
             current_item["item_price"]=this.selectedItem[0].item_price;
             current_item["item_color"]=this.selectedcolor;
+            current_item["item_quantity"]=this.selectedquantity;
             current_item["item_size"]=this.selectedsize;
             current_item["item_image"]=this.selectedItem[0].item_image[0][this.selectedcolor];
             this.cart_items.push(current_item)
             console.log(this.cart_items)   
             this.displayService.sendCartItemData(this.cart_items);
+            this._snackBar.open("Item Added Successfully", " ", {
+                duration: 2000,
+            });
         }
     }
 

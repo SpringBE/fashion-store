@@ -80,12 +80,12 @@
     <!--Item display starts here-->
     <div class="disp">
         <div *ngIf="items imgURL" class="row scroll">
-            <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card matcard1" role="button" (click)="product_detail(item.item_id)">
+            <mat-card *ngFor="let item of items;let i=index" class="col-md-3 example-card matcard1" role="button">
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
                     <mat-card-title class="text-center">{{item.item_name}}</mat-card-title>
                 </mat-card-header>
-                <img class="img1" class="img1" mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name">
+                <img class="img1" class="img1" mat-card-image src="http://localhost:5000/images/{{imgURL[i]}}" alt="item.item_name" (click)="product_detail(item.item_id)">
                 <mat-card-content class="card_bottom">
                     <p><b>Brand : {{item.item_brand}}</b></p>
                     <p><b>Price : {{item.item_price}}/-</b></p>
@@ -161,8 +161,12 @@
                     </div>
                 </div>
                 <div class="right">
+                    <p><b>Quantity</b></p>
+                    <input matInput type="number" id="quantity"  name="quantity" min="1" max={{item.item_qty}} (change)="cart_details('quantity','value')">
+                </div>
+                <div class="right">
                     <button mat-button class="cart_button" [disabled]="cartDetails.invalid" (click)="cart_details('cart',item.item_id)" data-toggle="tooltip" data-placement="bottom" [title]='cartDetails.invalid?"Please select the size and color":""'>Add to Cart</button>
-                </div> 
+                </div>
         </div>
     </form>
         </mat-card>
