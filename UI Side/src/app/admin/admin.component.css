@@ -45,10 +45,16 @@ a{
     padding-left: 35px;
 }
 
-.active{
-    color:salmon !important;
+.side-nav a:hover{
     text-decoration: underline !important;
     text-decoration-style: solid !important;
+    text-decoration-color: black !important;
+}
+
+.active{
+    text-decoration: underline !important;
+    text-decoration-style: solid !important;
+    color:salmon !important;
     text-decoration-color: salmon !important;
 }
 
@@ -84,13 +90,40 @@ a{
     margin-bottom:25px;
 }
 
-.next-button{
+.next-button, .add-color, .submit-button{
     background-color: salmon;
     float:right;
+}
+
+.next-button{
     margin-top:100px;
 }
 
 .back-button{
     background-color: salmon;
     float:left;
+}
+
+.add-color{
+    margin-top:10px !important;
+}
+
+.delete-container{
+    width:650px !important;
+    padding: 10px;
+}
+
+.delete-container div{
+    display: inline-block;
+    width:250px;
+    margin-bottom: 30px;
+}
+
+.delete-container a:hover{
+    color: salmon !important;
+    text-decoration: underline !important;
+    text-decoration-style: solid !important;
+    text-decoration-color: salmon !important;
+    font-weight: bolder;
+    padding-left:20px;
 }

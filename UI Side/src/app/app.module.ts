@@ -40,7 +40,6 @@ import { LoginService } from './services/login.service';
 import { AdminComponent } from './admin/admin.component';
 import { DisplayService } from './services/display.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +79,7 @@ import { DisplayService } from './services/display.service';
     MatIconModule,
     MatSnackBarModule,
     MatStepperModule,
-    MatFormFieldModule,
+    MatFormFieldModule
   ],
   providers: [ShopeaseService, LoginService, DisplayService],
   bootstrap: [AppComponent]

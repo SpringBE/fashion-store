@@ -24,7 +24,11 @@ export class AdminComponent implements OnInit {
     sizes = ['XS','S','M','L','XL','XXL','XXXL'];
     colorPage: boolean;
     descriptionPage: boolean;
-    color;
+    message: string;
+    images:any = [];
+    colors:any = [];
+    elements = 1;
+    selected_section: any;
     constructor(private route: ActivatedRoute,
       private fb: FormBuilder,
       private shopEaseService:ShopeaseService,
@@ -40,8 +44,8 @@ export class AdminComponent implements OnInit {
           brand:['', Validators.required],
           qty:['', Validators.required],
           size:[[], Validators.required],
-          color:[[], Validators.required],
-          image:[[], Validators.required],
+          colors:[[], Validators.required],
+          images:[[], Validators.required],
           details:[[], Validators.required]
       });
      }
@@ -75,6 +79,10 @@ export class AdminComponent implements OnInit {
     goToDeleteProduct(){
       this.deleteProduct = true;
       this.addProduct = this.changePassword = this.showOverview = false;
+      this.shopEaseService.get_categories("Men").subscribe(data=>{
+        this.categories = data['categories'][0]['Categories'];
+        console.log(this.categories);
+    })
     }
   
     goToChangePassword(){
@@ -110,4 +118,44 @@ export class AdminComponent implements OnInit {
         this.descriptionPage = true;
         this.colorPage = false;
     }
+
+    remove_colorImg(i){
+        this.colors.splice(i, 1);
+        this.images.splice(i, 1)
+        console.log(this.colors);
+        console.log(this.images)
+    }
+
+    submitProduct(){
+        this.addProductForm.patchValue({
+            colors:this.colors,
+            images:this.images
+        })
+        console.log(this.addProductForm.value)
+        this.shopEaseService.add_item(this.addProductForm.value, this.addProductForm.value.images).subscribe(data=>{
+            console.log(data);
+        })
+    }
+
+    image_upload(file, i){
+        this.images[i] = file.item(0);
+        console.log(this.images)
+    }
+
+    addProductInterface(){
+        this.elements += 1
+    }
+
+    counter(i){
+        return new Array(i)
+    }
+
+    onTabClick(event){
+        this.selected_section = event['tab']['textLabel']
+        this.shopEaseService.get_categories(this.selected_section).subscribe(data=>{
+            this.categories = data['categories'][0]['Categories'];
+            console.log(this.categories);
+        })
+    }
 }
+

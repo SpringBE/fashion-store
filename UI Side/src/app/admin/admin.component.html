@@ -8,95 +8,108 @@
         </div>
         <div class="profile-body">
             <div class="side-nav">
-                <a [routerLink] = "['/admin', 'overview']" routerLinkActive = "active"
-                    (click) = "goToOverview()"><b>Overview</b></a>
-                <a [routerLink]="['/admin', 'add-product']" routerLinkActive="active" 
-                    (click)="goToAddProduct()"><b>Add Product</b></a>
+                <a [routerLink]="['/admin', 'overview']" routerLinkActive="active"
+                    (click)="goToOverview()"><b>Overview</b></a>
+                <a [routerLink]="['/admin', 'add-product']" routerLinkActive="active" (click)="goToAddProduct()"><b>Add
+                        Product</b></a>
                 <a [routerLink]="['/admin', 'delete-product']" routerLinkActive="active"
                     (click)="goToDeleteProduct()"><b>Delete Product</b></a>
                 <a [routerLink]="['/admin', 'change-password']" routerLinkActive="active"
                     (click)="goToChangePassword()"><b>Change Password</b></a>
-                <a (click) = "log_out()"><b>Logout</b></a>
+                <a (click)="log_out()"><b>Logout</b></a>
             </div>
             <div class="add-info" *ngIf="addProduct">
                 <p>Add Product</p>
                 <hr>
-                <div class = "add-product-body">
-                    <form [formGroup] = "addProductForm">
-                        <div *ngIf = "descriptionPage">
-                      
+                <div class="add-product-body">
+                    <form [formGroup]="addProductForm">
+                        <div *ngIf="descriptionPage">
                             <mat-form-field appearance="outline">
                                 <mat-label>Name</mat-label>
-                                <input type="text" matInput formControlName = "name" required>
+                                <input type="text" matInput formControlName="name" required>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Choose Section</mat-label>
-                                <mat-select formControlName = "section" (selectionChange) = "get_categories()">
-                                    <mat-option value ="Men">Men</mat-option>
-                                    <mat-option value ="Women">Women</mat-option>
+                                <mat-select formControlName="section" (selectionChange)="get_categories()">
+                                    <mat-option value="Men">Men</mat-option>
+                                    <mat-option value="Women">Women</mat-option>
                                     <mat-optgroup label="Kids">
-                                        <mat-option value ="Boys">Boys</mat-option>
-                                        <mat-option value = "Girls">Girls</mat-option>
+                                        <mat-option value="Boys">Boys</mat-option>
+                                        <mat-option value="Girls">Girls</mat-option>
                                     </mat-optgroup>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Choose Category</mat-label>
-                                <mat-select formControlName = "category">
+                                <mat-select formControlName="category">
                                     <mat-option [value]="category.category_name" *ngFor="let category of categories">
                                         {{category.category_name}}
-                                      </mat-option>
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field><br>
                             <mat-form-field appearance="outline">
                                 <mat-label>Price</mat-label>
-                                <input type="text" matInput formControlName = "price" required>
+                                <input type="text" matInput formControlName="price" required>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Choose Brand</mat-label>
-                                <mat-select formControlName = "brand">
+                                <mat-select formControlName="brand">
                                     <mat-option [value]="b" *ngFor="let b of brands">
                                         {{b}}
-                                      </mat-option>
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Quantity</mat-label>
-                                <input type="text" matInput formControlName = "qty" required>
+                                <input type="text" matInput formControlName="qty" required>
                             </mat-form-field><br>
                             <mat-form-field appearance="outline">
                                 <mat-label>Choose Size</mat-label>
                                 <mat-select formControlName="size" multiple>
-                                  <mat-option [value] = "s" *ngFor = "let s of sizes">{{s}}</mat-option>
+                                    <mat-option [value]="s" *ngFor="let s of sizes">{{s}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <mat-form-field appearance = "outline">
-                                <mat-label>Description</mat-label>
-                                <textarea type = "text" matInput formControlName = 'details'></textarea>
-                            </mat-form-field>
-                            <button class = "next-button" mat-raised-button (click) = "goToColorPage()">Next</button>
-                        </div>
-                        <div *ngIf = "colorPage" class = "color-overflow">
                             <mat-form-field appearance="outline">
-                                <mat-label>Color</mat-label>
-                                <input type="text" matInput formControlName = "color" required>
+                                <mat-label>Description</mat-label>
+                                <textarea type="text" matInput formControlName='details'></textarea>
                             </mat-form-field>
-                            <mat-form-field appearance = "outline">
-                                <!--<ngx-mat-file-input formControlName="image" [multiple]="multiple"
-                                [color]="color">
-                                    <mat-icon ngxMatFileInputIcon>folder</mat-icon>
-                                </ngx-mat-file-input>-->
-                                <mat-label>Color</mat-label>
-                                <input type="text" matInput formControlName = "color" required>
-                            </mat-form-field><br>
-                            <button class = "back-button" mat-raised-button (click) = "goToDescriptionPage()">Back</button>
+                            <button class="next-button" mat-raised-button (click)="goToColorPage()">Next</button>
                         </div>
                     </form>
+                    <div *ngIf="colorPage" class="color-overflow" id="addColor">
+                        <div *ngFor="let element of counter(elements); let i = index">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Color</mat-label>
+                                <input type="text" matInput [(ngModel)]="colors[i]" required>
+                            </mat-form-field>
+                            <input type="file" accept='image/*' (change)="image_upload($event.target.files, i)"
+                                required />
+                            <button class="add-color" mat-raised-button (click)="addProductInterface()"
+                                *ngIf="i == 0"><span class="fa fa-plus fa-lg"></span> Add Color</button>
+                            <button mat-raised-button (click)=remove_colorImg(i) *ngIf="i != 0"><span
+                                    class="fa fa-minus"></span></button><br>
+                        </div>
+                        <button class="back-button" mat-raised-button (click)="goToDescriptionPage()">Back</button>
+                        <button class="submit-button" mat-raised-button (click)="submitProduct()">Submit</button>
+                    </div>
                 </div>
             </div>
             <div class="delete-product" *ngIf="deleteProduct">
                 <p>Delete Product</p>
                 <hr>
+                <mat-tab-group (selectedTabChange)="onTabClick($event)">
+                    <mat-tab label="Men">
+                        <div *ngFor="let category of categories"></div>
+                    </mat-tab>
+                    <mat-tab label="Women"></mat-tab>
+                    <mat-tab label="Boys"></mat-tab>
+                    <mat-tab label="Girls"></mat-tab>
+                </mat-tab-group>
+                <div class="delete-container">
+                    <div *ngFor="let category of categories">
+                        <a [routerLink]="[ '/display',selected_section, category.category_id]">{{category.category_name}}</a>
+                    </div>
+                </div>
             </div>
             <div class="change-password" *ngIf="changePassword"></div>
         </div>

@@ -3,11 +3,11 @@
     <img height="150px" width="150px" src="assets/cart.jpg">
     <p><b>Please Login to add items to cart</b></p>
 </div>
-<div *ngIf = "grand_total==0" class="cart">
+<div *ngIf = "grand_total==0&&user" class="cart">
     <img height="150px" width="150px" src="assets/cart.jpg">
     <p><b>No items in the cart</b></p>
 </div>
-<div>
+<div *ngIf="grand_total>0&&user">
     <mat-card  class="shop-cart" *ngIf="cart_items">
         <div class="shop__cart__table">
             <table>
@@ -38,14 +38,27 @@
         </div>
         
     </mat-card>
-    <mat-card class="address" *ngIf="grand_total>0">
-        <mat-card-title>CHOOSE ADDRESS</mat-card-title>
-    </mat-card>
-    <mat-card class="final" *ngIf = "grand_total > 0">
-        <mat-card-title>CART TOTAL</mat-card-title>
-        <p id = "grand_total" >Grand Total : {{grand_total.toFixed(2)}}</p>
-    </mat-card> 
-    <button mat-button class="done" *ngIf = "grand_total > 0">Done</button>
+    <div class="end_card">
+        <form action="#" [formGroup]="addressDetails">
+            <mat-card class="address" *ngIf="grand_total>0&&user">
+                <mat-card-title>CHOOSE ADDRESS</mat-card-title>
+                <div *ngFor="let addr of addresses" class="address1">
+                    <input type="radio" formControlName = "address" [value]="addr" (change)="set_order('address',addr)">
+                    <p>Address: {{addr.address}}, {{addr.city}}, {{addr.state}} - {{addr.pincode}}</p>
+                </div>
+            </mat-card>
+        </form>
+        
+        <mat-card class="cart_card" *ngIf = "grand_total > 0&&user">
+            <mat-card-title>CART TOTAL</mat-card-title>
+            <p id = "grand_total" >Grand Total : {{grand_total.toFixed(2)}}</p>
+        </mat-card> 
+        
+    </div>
+    <div class="final" *ngIf = "grand_total > 0&&user">
+        <button mat-button class="done_btn" (click)="set_order('done','')">Done</button>
+        <button mat-button class="clear_btn" (click)="clear_all()">Clear All</button>
+    </div>
 </div>
 <app-footer></app-footer>
 

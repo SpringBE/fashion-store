@@ -31,7 +31,7 @@
 
 .shop__cart__table thead th {
     font-size: 18px;
-    color: #111;
+    color: #ca1515;
     font-weight: 600;
     text-transform: uppercase;
     padding-bottom: 20px;
@@ -42,26 +42,17 @@
     width: 585px;
 }
 h3 {
-    padding-left: 30px;
     padding-top: 10px;
     font-family: Font-Awesome!important;
-    color:#ca1515;
-}
-.shop__cart__table tbody tr .cart__quantity .pro-qty {
-    border: none;
-    padding: 0;
-    width: 110px;
-    border-radius: 0;
 }
 
 .shop__cart__table tbody tr .cart__total,.shop__cart__table tbody tr .cart__price,.shop__cart__table tbody tr .cart__quantity  {
     font-size: 16px;
-    color: #ca1515;
     font-weight: 600;
     width: 150px;
     text-align: center;
 }
-.shop__cart__table tbody tr .cart__close span {
+/*.shop__cart__table tbody tr .cart__close span {
     height: 45px;
     width: 45px;
     background: #f2f2f2;
@@ -73,37 +64,71 @@ h3 {
     display: inline-block;
     font-weight: 600;
     cursor: pointer;
-}
+}*/
 button{
     outline: none;
     border: none;
-    background-color: burlywood;
     margin-left: 10px;
 }
-.final{
-    width: 320px;
-    margin-left: 980px;
-    margin-bottom: 50px;
-    padding: 30px;
-    color: #ca1515;
-    font-family: Font-Awesome!important;
+.end_card{
+    display:flex;
+    margin-bottom: 40px;
 }
 mat-card-title{
     font-size: large;
     border-bottom: 1px solid lightgray;
     padding-bottom: 6px;
+    color: #ca1515;
 }
+.cart_card{
+    width: 360px;
+    height:150px;
+    padding: 30px;
+    font-family: Font-Awesome!important;
+}
+
 p#grand_total {
     font-size: 18px;
     margin-top: 20px;
 }
-.done{
-    color: #ca1515;
-    outline: none;
-    border: none;
-    margin-left: 980px;
+
+.address{
+    width: 800px;
+    margin-left: 50px;
+    padding: 30px;
+    margin-right: 90px;
+    font-family: Font-Awesome!important;
+}
+.address1{
+    display:flex;
+    padding-top:15px;
+}
+.address1>p{
+    padding-left: 10px;
+    font-size: 17px;
+}
+.final{
+    display: flex;
+    margin-left: 930px;
     margin-bottom: 50px;
 }
+.done_btn{
+    background-color: #673ab7;
+    color: white;
+    margin-right: 200px;
+}
+.clear_btn{
+    background-color: red;
+    color: white;
+}
+.btn1{
+        background-color:#B06407;
+        color:white;
+        outline: none;
+        margin-right: 20px;
+        float: right;
+}
+
 
 
 

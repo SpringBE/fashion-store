@@ -1,13 +1,17 @@
 from pymongo import MongoClient
+import bson
 from pprint import pprint
 from datetime import datetime, timedelta
 import re
 
 db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/fashionstore?retryWrites=true&w=majority")
 mydb = db.fashionstore
+'''db=MongoClient('localhost',27017)
+mydb=db['fashionstore']'''
 
 products = mydb['Products']
 login = mydb['login']
+orders=mydb['Orders']
 
 def get_categories(section):
     category_cursor = products.find({"section_name":section},
@@ -201,3 +205,69 @@ def updateUserProfile(req):
         return True
     else:
         return False
+
+def add_product_to_section(details):
+    i = bson.ObjectId()
+    success = products.update(
+    {
+        "section_name":details['section'],
+        "Categories.category_name":details['category']
+    },
+    {
+        "$addToSet":{
+            "Categories.$.Items":{
+                "item_id":i,
+                "item_name":details['name'],
+                "item_price":details['price'],
+                "item_brand":details['brand'],
+                "item_qty":details['qty'],
+                "item_size":details['size'],
+                "item_image":details['images'],
+                "colors":details['colors'],
+                "item_details":details['details']
+            }
+        }
+    })
+
+    if success['nModified']:
+        return True
+    else:
+        return False
+
+'''def delete_item_from_db(request):
+    success = items.update(
+        {
+            "Categories.items.item_id":item_id
+        },
+        {
+            "$pull":{"Categories.$.items":{"item_id":item_id}}
+        }
+    )
+
+    if success['nModified']:
+        return True
+    else:
+        return False'''
+
+def add_to_cart(cart_items,grand_total,date,address,email):
+    cart_info = []
+    count = orders.count()
+    order_id = "or_" + str(count + 1)
+    success = orders.insert_one(
+    {
+            "order_id": order_id, 
+            "order_date": date, 
+            "ordered_items": cart_items,
+            "address":address,
+            "email":email,
+            "grand_total":grand_total
+        }
+    )
+
+    if success.inserted_id:
+        flag = True
+        print("Here")
+    else:
+        flag = False
+
+    return flag

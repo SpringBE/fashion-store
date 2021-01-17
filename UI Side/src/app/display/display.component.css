@@ -23,7 +23,12 @@ mat-nav-list{
   box-sizing: border-box;
   line-height: 30px;
 }
-
+.mat-nav-list a:hover {
+  text-decoration:underline;
+  text-decoration-style: solid;
+  text-decoration-color: black;
+  color: inherit;
+}
 .matcard1{
   margin-left:92px !important;
   margin-bottom:35px !important;
@@ -70,6 +75,7 @@ margin: 0px 15px;
     display: flex;
     float:right;
 }
+
 p{
     padding-right: 32px;
 }
@@ -212,3 +218,8 @@ input#quantity {
   background: #4F4846;
   cursor: pointer;
 }*/
+
+.delete-button{
+    margin-top: -10px;
+    outline:none !important;
+}

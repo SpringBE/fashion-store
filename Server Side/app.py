@@ -5,6 +5,7 @@ import online_fashion_store_db as od
 import os
 import json
 from werkzeug.utils import secure_filename
+import ast
 
 app = Flask(__name__)
 CORS(app)
@@ -80,6 +81,46 @@ def update_user_profile():
     req = request.get_json()
     confirmation = od.updateUserProfile(req)
     return jsonify({'updated':confirmation})
+
+@app.route('/add-item', methods = ['POST'])
+def add_product():
+    images = request.files.getlist("images")
+    details = request.form.get('details')
+    details = ast.literal_eval(details)
+    print(details)
+    print(type(details['name']))
+    i = 0
+    for image in images:
+        extension = image.filename.split(".")[-1]
+        filename = details['name'] + " " + details['colors'][i] + '.' + extension
+        filename = secure_filename(filename)
+        #path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + details['section'].lower() + '/' + details['category'].lower + '/'
+        path = 'F:/Web Mini Project/online fashion store/Server Side/images/' + details['section'].lower() + '/' + details['category'].replace(" ","-").lower() + '/'
+        image.save(os.path.join(path,filename))
+        path = str(details['section']).lower() + '/' + details['category'].replace(" ","-").lower() + '/' + filename
+        details['images'][i][details['colors'][i]] = path
+        i += 1
+    
+    success = od.add_product_to_section(details)
+    return jsonify({'added':success})
+
+'''@app.route('/delete-item', methods = ['POST'])
+def delete_item():
+    req = request.get_json()
+    confirmation = od.delete_item_from_db(req)
+    return jsonify({'deleted':confirmation})'''
+
+@app.route('/add-to-cart', methods=['POST'])
+def get_cart_items():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}), 400
+    cart = request.json.get('cart_items', None)
+    total = request.json.get('grand_total', None)
+    date =  request.json.get('order_date', None)
+    address=request.json.get('address', None)
+    email=request.json.get('email', None)
+    success = od.add_to_cart(cart,total,date,address,email)
+    return jsonify({'addToCart':success})
 
 if __name__ == "__main__":
     app.run(debug=True)

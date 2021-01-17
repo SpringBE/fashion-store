@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DisplayService } from '../services/display.service';
+import {LoginService } from '../services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -36,10 +37,11 @@ export class DisplayComponent implements OnInit {
     selectedItem=[];
     selectedimage=[];
     cartDetails:FormGroup;
+    user:any;
     constructor(private route: ActivatedRoute, 
         private shopeaseService: ShopeaseService,
         private fb: FormBuilder,
-        private displayService:DisplayService,private _snackBar: MatSnackBar) {
+        private displayService:DisplayService,private _snackBar: MatSnackBar,private loginService: LoginService) {
         this.cartDetails = this.fb.group({
             size: ['', Validators.required],
             color: ['', Validators.required]
@@ -47,6 +49,10 @@ export class DisplayComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.loginService.currentUser.subscribe(data=>{
+            this.user = data;
+        })
+
         this.route.params.subscribe(params => {
             this.sectionName = params['section'];
             if (params['category_id']) {
@@ -241,10 +247,8 @@ export class DisplayComponent implements OnInit {
             this.selectedsize=element;
         else if(choice=='color')
             this.selectedcolor=element;
-        else if(choice=='quantity'){
+        else if(choice=='quantity')
             this.selectedquantity=(<HTMLInputElement>document.getElementById("quantity")).value
-        console.log(this.selectedquantity)
-    console.log(element)}
         else if(choice=='cart'){
             current_item["item_id"]=element;
             current_item["item_name"]=this.selectedItem[0].item_name;
@@ -263,4 +267,8 @@ export class DisplayComponent implements OnInit {
         }
     }
 
+    delete_item(item){
+        console.log(item);
+        
+    }
 }

@@ -60,4 +60,23 @@ export class ShopeaseService {
         return this.http.post(url, details);
     }
 
+    add_item(details, images){
+        let url = `${this.baseurl}add-item`;
+        const formData: FormData = new FormData();
+        formData.append('details',JSON.stringify(details));
+        for(var image of images){
+            console.log(image.value)
+            formData.append('images', image, image.name);
+        }
+        console.log(formData.getAll('images'))
+        return this.http.post(url, formData);
+    }
+
+    add_cart_items(cart_items,total,date,address,email){
+        let url = `${this.baseurl}add-to-cart`;
+        console.log(cart_items)
+        let data = {"cart_items":cart_items, "grand_total":total, "order_date":date,"address":address,"email":email}
+        return this.http.post<any>(url,data);
+      }
+
 }

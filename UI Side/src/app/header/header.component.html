@@ -9,7 +9,7 @@
         </a>
     </div>
     <div class="dropdown">
-        <a class="navigation" routerLink='/display/Men' routerLinkActive="active"><b>Men</b></a>
+        <a class="navigation" [routerLink]="['/display','Men','mcs']" routerLinkActive="active"><b>Men</b></a>
         <div class="dropdown-content">
             <mat-card class="popover-content">
                     <div class= "popover-inline">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="dropdown">
-        <a class="navigation" routerLink='/display/Women' routerLinkActive="active"><b>Women</b></a>
+        <a class="navigation" [routerLink]="['/display','Men','wcs']" routerLinkActive="active"><b>Women</b></a>
         <div class="dropdown-content">
             <mat-card class="popover-content">
                 <table>
@@ -68,8 +68,8 @@
                         <thead>
                             <th>
                                 <tr> 
-                                    <a class="navigation" routerLink='/display/Girl' routerLinkActive="active"><b>Boy</b></a>
-                                    <a class="navigation" routerLink='/display/Girl' routerLinkActive="active"><b>Girl</b></a>
+                                    <a class="navigation" routerLink=# routerLinkActive="active"><b>Boy</b></a>
+                                    <a class="navigation" routerLink=# routerLinkActive="active"><b>Girl</b></a>
                                 </tr>
                             </th>
                         </thead>
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <a class="navigation" routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
+    <a class="navigation" *ngIf = "user && user[0].isAdmin != true"  routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
         <b> Cart</b></a>
     <a class="navigation" *ngIf = '!user' (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b> Login</b></a>
     <a class="navigation" *ngIf = "user && user[0].isAdmin != true" routerLink = '/my/profile' routerLinkActive = "active"><span class="fa fa-lg fa-user"></span><b> Profile</b></a>
