@@ -89,6 +89,7 @@
                 <mat-card-content class="card_bottom">
                     <p><b>Brand : {{item.item_brand}}</b></p>
                     <p><b>Price : {{item.item_price}}/-</b></p>
+                    <button *ngIf = "user && user[0].isAdmin == true" class = "delete-button" mat-button (click) = "delete_item(item)" color="warn"><i class="fa fa-trash-o fa-lg"></i></button>
                 </mat-card-content>
             </mat-card>
         </div>

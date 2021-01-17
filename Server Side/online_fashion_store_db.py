@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import bson
 from pprint import pprint
 from datetime import datetime, timedelta
 import re
@@ -194,6 +195,49 @@ def updateUserProfile(req):
                 "alt_phone":req['alt_phone'], "location":req['location'],
                 "gender":req['gender']
             }
+        }
+    )
+
+    if success['nModified']:
+        return True
+    else:
+        return False
+
+def add_product_to_section(details):
+    i = bson.ObjectId()
+    success = products.update(
+    {
+        "section_name":details['section'],
+        "Categories.category_name":details['category']
+    },
+    {
+        "$addToSet":{
+            "Categories.$.Items":{
+                "item_id":i,
+                "item_name":details['name'],
+                "item_price":details['price'],
+                "item_brand":details['brand'],
+                "item_qty":details['qty'],
+                "item_size":details['size'],
+                "item_image":details['images'],
+                "colors":details['colors'],
+                "item_details":details['details']
+            }
+        }
+    })
+
+    if success['nModified']:
+        return True
+    else:
+        return False
+
+def delete_item_from_db(request):
+    success = items.update(
+        {
+            "Categories.items.item_id":item_id
+        },
+        {
+            "$pull":{"Categories.$.items":{"item_id":item_id}}
         }
     )
 

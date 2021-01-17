@@ -39,6 +39,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginService } from './services/login.service';
 import { AdminComponent } from './admin/admin.component';
 import { DisplayService } from './services/display.service';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { DisplayService } from './services/display.service';
     MatSnackBarModule,
     MatStepperModule,
     MatFormFieldModule,
+    NgxMatFileInputModule
   ],
   providers: [ShopeaseService, LoginService, DisplayService],
   bootstrap: [AppComponent]

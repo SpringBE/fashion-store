@@ -70,8 +70,9 @@ margin: 0px 15px;
     display: flex;
     float:right;
 }
+
 p{
-    padding-right: 25px;
+    padding-right: 12px;
 }
 
 .slider {
@@ -206,3 +207,8 @@ button:hover {
   background: #4F4846;
   cursor: pointer;
 }*/
+
+.delete-button{
+    margin-top: -10px;
+    outline:none !important;
+}

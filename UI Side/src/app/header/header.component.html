@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <a class="navigation" routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
+    <a class="navigation" *ngIf = "user && user[0].isAdmin != true"  routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
         <b> Cart</b></a>
     <a class="navigation" *ngIf = '!user' (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b> Login</b></a>
     <a class="navigation" *ngIf = "user && user[0].isAdmin != true" routerLink = '/my/profile' routerLinkActive = "active"><span class="fa fa-lg fa-user"></span><b> Profile</b></a>
