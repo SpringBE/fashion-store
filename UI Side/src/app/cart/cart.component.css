@@ -74,6 +74,12 @@ button{
     display:flex;
     margin-bottom: 40px;
 }
+
+.end_card p{
+    margin-top:15px;
+    font-size: medium;
+}
+
 mat-card-title{
     font-size: large;
     border-bottom: 1px solid lightgray;

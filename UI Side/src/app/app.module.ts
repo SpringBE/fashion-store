@@ -24,6 +24,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -79,7 +80,8 @@ import { DisplayService } from './services/display.service';
     MatIconModule,
     MatSnackBarModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule
   ],
   providers: [ShopeaseService, LoginService, DisplayService],
   bootstrap: [AppComponent]

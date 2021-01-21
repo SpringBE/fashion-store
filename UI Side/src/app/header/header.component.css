@@ -50,7 +50,7 @@ mat-toolbar{
     position: absolute;
     padding: 12px 16px;
     z-index: 1;
-    margin-left:-20px;
+    margin-left:-60px;
   }
   
   .dropdown:hover .dropdown-content {
@@ -80,4 +80,21 @@ mat-toolbar{
  
   tr > div img{
       margin-right:5px;
+  }
+
+  .popover-content a:hover{
+    text-decoration: underline !important;
+    text-decoration-style: solid !important;
+    text-decoration-color: salmon !important;
+    color:salmon;
+  }
+
+  .popover-content p{
+      font-size: 16px;
+      display:inline-block;
+  }
+
+  .no-div{
+      color:white !important;
+      height:62px;
   }

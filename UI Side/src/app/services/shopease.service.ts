@@ -79,4 +79,19 @@ export class ShopeaseService {
         return this.http.post<any>(url,data);
       }
 
+    get_order_details(email){
+        let url = `${this.baseurl}order-details/${email}`
+        return this.http.get(url);
+    }
+
+    delete_item(data){
+        let url = `${this.baseurl}delete-item`;
+        return this.http.post(url, data);
+    }
+
+    changePassword(data){
+        let url = `${this.baseurl}change-password`;
+        return this.http.post(url, data);
+    }
 }
+

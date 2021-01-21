@@ -4,10 +4,10 @@ from pprint import pprint
 from datetime import datetime, timedelta
 import re
 
-db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/fashionstore?retryWrites=true&w=majority")
-mydb = db.fashionstore
-'''db=MongoClient('localhost',27017)
-mydb=db['fashionstore']'''
+'''db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/fashionstore?retryWrites=true&w=majority")
+mydb = db.fashionstore'''
+db=MongoClient('localhost',27017)
+mydb=db['fashionstore']
 
 products = mydb['Products']
 login = mydb['login']
@@ -120,7 +120,7 @@ def get_filtered_items(brand,size,color,minprice,maxprice,section_name,category_
     return filtered_items
 
 def get_user_details(email):
-    detail_cursor = login.find({'email':email}, {'_id':0, 'password':0})
+    detail_cursor = login.find({'email':email}, {'_id':0})
     user = []
     for detail in detail_cursor:
         user.append(detail)
@@ -234,20 +234,20 @@ def add_product_to_section(details):
     else:
         return False
 
-'''def delete_item_from_db(request):
-    success = items.update(
-        {
-            "Categories.items.item_id":item_id
+def delete_item_from_db(req):
+    success = products.update({
+            "section_name":req['section_name'],
+            "Categories.category_id":req['category_id'],
+            "Categories.Items.item_id":req['item_id']
         },
         {
-            "$pull":{"Categories.$.items":{"item_id":item_id}}
-        }
-    )
+            "$pull":{"Categories.$.Items":{"item_id":req['item_id']}}
+        })
 
     if success['nModified']:
         return True
     else:
-        return False'''
+        return False
 
 def add_to_cart(cart_items,grand_total,date,address,email):
     cart_info = []
@@ -271,3 +271,26 @@ def add_to_cart(cart_items,grand_total,date,address,email):
         flag = False
 
     return flag
+
+def getOrderDetails(email):
+    orders_info_cursor = orders.find({"email":email}, {"_id":0})
+    orders_info = []
+
+    for order in orders_info_cursor:
+        orders_info.append(order)
+    return orders_info
+
+def change_password(req):
+    success = login.update(
+    {
+        "isAdmin":True,
+        "email":req['email']
+    },
+    {
+        "$set":{"password":req['password']}
+    })
+
+    if success['nModified']:
+        return True
+    else:
+        return False

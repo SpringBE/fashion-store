@@ -65,24 +65,19 @@
         <div class="dropdown-content">
             <mat-card class="popover-content">
                     <table>
-                        <thead>
-                            <th>
-                                <tr> 
-                                    <a class="navigation" routerLink=# routerLinkActive="active"><b>Boy</b></a>
-                                    <a class="navigation" routerLink=# routerLinkActive="active"><b>Girl</b></a>
-                                </tr>
-                            </th>
-                        </thead>
                         <tbody>
                             <td>
+                                <tr><p>Boy</p></tr>
                                 <tr *ngFor="let boy of boys_categories">
                                     <div>
                                         <img src="http://localhost:5000/images/{{boy.category_image}}" height="50px" width="50px">
                                         <a [routerLink]="[ '/display','Boys', boy.category_id]"><b>{{boy.category_name}}</b></a>
                                     </div>
                                 </tr>
+                                <tr class = "no-div"><p>hide element</p></tr>
                             </td>
                             <td>
+                                <tr><p>Girl</p></tr>
                                 <tr *ngFor="let girl of girls_categories">
                                     <div >
                                         <img src="http://localhost:5000/images/{{girl.category_image}}" height="50px" width="50px">
@@ -96,7 +91,7 @@
         </div>
     </div>
 
-    <a class="navigation" *ngIf = "user && user[0].isAdmin != true"  routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
+    <a class="navigation" *ngIf = "!user || user[0].isAdmin != true" routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
         <b> Cart</b></a>
     <a class="navigation" *ngIf = '!user' (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b> Login</b></a>
     <a class="navigation" *ngIf = "user && user[0].isAdmin != true" routerLink = '/my/profile' routerLinkActive = "active"><span class="fa fa-lg fa-user"></span><b> Profile</b></a>

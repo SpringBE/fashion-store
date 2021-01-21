@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.loginDetails = this.fb.group({
             email: ['shopeaseadmin@gmail.com', [Validators.required,
             Validators.email]],
-            password: ['123456789', [Validators.required,
+            password: ['123456', [Validators.required,
             Validators.minLength(6)]],
         });
 

@@ -20,7 +20,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let item of cart_items">
+                <tbody *ngFor="let item of cart_items; let i = index">
                     <tr>
                         <td class="cart__product__item">
                             <img class="prod_image" src="http://localhost:5000/images/{{item.item_image}}" alt="item.item_name" >
@@ -31,7 +31,7 @@
                         <td class="cart__price">{{item.item_price}}</td>
                         <td class="cart__quantity">{{item.item_quantity}}</td>
                         <td class="cart__total">{{item.item_price*item.item_quantity}}</td>
-                        <!--<td class="cart__close"><span><button class="fa fa-times" (click)="remove_item(item.item_id)"></button></span></td>-->
+                        <td class="cart__close"><span><button id = "button{{i}}" class="fa fa-times" (click)="remove_item(i)"></button></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -42,10 +42,17 @@
         <form action="#" [formGroup]="addressDetails">
             <mat-card class="address" *ngIf="grand_total>0&&user">
                 <mat-card-title>CHOOSE ADDRESS</mat-card-title>
-                <div *ngFor="let addr of addresses" class="address1">
+                <!--<div *ngFor="let addr of addresses" class="address1">
                     <input type="radio" formControlName = "address" [value]="addr" (change)="set_order('address',addr)">
                     <p>Address: {{addr.address}}, {{addr.city}}, {{addr.state}} - {{addr.pincode}}</p>
-                </div>
+                </div>-->
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName = "address">
+                        <mat-radio-button class="example-radio-button" *ngFor="let addr of addresses" [value]="addr" (change)="set_order('address',addr)">
+                            <p>Address: {{addr.address}}, {{addr.city}}, {{addr.state}} - {{addr.pincode}}</p>
+                        </mat-radio-button>
+                    </mat-radio-group>
             </mat-card>
         </form>
         
