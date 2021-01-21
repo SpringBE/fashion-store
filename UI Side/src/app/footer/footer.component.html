@@ -8,11 +8,20 @@
             <a routerLink="/home">Home</a>
         </div>
         <div class="div2">
-            <a routerLink='/about'>About Us</a>
+            <a href="#">Sections</a>
+            <ul>
+                <li><a [routerLink]="['/display','Men','mcs']" routerLinkActive="active">Men</a></li>
+                <li><a [routerLink]="['/display','Women','wcs']" routerLinkActive="active">Women</a></li>
+                <li><a [routerLink]="['/display','Boys','bhd']" routerLinkActive="active">Boys</a></li>
+                <li><a [routerLink]="['/display','Girls','ghd']" routerLinkActive="active">Girls</a></li>
+            </ul>
         </div>
         <div class="div2">
-            <a routerLink='/contactus'>Contact Us</a>
+            <a routerLink='/about'>About Us</a>
         </div>
+        <!--<div class="div2">
+            <a routerLink='/contactus'>Contact Us</a>
+        </div>-->
     </div>
     
     <div class="final_line">

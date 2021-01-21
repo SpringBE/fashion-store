@@ -80,4 +80,5 @@ mat-toolbar{
  
   tr > div img{
       margin-right:5px;
+      border-radius: 50px;
   }

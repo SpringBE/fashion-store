@@ -23,7 +23,7 @@ p, a{
     text-decoration: none;
     color:wheat !important;
 }
-.div2>a:hover{
+.div2>a:hover,li:hover{
     padding-left: 5px;
 }
 .div2{
@@ -48,4 +48,11 @@ p, a{
 hr{
     border:1px solid white;
     width:1200px;
+}
+ul>li>a {
+    color: wheat;
+    list-style-type: square;
+}
+li {
+    padding-top: 10px;
 }

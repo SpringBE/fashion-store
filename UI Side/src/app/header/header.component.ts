@@ -3,6 +3,7 @@ import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../services/login.service';
 import { ShopeaseService } from '../services/shopease.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public dialogRef:MatDialog,
     private shopEaseService:ShopeaseService,
-    private loginService:LoginService) { }
+    private loginService:LoginService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.shopEaseService.get_categories('Men').subscribe(data=>{
@@ -51,5 +53,12 @@ export class HeaderComponent implements OnInit {
    popUp.afterClosed().subscribe((result) => {
     });
   }
+  log_out(){
+    this.user = null;
+    this.loginService.sendUserData(this.user);
+    this.router.navigate(['/home'])
+    let element=document.getElementById('dc');
+    element.setAttribute('style','display:none;')
+}
 
 }
