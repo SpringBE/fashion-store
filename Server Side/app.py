@@ -133,5 +133,15 @@ def changePassword():
     confirm = od.change_password(req)
     return jsonify({'isSet':confirm})
 
+@app.route('/all-orders')
+def get_all_orders():
+    all_orders = od.getOrderDetails("all")
+    return jsonify({'orders':all_orders})
+
+@app.route('/set-order-to-delivery/<id>')
+def set_order(id):
+    confirm = od.set_order_to_delivery(id)
+    return jsonify({'isSet':confirm})
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit {
     deleteProduct:boolean;
     changePassword:boolean;
     showOverview:boolean;
+    showOrders:boolean;
     categories: any;
     brands = ['Aura', 'BST', 'Dazzler', 'Mono', 'Paradise', 'Silvera', 'Wings'];
     sizes = ['XS','S','M','L','XL','XXL','XXXL'];
@@ -30,6 +31,10 @@ export class AdminComponent implements OnInit {
     elements = 1;
     selected_section: any = 'Men';
     change_password:FormGroup;
+    typeOfOrders: any = 'Total Orders';
+    all_orders: any;
+    deliveredOrders: any = [];
+    UndeliveredOrders: any = [];
     constructor(private route: ActivatedRoute,
       private fb: FormBuilder,
       private shopEaseService:ShopeaseService,
@@ -74,18 +79,22 @@ export class AdminComponent implements OnInit {
               else if(params['id'] == 'change-password' && this.user){
                   this.goToChangePassword();
               }
+              else if(params['id'] == 'orders' && this.user){
+                  this.goToOrders();
+                  this.getAllOrders();
+              }
           });
       })
     }
   
     goToAddProduct(){
       this.addProduct = this.descriptionPage = true;
-      this.changePassword = this.deleteProduct = this.showOverview = false;
+      this.changePassword = this.deleteProduct = this.showOverview = this.showOrders = false;
     }
   
     goToDeleteProduct(){
       this.deleteProduct = true;
-      this.addProduct = this.changePassword = this.showOverview = false;
+      this.addProduct = this.changePassword = this.showOverview = this.showOrders = false;
       this.shopEaseService.get_categories("Men").subscribe(data=>{
         this.categories = data['categories'][0]['Categories'];
         console.log(this.categories);
@@ -94,12 +103,17 @@ export class AdminComponent implements OnInit {
   
     goToChangePassword(){
       this.changePassword = true;
-      this.addProduct = this.deleteProduct = this.showOverview = false;
+      this.addProduct = this.deleteProduct = this.showOverview = this.showOrders = false;
     }
 
     goToOverview(){
         this.showOverview = true;
-        this.addProduct = this.deleteProduct = this.changePassword = false;
+        this.addProduct = this.deleteProduct = this.changePassword = this.showOrders = false;
+    }
+
+    goToOrders(){
+        this.showOrders = true;
+        this.addProduct = this.deleteProduct = this.changePassword = this.showOverview =  false;
     }
     
     get_categories(){
@@ -161,12 +175,16 @@ export class AdminComponent implements OnInit {
         return new Array(i)
     }
 
-    onTabClick(event){
+    onTabClickDelete(event){
         this.selected_section = event['tab']['textLabel']
         this.shopEaseService.get_categories(this.selected_section).subscribe(data=>{
             this.categories = data['categories'][0]['Categories'];
             console.log(this.categories);
         })
+    }
+
+    onTabClickOrders(event){
+        this.typeOfOrders = event['tab']['textLabel'];
     }
 
     save_password(){
@@ -205,6 +223,39 @@ export class AdminComponent implements OnInit {
                 duration: 2000,
             });
         }
+    }
+    getAllOrders(){
+        this.all_orders = this.deliveredOrders = this.UndeliveredOrders = [];
+        this.shopEaseService.get_all_orders().subscribe(data=>{
+            this.all_orders = data['orders'];
+            console.log(this.all_orders)
+            this.all_orders.forEach(element => {
+                if(element.delivered){
+                    this.deliveredOrders.push(element)
+                }
+                else{
+                    this.UndeliveredOrders.push(element)
+                }
+            });
+            console.log(this.deliveredOrders);
+            console.log(this.UndeliveredOrders);
+        });
+    }
+
+    set_delivery(i){
+        this.shopEaseService.set_order(this.all_orders[i].order_id).subscribe(data=>{
+            if(data['isSet']){
+                this._snackBar.open("Order is set to delivery", "", {
+                    duration: 2000,
+                });
+                this.getAllOrders();
+            }
+            else{
+                this._snackBar.open("Something went wrong", "Please try again..", {
+                    duration: 2000,
+                });
+            }
+        })
     }
 }
 

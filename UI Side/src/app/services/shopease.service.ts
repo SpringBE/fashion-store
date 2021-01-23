@@ -93,5 +93,16 @@ export class ShopeaseService {
         let url = `${this.baseurl}change-password`;
         return this.http.post(url, data);
     }
+
+    get_all_orders(){
+        let url = `${this.baseurl}all-orders`;
+        return this.http.get(url);
+    }
+
+    set_order(id){
+        let url = `${this.baseurl}set-order-to-delivery/${id}`;
+        return this.http.get(url);
+    }
 }
+
 

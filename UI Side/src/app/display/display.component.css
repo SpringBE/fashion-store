@@ -238,3 +238,11 @@ ul {
   .example-radio-button {
     margin: 5px;
   }
+
+  .active{
+    pointer-events: none;
+    text-decoration: underline !important;
+    text-decoration-style: solid !important;
+    color:salmon !important;
+    text-decoration-color: salmon !important;
+}
