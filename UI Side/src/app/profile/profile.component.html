@@ -106,7 +106,7 @@
                     <button *ngIf="order.order_id != clickedOrderId" mat-raised-button
                         (click)="clicked_id(order.order_id)">{{order.order_date}}</button>
                 </div>
-                <div class="display-order-table scroll">
+                <div class="display-order-table">
                     <div *ngFor="let order of userOrders">
                         <table class="table table-bordered table-hover" *ngIf="order.order_id == clickedOrderId">
                             <thead>
