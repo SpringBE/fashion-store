@@ -145,10 +145,11 @@ margin-bottom:15px;
 }
 
 .right {
-  padding-left: 120px;
+  padding-left: 85px;
   font-family: 'Times New Roman', Times, serif;
   padding-bottom: 15px;
   text-transform:capitalize;
+  font-size:15px;
 }
 .right>h2{
   text-transform: uppercase;
@@ -237,6 +238,10 @@ ul {
 
   .example-radio-button {
     margin: 5px;
+  }
+  .soldout{
+      margin: 20px;
+      color: red;
   }
 
   .active{

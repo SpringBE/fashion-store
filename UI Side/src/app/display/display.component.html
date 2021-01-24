@@ -181,12 +181,18 @@
                         </mat-radio-button>
                     </mat-radio-group>
                 </div>
-                <div class="right">
+                <div *ngIf="quantity > 0" class="right">
                     <p><b>Quantity</b></p>
                     <input matInput type="number" id="quantity"  name="quantity" min="1" max={{item.item_qty}} (change)="cart_details('quantity','value')">
                 </div>
-                <div class="right" *ngIf = "user&&user[0].isAdmin != true">
+                <div class="right" *ngIf = "user&&user[0].isAdmin != true&&quantity>0">
                     <button mat-button class="cart_button" [disabled]="cartDetails.invalid" (click)="cart_details('cart',item.item_id)" data-toggle="tooltip" data-placement="bottom" [title]='cartDetails.invalid?"Please select the size and color":""'>Add to Cart</button>
+                </div>
+                <div *ngIf="quantity == 0" class="right soldout">
+                    <p><b>Item is Sold Out!!</b></p>
+                </div>
+                <div *ngIf="user!= true&&quantity>0" class="right soldout">
+                    <p><b>Please Login to add item to cart</b></p>
                 </div>
         </div>
     </form>

@@ -30,6 +30,7 @@ export class DisplayComponent implements OnInit {
     Size = [];
     Brand = [];
     Color = [];
+    quantity:number;
     selectedsize:string;
     selectedcolor:string;
     selectedquantity:string;
@@ -217,6 +218,7 @@ export class DisplayComponent implements OnInit {
             }
         }
         console.log(this.selectedItem)
+        this.quantity=this.selectedItem[0].item_qty;
         var n=this.selectedItem[0].colors.length
         if(n>1){
             this.multi_image=true;

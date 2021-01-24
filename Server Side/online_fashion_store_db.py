@@ -4,10 +4,10 @@ from pprint import pprint
 from datetime import datetime, timedelta
 import re
 
-'''db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/fashionstore?retryWrites=true&w=majority")
-mydb = db.fashionstore'''
-db=MongoClient('localhost',27017)
-mydb=db['fashionstore']
+db = MongoClient("mongodb+srv://celestia:celestia0121@cluster0.rbqpa.mongodb.net/fashionstore?retryWrites=true&w=majority")
+mydb = db.fashionstore
+'''db=MongoClient('localhost',27017)
+mydb=db['fashionstore']'''
 
 products = mydb['Products']
 login = mydb['login']
