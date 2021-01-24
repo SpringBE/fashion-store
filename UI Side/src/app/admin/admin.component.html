@@ -8,14 +8,11 @@
         </div>
         <div class="profile-body">
             <div class="side-nav">
-                <a [routerLink]="['/admin', 'overview']" routerLinkActive="active"
-                    (click)="goToOverview()"><b>Overview</b></a>
-                <a [routerLink]="['/admin', 'add-product']" routerLinkActive="active" (click)="goToAddProduct()"><b>Add
-                        Product</b></a>
-                <a [routerLink]="['/admin', 'delete-product']" routerLinkActive="active"
-                    (click)="goToDeleteProduct()"><b>Delete Product</b></a>
-                <a [routerLink]="['/admin', 'change-password']" routerLinkActive="active"
-                    (click)="goToChangePassword()"><b>Change Password</b></a>
+                <a [routerLink]="['/admin', 'overview']" routerLinkActive="active"><b>Overview</b></a>
+                <a [routerLink]="['/admin', 'orders']" routerLinkActive="active"><b>Orders</b></a>
+                <a [routerLink]="['/admin', 'add-product']" routerLinkActive="active"><b>Add Product</b></a>
+                <a [routerLink]="['/admin', 'delete-product']" routerLinkActive="active"><b>Delete Product</b></a>
+                <a [routerLink]="['/admin', 'change-password']" routerLinkActive="active"><b>Change Password</b></a>
                 <a (click)="log_out()"><b>Logout</b></a>
             </div>
             <div class="add-info" *ngIf="addProduct">
@@ -78,15 +75,15 @@
                     </form>
                     <div *ngIf="colorPage" class="color-overflow" id="addColor">
                         <div *ngFor="let element of counter(elements); let i = index">
-                            <mat-form-field appearance="outline" id = "color{{i}}">
+                            <mat-form-field appearance="outline" id="color{{i}}">
                                 <mat-label>Color</mat-label>
                                 <input type="text" matInput [(ngModel)]="colors[i]" required>
                             </mat-form-field>
-                            <input id = "file{{i}}" type="file" accept='image/*' (change)="image_upload($event.target.files, i)"
-                                required />
+                            <input id="file{{i}}" type="file" accept='image/*'
+                                (change)="image_upload($event.target.files, i)" required />
                             <button class="add-color" mat-raised-button (click)="addProductInterface()"
                                 *ngIf="i == 0"><span class="fa fa-plus fa-lg"></span> Add Color</button>
-                            <button id = "button{{i}}" mat-raised-button (click)=remove_colorImg(i) *ngIf="i > 0"><span
+                            <button id="button{{i}}" mat-raised-button (click)=remove_colorImg(i) *ngIf="i > 0"><span
                                     class="fa fa-minus"></span></button><br>
                         </div>
                         <button class="back-button" mat-raised-button (click)="goToDescriptionPage()">Back</button>
@@ -94,40 +91,215 @@
                     </div>
                 </div>
             </div>
+            <div class="show-orders" *ngIf="showOrders">
+                <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4"
+                    (selectedTabChange)="onTabClickOrders($event)">
+                    <mat-tab label="Total Orders"></mat-tab>
+                    <mat-tab label="Undelivered Orders"></mat-tab>
+                    <mat-tab label="Delivered Orders"></mat-tab>
+                </mat-tab-group>
+                <div class="orders-body" *ngIf="typeOfOrders == 'Total Orders'">
+                    <div *ngFor="let order of all_orders; let i = index">
+                        <mat-accordion class="example-headers-align" multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Email: {{order.email}}
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Date: {{order.order_date}}
+                                        <mat-icon class="text-success right" *ngIf = "order.delivered == true">check_circle</mat-icon>
+                                        <mat-icon (click) = "set_delivery(i)" class="text-danger right" *ngIf = "order.delivered != true">check_circle_outline</mat-icon>
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Brand</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Section</th>
+                                            <th>Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of order['ordered_items']; let i = index">
+                                            <td>{{item.item_name}}</td>
+                                            <td>{{item.item_brand}}</td>
+                                            <td class="numSpan">{{item.item_price}}</td>
+                                            <td class="numSpan">{{item.item_quantity}}</td>
+                                            <td>{{item.item_section}}</td>
+                                            <td>{{item.item_category}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="grand-total table table-bordered">
+                                    <tbody>
+                                        <tr colspan="6">
+                                            <td class="text-right">Grand Total: {{order.grand_total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="view-address">
+                                    <p class="address-header" *ngIf = "order.delivered == true"><b>Delivered Address</b></p>
+                                    <p class="address-header" *ngIf = "order.delivered != true"><b>Delivery Address</b></p>
+                                    <p>Name: {{order.address.name}}</p>
+                                    <p>Phone: {{order.address.phone}}</p>
+                                    <p>Address: {{order.address.address}}, {{order.address.city}},
+                                        {{order.address.state}} -
+                                        {{order.address.pincode}}</p>
+                                    <p>Address Type: {{order.address.addressType}}</p>
+                                </div>
+                            </mat-expansion-panel>
+                            <div class="row"></div>
+                        </mat-accordion>
+                    </div>
+                </div>
+                <div class="orders-body" *ngIf="typeOfOrders == 'Delivered Orders'">
+                    <div *ngFor="let order of deliveredOrders">
+                        <mat-accordion class="example-headers-align">
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Email: {{order.email}}
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Date: {{order.order_date}}
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Brand</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Section</th>
+                                            <th>Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of order['ordered_items']; let i = index">
+                                            <td>{{item.item_name}}</td>
+                                            <td>{{item.item_brand}}</td>
+                                            <td class="numSpan">{{item.item_price}}</td>
+                                            <td class="numSpan">{{item.item_quantity}}</td>
+                                            <td>{{item.item_section}}</td>
+                                            <td>{{item.item_category}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="grand-total table table-bordered">
+                                    <tbody>
+                                        <tr colspan="6">
+                                            <td class="text-right">Grand Total: {{order.grand_total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="view-address">
+                                    <p class="address-header"><b>Delivered Address</b></p>
+                                    <p>Name: {{order.address.name}}</p>
+                                    <p>Phone: {{order.address.phone}}</p>
+                                    <p>Address: {{order.address.address}}, {{order.address.city}},
+                                        {{order.address.state}} -
+                                        {{order.address.pincode}}</p>
+                                    <p>Address Type: {{order.address.addressType}}</p>
+                                </div>
+                            </mat-expansion-panel>
+                            <div class="row"></div>
+                        </mat-accordion>
+                    </div>
+                </div>
+                <div class="orders-body" *ngIf="typeOfOrders == 'Undelivered Orders'">
+                    <div *ngFor="let order of UndeliveredOrders">
+                        <mat-accordion class="example-headers-align">
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Email: {{order.email}}
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Date: {{order.order_date}}
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Brand</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Section</th>
+                                            <th>Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of order['ordered_items']; let i = index">
+                                            <td>{{item.item_name}}</td>
+                                            <td>{{item.item_brand}}</td>
+                                            <td class="numSpan">{{item.item_price}}</td>
+                                            <td class="numSpan">{{item.item_quantity}}</td>
+                                            <td>{{item.item_section}}</td>
+                                            <td>{{item.item_category}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="grand-total table table-bordered">
+                                    <tbody>
+                                        <tr colspan="6">
+                                            <td class="text-right">Grand Total: {{order.grand_total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="view-address">
+                                    <p class="address-header"><b>Delivery Address</b></p>
+                                    <p>Name: {{order.address.name}}</p>
+                                    <p>Phone: {{order.address.phone}}</p>
+                                    <p>Address: {{order.address.address}}, {{order.address.city}},
+                                        {{order.address.state}} -
+                                        {{order.address.pincode}}</p>
+                                    <p>Address Type: {{order.address.addressType}}</p>
+                                </div>
+                            </mat-expansion-panel>
+                            <div class="row"></div>
+                        </mat-accordion>
+                    </div>
+                </div>
+            </div>
             <div class="delete-product" *ngIf="deleteProduct">
                 <p>Delete Product</p>
                 <hr>
-                <mat-tab-group (selectedTabChange)="onTabClick($event)">
-                    <mat-tab label="Men">
-                        <div *ngFor="let category of categories"></div>
-                    </mat-tab>
+                <mat-tab-group (selectedTabChange)="onTabClickDelete($event)">
+                    <mat-tab label="Men"></mat-tab>
                     <mat-tab label="Women"></mat-tab>
                     <mat-tab label="Boys"></mat-tab>
                     <mat-tab label="Girls"></mat-tab>
                 </mat-tab-group>
                 <div class="delete-container">
                     <div *ngFor="let category of categories">
-                        <a [routerLink]="[ '/display',selected_section, category.category_id]">{{category.category_name}}</a>
+                        <a
+                            [routerLink]="[ '/display',selected_section, category.category_id]">{{category.category_name}}</a>
                     </div>
                 </div>
             </div>
             <div class="change-password" *ngIf="changePassword">
                 <p>Change Password</p>
                 <hr>
-                <form [formGroup] = "change_password">
+                <form [formGroup]="change_password">
                     <mat-form-field appearance="outline">
                         <mat-label>Current Password</mat-label>
-                        <input type="password" matInput formControlName = "currentPassword" required>
+                        <input type="password" matInput formControlName="currentPassword" required>
                     </mat-form-field><br>
                     <mat-form-field appearance="outline">
                         <mat-label>Change Password</mat-label>
-                        <input type="password" matInput formControlName = "setPassword" required>
+                        <input type="password" matInput formControlName="setPassword" required>
                     </mat-form-field><br>
                     <mat-form-field appearance="outline">
                         <mat-label>Re Enter Password</mat-label>
-                        <input type="password" matInput formControlName = "reEnterPassword" required>
+                        <input type="password" matInput formControlName="reEnterPassword" required>
                     </mat-form-field><br>
-                    <button class="change-confirm" mat-raised-button (click) = "save_password()">Submit</button>
+                    <button class="change-confirm" mat-raised-button (click)="save_password()">Submit</button>
                 </form>
             </div>
         </div>

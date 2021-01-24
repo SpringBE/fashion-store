@@ -22,7 +22,7 @@ hr{
     padding-bottom: 0px;
 }
 
-.side-nav, .add-info, .delete-product, .change-password{
+.side-nav, .add-info, .delete-product, .change-password, .show-orders{
     display: inline-block;
     height:250px;
 }
@@ -59,7 +59,7 @@ a{
     text-decoration-color: salmon !important;
 }
 
-.profile-info, .add-info, .delete-product, .change-password{
+.profile-info, .add-info, .delete-product, .change-password, .show-orders{
     position:absolute !important;
     margin:15px;
     border:1.5px solid salmon;
@@ -134,4 +134,56 @@ a{
     margin:10px 20px 10px 50px;
     width: 100px;
 }
-  
+
+.show-orders{
+    width:950px;
+    height:450px;
+    overflow-y: auto;
+}
+
+.show-orders mat-tab-group{
+    margin-bottom: 20px;
+}
+
+table.table-hover > tbody > tr:hover{
+    background-color: rgb(250, 233, 231);
+}
+
+table.table-bordered{
+    margin-right: 25px !important;
+}
+
+.grand-total{
+    margin-top:-18px !important;
+}
+
+
+table.table-bordered > thead > tr > th{
+    border:1px solid salmon;
+}
+
+table.table-bordered > tbody > tr > td{
+    border:1px solid salmon;
+}
+
+.address-header{
+    font-size: 16px;
+    margin-top: 20px !important;
+    margin-bottom: 20px;
+}
+
+.view-address{
+    margin:10px;
+}
+
+.right{
+    margin-left:255px;
+}
+
+mat-expansion-panel{
+    margin:10px;
+}
+
+.orders-body{
+    padding:0px 20px 20px 20px !important;
+}

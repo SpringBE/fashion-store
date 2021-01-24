@@ -260,7 +260,8 @@ def add_to_cart(cart_items,grand_total,date,address,email):
             "ordered_items": cart_items,
             "address":address,
             "email":email,
-            "grand_total":grand_total
+            "grand_total":grand_total,
+            "delivered":False
         }
     )
 
@@ -273,7 +274,10 @@ def add_to_cart(cart_items,grand_total,date,address,email):
     return flag
 
 def getOrderDetails(email):
-    orders_info_cursor = orders.find({"email":email}, {"_id":0})
+    if email == 'all':
+        orders_info_cursor = orders.find({}, {"_id":0})
+    else:
+        orders_info_cursor = orders.find({"email":email}, {"_id":0})
     orders_info = []
 
     for order in orders_info_cursor:
@@ -288,6 +292,19 @@ def change_password(req):
     },
     {
         "$set":{"password":req['password']}
+    })
+
+    if success['nModified']:
+        return True
+    else:
+        return False
+
+def set_order_to_delivery(order_id):
+    success = orders.update({
+        "order_id":order_id
+    },
+    {
+        "$set":{"delivered":True}    
     })
 
     if success['nModified']:

@@ -243,3 +243,11 @@ ul {
       margin: 20px;
       color: red;
   }
+
+  .active{
+    pointer-events: none;
+    text-decoration: underline !important;
+    text-decoration-style: solid !important;
+    color:salmon !important;
+    text-decoration-color: salmon !important;
+}

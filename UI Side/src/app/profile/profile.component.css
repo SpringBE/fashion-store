@@ -29,6 +29,11 @@ hr{
     overflow-y: auto !important;
 }
 
+.display-order-table{
+    height:305px;
+    overflow-y: auto !important;
+} 
+
 .side-nav, .profile-info, .edit-info, .address-info, .orders-info{
     display: inline-block;
 }

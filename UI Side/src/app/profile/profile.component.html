@@ -99,7 +99,7 @@
         <div class="orders-info" *ngIf="orders">
             <p>My Orders</p>
             <hr>
-            <div class="order-body scroll" *ngIf="userOrders">
+            <div class="order-body" *ngIf="userOrders">
                 <div class="insert-button" *ngFor="let order of userOrders">
                     <button *ngIf="order.order_id == clickedOrderId" class="focus-button"
                         mat-raised-button>{{order.order_date}}</button>
@@ -135,10 +135,15 @@
                                 <tr colspan="6">
                                     <td class="text-right">Grand Total: {{order.grand_total}}</td>
                                 </tr>
+                                <tr colspan="6">
+                                    <td colspan="3" class="text-right" *ngIf = "order.delivered == true">Ordered Delivered:Yes</td>
+                                    <td colspan="3" class="text-right" *ngIf = "order.delivered != true">Ordered Delivered:Request is On Processing</td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="view-address" *ngIf="order.order_id == clickedOrderId">
-                            <p class="address-header"><b>Delivered Address</b></p>
+                            <p class="address-header" *ngIf = "order.delivered == true"><b>Delivered Address</b></p>
+                            <p class="address-header" *ngIf = "order.delivered != true"><b>Delivery Address</b></p>
                             <p>Name: {{order.address.name}}</p>
                             <p>Phone: {{order.address.phone}}</p>
                             <p>Address: {{order.address.address}}, {{order.address.city}}, {{order.address.state}} -
