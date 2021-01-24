@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
@@ -28,7 +28,8 @@ export class AdminComponent implements OnInit {
     images:any = [];
     colors:any = [];
     elements = 1;
-    selected_section: any;
+    selected_section: any = 'Men';
+    change_password:FormGroup;
     constructor(private route: ActivatedRoute,
       private fb: FormBuilder,
       private shopEaseService:ShopeaseService,
@@ -48,6 +49,12 @@ export class AdminComponent implements OnInit {
           images:[[], Validators.required],
           details:[[], Validators.required]
       });
+
+      this.change_password = this.fb.group({
+          currentPassword:['', Validators.required],
+          setPassword:['', Validators.required],
+          reEnterPassword:['', Validators.required]
+      })
      }
   
     ngOnInit(): void {
@@ -121,9 +128,13 @@ export class AdminComponent implements OnInit {
 
     remove_colorImg(i){
         this.colors.splice(i, 1);
-        this.images.splice(i, 1)
-        console.log(this.colors);
-        console.log(this.images)
+        this.images.splice(i, 1);
+        var input1 = document.getElementById('file'+i);
+        input1.parentNode.removeChild(input1);
+        var input2 = document.getElementById('color'+i)
+        input2.parentNode.removeChild(input2);
+        var input3 = document.getElementById('button'+i);
+        input3.parentNode.removeChild(input3);
     }
 
     submitProduct(){
@@ -156,6 +167,44 @@ export class AdminComponent implements OnInit {
             this.categories = data['categories'][0]['Categories'];
             console.log(this.categories);
         })
+    }
+
+    save_password(){
+        console.log(this.change_password.value)
+        if(this.user[0].password == this.change_password.value.currentPassword){
+            if(this.change_password.value.reEnterPassword == this.change_password.value.setPassword){
+                let data = {"email":this.user[0].email, "password":this.change_password.value.setPassword};
+                this.shopEaseService.changePassword(data).subscribe(data=>{
+                    if(data['isSet']){
+                        this._snackBar.open("Password changed successfully", "", {
+                            duration: 2000,
+                        });
+                        this.shopEaseService.get_currentUser_details(this.user[0].email).subscribe(data=>{
+                            this.user = data['details'];
+                            console.log(this.user);
+                            this.loginService.sendUserData(data['details']);
+                        })
+                        this.change_password.reset();
+                        this.router.navigate(['/admin/overview'])
+                    }
+                    else{
+                        this._snackBar.open("Something went wrong", "Please try again..", {
+                            duration: 2000,
+                        });
+                    }
+                })
+            }
+            else{
+                this._snackBar.open("Re enter the password correctly", "", {
+                    duration: 2000,
+                });
+            }
+        }
+        else{
+            this._snackBar.open("Invalid Password", "Please try again..", {
+                duration: 2000,
+            });
+        }
     }
 }
 

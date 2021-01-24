@@ -52,13 +52,14 @@ a{
 }
 
 .active{
+    pointer-events: none;
     text-decoration: underline !important;
     text-decoration-style: solid !important;
     color:salmon !important;
     text-decoration-color: salmon !important;
 }
 
-.profile-info, .add-info, .delete-product{
+.profile-info, .add-info, .delete-product, .change-password{
     position:absolute !important;
     margin:15px;
     border:1.5px solid salmon;
@@ -73,11 +74,11 @@ a{
     padding: 35px 70px 25px 35px;
 }
 
-.profile-info > p, .delete-product > p, .change-password > p, .add-info > p{ 
+.profile-info > p, .delete-product > p, .change-password > p, .add-info > p, .change-password > p{ 
     font-size:18px;
 }
 
-.profile-info hr, .edit-info hr, .address-info hr{
+.profile-info hr, .edit-info hr, .address-info hr, .change-password hr{
     margin:20px 0px 20px 0px;
 }
 
@@ -127,3 +128,10 @@ a{
     font-weight: bolder;
     padding-left:20px;
 }
+
+.change-password button{
+    background-color: salmon;
+    margin:10px 20px 10px 50px;
+    width: 100px;
+}
+  

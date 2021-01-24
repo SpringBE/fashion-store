@@ -10,7 +10,7 @@
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="categories">
                     <div class="category1" *ngFor="let category of categories">
-                    <a [routerLink]="[ '/display',sectionName, category.category_id]">{{category.category_name}}</a>
+                        <a [routerLink]="[ '/display',sectionName, category.category_id]" routerLinkActive = "active">{{category.category_name}}</a>
                     </div>
             </mat-nav-list>
         </mat-expansion-panel>
@@ -22,10 +22,13 @@
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="brandFilter">
                 <form action="#" class="filter_form">
-                    <div *ngFor="let bF of brandFilter">
-                        <input type="checkbox" (change) = "filterSelectionItems('brand',bF)">
-                        <label>{{bF}}</label><br>
-                    </div>
+                    <ul>
+                        <li *ngFor="let bF of brandFilter">
+                          <mat-checkbox (change) = "filterSelectionItems('brand',bF)">
+                            {{bF}}
+                          </mat-checkbox>
+                        </li>
+                    </ul>
                 </form>
             </mat-nav-list>
         </mat-expansion-panel>
@@ -52,10 +55,13 @@
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="sizeFilter">
                 <form action="#" class="filter_form">
-                    <div *ngFor="let sF of sizeFilter" >
-                        <input type="checkbox" name = "Size" (change) = "filterSelectionItems('size',sF)">
-                        <label>{{sF}}</label><br>
-                    </div>
+                    <ul>
+                        <li *ngFor="let sF of sizeFilter">
+                          <mat-checkbox (change) = "filterSelectionItems('size',sF)">
+                            {{sF}}
+                          </mat-checkbox>
+                        </li>
+                      </ul>
                 </form>
             </mat-nav-list>
         </mat-expansion-panel>
@@ -67,10 +73,13 @@
             </mat-expansion-panel-header>
             <mat-nav-list *ngIf="colorFilter">
                 <form action="#" class="filter_form">
-                    <div *ngFor="let cF of colorFilter">
-                        <input type="checkbox" name="Color" (change) = "filterSelectionItems('color',cF)">
-                        <label>{{cF}}</label><br>
-                    </div>
+                    <ul>
+                        <li *ngFor="let cF of colorFilter">
+                          <mat-checkbox (change) = "filterSelectionItems('color',cF)">
+                            {{cF}}
+                          </mat-checkbox>
+                        </li>
+                      </ul>
                 </form>
             </mat-nav-list>
         </mat-expansion-panel>
@@ -90,6 +99,11 @@
                     <p><b>Brand : {{item.item_brand}}</b></p>
                     <p><b>Price : {{item.item_price}}/-</b></p>
                     <button *ngIf = "user && user[0].isAdmin == true" class = "delete-button" mat-button (click) = "delete_item(item)" color="warn"><i class="fa fa-trash-o fa-lg"></i></button>
+                    <!--<div *ngFor = "let it of wishList_items">
+                        <button *ngIf = "user && user[0].isAdmin != true && it == item" class = "wishlist-button" mat-button (click) = "remove_wishlist_item(item)" color="warn"><i class="fa fa-heart fa-lg"></i></button>
+                        <button *ngIf = "user && user[0].isAdmin != true && it != item" class = "wishlist-button" mat-button (click) = "wishlist_item(item)" color="warn"><i class="fa fa-heart-o fa-lg"></i></button>
+                    </div>-->
+                    
                 </mat-card-content>
             </mat-card>
         </div>
@@ -149,24 +163,36 @@
         <div class="innerdiv"> 
                 <div class="right">
                     <p><b>Available Size</b></p>
-                    <div *ngFor="let sze of item.item_size" >
-                        <input type="radio" formControlName = "size" [value]="sze" (change)="cart_details('size',sze)">
-                        <label>{{sze}}</label><br>
-                    </div>
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName = "size">
+                        <mat-radio-button class="example-radio-button" *ngFor="let sze of item.item_size" [value]="sze" (change)="cart_details('size',sze)">
+                            {{sze}}
+                        </mat-radio-button>
+                    </mat-radio-group>
                 </div>
                 <div class="right">
                     <p><b>Available Color</b></p>
-                    <div *ngFor="let col of item.colors">
-                        <input type="radio" formControlName = "color" [value]="col" (change)="cart_details('color',col)" >
-                        <label>{{col}}</label><br>
-                    </div>
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName = "color">
+                        <mat-radio-button class="example-radio-button" *ngFor="let col of item.colors" [value]="col" (change)="cart_details('color',col)">
+                            {{col}}
+                        </mat-radio-button>
+                    </mat-radio-group>
                 </div>
-                <div class="right">
+                <div *ngIf="quantity > 0" class="right">
                     <p><b>Quantity</b></p>
                     <input matInput type="number" id="quantity"  name="quantity" min="1" max={{item.item_qty}} (change)="cart_details('quantity','value')">
                 </div>
-                <div class="right" *ngIf = "user&&user[0].isAdmin != true">
+                <div class="right" *ngIf = "user&&user[0].isAdmin != true&&quantity>0">
                     <button mat-button class="cart_button" [disabled]="cartDetails.invalid" (click)="cart_details('cart',item.item_id)" data-toggle="tooltip" data-placement="bottom" [title]='cartDetails.invalid?"Please select the size and color":""'>Add to Cart</button>
+                </div>
+                <div *ngIf="quantity == 0" class="right soldout">
+                    <p><b>Item is Sold Out!!</b></p>
+                </div>
+                <div *ngIf="user!= true&&quantity>0" class="right soldout">
+                    <p><b>Please Login to add item to cart</b></p>
                 </div>
         </div>
     </form>

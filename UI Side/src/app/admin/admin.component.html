@@ -78,15 +78,15 @@
                     </form>
                     <div *ngIf="colorPage" class="color-overflow" id="addColor">
                         <div *ngFor="let element of counter(elements); let i = index">
-                            <mat-form-field appearance="outline">
+                            <mat-form-field appearance="outline" id = "color{{i}}">
                                 <mat-label>Color</mat-label>
                                 <input type="text" matInput [(ngModel)]="colors[i]" required>
                             </mat-form-field>
-                            <input type="file" accept='image/*' (change)="image_upload($event.target.files, i)"
+                            <input id = "file{{i}}" type="file" accept='image/*' (change)="image_upload($event.target.files, i)"
                                 required />
                             <button class="add-color" mat-raised-button (click)="addProductInterface()"
                                 *ngIf="i == 0"><span class="fa fa-plus fa-lg"></span> Add Color</button>
-                            <button mat-raised-button (click)=remove_colorImg(i) *ngIf="i != 0"><span
+                            <button id = "button{{i}}" mat-raised-button (click)=remove_colorImg(i) *ngIf="i > 0"><span
                                     class="fa fa-minus"></span></button><br>
                         </div>
                         <button class="back-button" mat-raised-button (click)="goToDescriptionPage()">Back</button>
@@ -111,7 +111,25 @@
                     </div>
                 </div>
             </div>
-            <div class="change-password" *ngIf="changePassword"></div>
+            <div class="change-password" *ngIf="changePassword">
+                <p>Change Password</p>
+                <hr>
+                <form [formGroup] = "change_password">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Current Password</mat-label>
+                        <input type="password" matInput formControlName = "currentPassword" required>
+                    </mat-form-field><br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Change Password</mat-label>
+                        <input type="password" matInput formControlName = "setPassword" required>
+                    </mat-form-field><br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Re Enter Password</mat-label>
+                        <input type="password" matInput formControlName = "reEnterPassword" required>
+                    </mat-form-field><br>
+                    <button class="change-confirm" mat-raised-button (click) = "save_password()">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -94,8 +94,8 @@ def add_product():
         extension = image.filename.split(".")[-1]
         filename = details['name'] + " " + details['colors'][i] + '.' + extension
         filename = secure_filename(filename)
-        #path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + details['section'].lower() + '/' + details['category'].lower + '/'
-        path = 'F:/Web Mini Project/online fashion store/Server Side/images/' + details['section'].lower() + '/' + details['category'].replace(" ","-").lower() + '/'
+        path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + details['section'].lower() + '/' + details['category'].lower + '/'
+        #path = 'F:/Web Mini Project/online fashion store/Server Side/images/' + details['section'].lower() + '/' + details['category'].replace(" ","-").lower() + '/'
         image.save(os.path.join(path,filename))
         path = str(details['section']).lower() + '/' + details['category'].replace(" ","-").lower() + '/' + filename
         details['images'][i][details['colors'][i]] = path
@@ -104,11 +104,11 @@ def add_product():
     success = od.add_product_to_section(details)
     return jsonify({'added':success})
 
-'''@app.route('/delete-item', methods = ['POST'])
+@app.route('/delete-item', methods = ['POST'])
 def delete_item():
     req = request.get_json()
     confirmation = od.delete_item_from_db(req)
-    return jsonify({'deleted':confirmation})'''
+    return jsonify({'deleted':confirmation})
 
 @app.route('/add-to-cart', methods=['POST'])
 def get_cart_items():
@@ -121,6 +121,17 @@ def get_cart_items():
     email=request.json.get('email', None)
     success = od.add_to_cart(cart,total,date,address,email)
     return jsonify({'addToCart':success})
+
+@app.route('/order-details/<email>')
+def get_order_details(email):
+    order_details = od.getOrderDetails(email)
+    return jsonify({'orders':order_details})
+
+@app.route('/change-password', methods = ['POST'])
+def changePassword():
+    req = request.get_json()
+    confirm = od.change_password(req)
+    return jsonify({'isSet':confirm})
 
 if __name__ == "__main__":
     app.run(debug=True)

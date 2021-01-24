@@ -1,107 +1,154 @@
 <app-header></app-header>
 
-<div class="profile-wrapper">
-    <div class="profile-card">
-        <div class="profile-heading">
-            <p class="acc-heading">Account</p>
-            <p class="username">{{user[0].name}}</p>
-            <hr>
+<div class="profile-card">
+    <div class="profile-heading">
+        <p class="acc-heading">Account</p>
+        <p class="username">{{user[0].name}}</p>
+        <hr>
+    </div>
+    <div class="profile-body">
+        <div class="side-nav">
+            <a [routerLink]="['/my', 'profile']" routerLinkActive="active"><b>Profile</b></a>
+            <a [routerLink]="['/my', 'orders']" routerLinkActive="active"><b>Orders</b></a>
+            <a [routerLink]="['/my', 'address']" routerLinkActive="active" (click) = "goToAddress()"><b>Addresses</b></a>
+            <a [routerLink]="['/my', 'wishlist']" routerLinkActive="active"><b>Wishlist</b></a>
+            <a [routerLink]="['/my', 'edit-profile']" routerLinkActive="active"><b>Edit Profile</b></a>
+            <a (click)="log_out()"><b>Logout</b></a>
         </div>
-        <div class="profile-body">
-            <div class="side-nav">
-                <a [routerLink]="['/my', 'profile']" routerLinkActive="active"
-                    (click)="goToProfile()"><b>Profile</b></a>
-                <a [routerLink]="['/my', 'orders']" routerLinkActive="active" (click)="goToOrders()"><b>Orders</b></a>
-                <a [routerLink]="['/my', 'address']" routerLinkActive="active"
-                    (click)="goToAdress()"><b>Addresses</b></a>
-                <a [routerLink]="['/my', 'wishlist']" routerLinkActive="active"
-                    (click)="goToWishlist()"><b>Wishlist</b></a>
-                <a [routerLink]="['/my', 'edit-profile']" routerLinkActive="active"
-                    (click)="edit_profile_info()"><b>Edit Profile</b></a>
-                <a (click) = "log_out()"><b>Logout</b></a>
+        <div class="profile-info" *ngIf="profile">
+            <p>Profile Details</p>
+            <hr>
+            <div class="info scroll">
+                <table *ngIf="user">
+                    <tr>
+                        <td>Full Name</td>
+                        <td>{{user[0].name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Number</td>
+                        <td>{{user[0].phone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email Id</td>
+                        <td>{{user[0].email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td *ngIf="user[0].gender != ''">{{user[0].gender}}</td>
+                        <td *ngIf="user[0].gender == ''">Not Added</td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth</td>
+                        <td *ngIf="user[0].dob != ''">{{user[0].dob}}</td>
+                        <td *ngIf="user[0].dob == ''">Not Added</td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td *ngIf="user[0].location != ''">{{user[0].location}}</td>
+                        <td *ngIf="user[0].location == ''">Not Added</td>
+                    </tr>
+                    <tr>
+                        <td>Alternative mobile number</td>
+                        <td *ngIf="user[0].alt_phone != ''">{{user[0].alt_phone}}</td>
+                        <td *ngIf="user[0].alt_phone == ''">Not Added</td>
+                    </tr>
+                </table>
+                <button mat-raised-button (click)="edit_profile_info()">Edit</button>
             </div>
-            <div class="profile-info" *ngIf="profile">
-                <p>Profile Details</p>
-                <hr>
-                <div class="info">
-                    <table *ngIf="user">
-                        <tr>
-                            <td>Full Name</td>
-                            <td>{{user[0].name}}</td>
-                        </tr>
-                        <tr>
-                            <td>Mobile Number</td>
-                            <td>{{user[0].phone}}</td>
-                        </tr>
-                        <tr>
-                            <td>Email Id</td>
-                            <td>{{user[0].email}}</td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td *ngIf="user[0].gender != ''">{{user[0].gender}}</td>
-                            <td *ngIf="user[0].gender == ''">Not Added</td>
-                        </tr>
-                        <tr>
-                            <td>Date of Birth</td>
-                            <td *ngIf="user[0].dob != ''">{{user[0].dob}}</td>
-                            <td *ngIf="user[0].dob == ''">Not Added</td>
-                        </tr>
-                        <tr>
-                            <td>Location</td>
-                            <td *ngIf="user[0].location != ''">{{user[0].location}}</td>
-                            <td *ngIf="user[0].location == ''">Not Added</td>
-                        </tr>
-                        <tr>
-                            <td>Alternative mobile number</td>
-                            <td *ngIf="user[0].alt_phone != ''">{{user[0].alt_phone}}</td>
-                            <td *ngIf="user[0].alt_phone == ''">Not Added</td>
-                        </tr>
-                    </table>
-                    <button mat-raised-button (click)="edit_profile_info()">Edit</button>
+        </div>
+        <div class="edit-info" *ngIf="edit">
+            <p>Edit Details</p>
+            <hr>
+            <div class="edit-body scroll">
+                <form [formGroup]="editProfileForm">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput type="text" formControlName="phone">
+                    </mat-form-field><br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email Id</mat-label>
+                        <input matInput type="text" formControlName="email" disabled>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput type="date" formControlName="dob">
+                    </mat-form-field><br>
+                    <mat-label></mat-label>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Location</mat-label>
+                        <input matInput type="text" formControlName="location">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Alternative Phone Number</mat-label>
+                        <input matInput type="text" formControlName="alt_phone">
+                    </mat-form-field><br>
+                    <label>Gender</label><br><br>
+                    <mat-radio-group formControlName="gender" aria-label="Select an option">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                        <mat-radio-button value="other">Other</mat-radio-button>
+                    </mat-radio-group>
+                    <button class="save-profile" mat-button (click)="save_profile()">Edit Profile</button>
+                </form>
+            </div>
+        </div>
+        <div class="orders-info" *ngIf="orders">
+            <p>My Orders</p>
+            <hr>
+            <div class="order-body scroll" *ngIf="userOrders">
+                <div class="insert-button" *ngFor="let order of userOrders">
+                    <button *ngIf="order.order_id == clickedOrderId" class="focus-button"
+                        mat-raised-button>{{order.order_date}}</button>
+                    <button *ngIf="order.order_id != clickedOrderId" mat-raised-button
+                        (click)="clicked_id(order.order_id)">{{order.order_date}}</button>
+                </div>
+                <div class="display-order-table">
+                    <div *ngFor="let order of userOrders">
+                        <table class="table table-bordered table-hover" *ngIf="order.order_id == clickedOrderId">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Brand</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Section</th>
+                                    <th>Category</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order['ordered_items']; let i = index">
+                                    <td>{{item.item_name}}</td>
+                                    <td>{{item.item_brand}}</td>
+                                    <td class="numSpan">{{item.item_price}}</td>
+                                    <td class="numSpan">{{item.item_quantity}}</td>
+                                    <td>{{item.item_section}}</td>
+                                    <td>{{item.item_category}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="grand-total table table-bordered" *ngIf="order.order_id == clickedOrderId">
+                            <tbody>
+                                <tr colspan="6">
+                                    <td class="text-right">Grand Total: {{order.grand_total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="view-address" *ngIf="order.order_id == clickedOrderId">
+                            <p class="address-header"><b>Delivered Address</b></p>
+                            <p>Name: {{order.address.name}}</p>
+                            <p>Phone: {{order.address.phone}}</p>
+                            <p>Address: {{order.address.address}}, {{order.address.city}}, {{order.address.state}} -
+                                {{order.address.pincode}}</p>
+                            <p>Address Type: {{order.address.addressType}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="edit-info" *ngIf="edit">
-                <p>Edit Details</p>
-                <hr>
-                <div class="edit-body">
-                    <form [formGroup] = "editProfileForm">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Name</mat-label>
-                            <input matInput type="text" formControlName = "name">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Phone Number</mat-label>
-                            <input matInput type="text" formControlName = "phone">
-                        </mat-form-field><br>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Email Id</mat-label>
-                            <input matInput type="text" formControlName = "email" disabled>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Choose a date</mat-label>
-                            <input matInput type = "date" formControlName = "dob">
-                        </mat-form-field><br>
-                        <mat-label></mat-label>
-                        <mat-form-field  appearance="outline">
-                            <mat-label>Location</mat-label>
-                            <input matInput type="text" formControlName = "location">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Alternative Phone Number</mat-label>
-                            <input matInput type="text" formControlName = "alt_phone">
-                        </mat-form-field><br>
-                        <label>Gender</label><br><br>
-                        <mat-radio-group formControlName="gender" aria-label="Select an option">
-                            <mat-radio-button value = "male">Male</mat-radio-button>
-                            <mat-radio-button value = "female">Female</mat-radio-button>
-                            <mat-radio-button value = "other">Other</mat-radio-button>
-                        </mat-radio-group>
-                        <button class="save-profile" mat-button (click) = "save_profile()">Edit Profile</button>
-                    </form>
-                </div>
-            </div>
-            <div class="orders-info" *ngIf="orders"></div>
+        </div>
             <div class="address-info" *ngIf="address">
                 <div *ngIf="user[0].addresses.length == 0">
                     <img src="assets/no data.png" height="175px" width="175px">
@@ -111,17 +158,18 @@
                                 Address</span></button>
                     </div>
                 </div>
-                <div *ngIf = "user[0].addresses.length != 0">
-                    <div class="view-address">
-                        <div *ngFor = "let address of user[0].addresses">
+                <div *ngIf="user[0].addresses.length != 0">
+                    <div class="view-address scroll">
+                        <div *ngFor="let address of user[0].addresses">
                             <p>Name: {{address.name}}</p>
                             <p>Phone: {{address.phone}}</p>
-                            <p>Address: {{address.address}}, {{address.city}}, {{address.state}} - {{address.pincode}}</p>
+                            <p>Address: {{address.address}}, {{address.city}}, {{address.state}} -
+                                {{address.pincode}}</p>
                             <p>Address Type: {{address.addressType}}</p>
                             <hr>
                         </div>
                         <button mat-button (click)="goToAddAddress()"><span><i class="fa fa-plus"></i> Add
-                            Address</span></button>
+                                Address</span></button>
                     </div>
                 </div>
             </div>
@@ -187,4 +235,6 @@
             <div class="wishlist-info" *ngIf="wishlist"></div>
         </div>
     </div>
-</div>
+
+
+<app-footer></app-footer>

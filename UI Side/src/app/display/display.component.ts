@@ -30,6 +30,7 @@ export class DisplayComponent implements OnInit {
     Size = [];
     Brand = [];
     Color = [];
+    quantity:number;
     selectedsize:string;
     selectedcolor:string;
     selectedquantity:string;
@@ -38,6 +39,7 @@ export class DisplayComponent implements OnInit {
     selectedimage=[];
     cartDetails:FormGroup;
     user:any;
+    wishList_items: any;
     constructor(private route: ActivatedRoute, 
         private shopeaseService: ShopeaseService,
         private fb: FormBuilder,
@@ -216,6 +218,7 @@ export class DisplayComponent implements OnInit {
             }
         }
         console.log(this.selectedItem)
+        this.quantity=this.selectedItem[0].item_qty;
         var n=this.selectedItem[0].colors.length
         if(n>1){
             this.multi_image=true;
@@ -261,7 +264,12 @@ export class DisplayComponent implements OnInit {
             current_item["item_size"]=this.selectedsize;
             current_item["item_image"]=this.selectedItem[0].item_image[0][this.selectedcolor];
             current_item["item_section"]=this.sectionName;
-            current_item["item_category"]=this.categoryId;
+            console.log(this.categories)
+            this.categories.forEach(element=>{
+                    if(this.categoryId == element.category_id){
+                        current_item['item_category'] = element.category_name;
+                    }
+            })
             this.cart_items.push(current_item)
             console.log(this.cart_items)   
             this.displayService.sendCartItemData(this.cart_items);
@@ -272,7 +280,24 @@ export class DisplayComponent implements OnInit {
     }
 
     delete_item(item){
-        console.log(item);
-        
+        let data = {"category_id":this.categoryId, "section_name":this.sectionName, "item_id":item.item_id}
+        this.shopeaseService.delete_item(data).subscribe(result=>{
+            if(result['deleted']){
+                this._snackBar.open("Item Deleted Successfully", " ", {
+                    duration: 2000,
+                });
+                this.get_items();
+            }
+            else{
+                this._snackBar.open("Something went wrong", "Please try again...", {
+                    duration: 2000,
+                });
+            }
+        })
+    }
+
+    wishlist_item(item){
+        this.wishList_items.push(item)
+        console.log(this.wishlist_item);
     }
 }

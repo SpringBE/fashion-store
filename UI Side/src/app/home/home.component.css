@@ -30,3 +30,30 @@
     margin-top:5px;
     line-height: 30px;
 }
+.quote,.review {
+    background-color: #faebd7;
+    padding: 30px;
+    text-align: center;
+}
+.quote>h1,h3,h4,.review>h1{
+    font-family: gabriola !important;
+    font-size: 30px;
+}
+.innerdiv>p{
+    font-family: gabriola !important;
+    font-size: 20px;
+    line-height: 35px;
+    background-color: white;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    padding:20px;
+}
+.outerdiv{
+    display: flex;
+    margin-top: 80px;
+}
+.innerdiv {
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: large;
+}
