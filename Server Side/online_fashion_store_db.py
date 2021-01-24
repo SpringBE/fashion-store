@@ -311,3 +311,32 @@ def set_order_to_delivery(order_id):
         return True
     else:
         return False
+
+def search_product(pattern):
+    doc_cursor = products.aggregate([
+    {
+        "$unwind":"$Categories",
+    },
+    {
+        "$unwind":"$Categories.Items"
+    },
+    {
+        "$match":{
+            "Categories.Items.item_name":{"$regex": '.*'+pattern+'.*', "$options":"$i"}
+        }
+    },
+    {
+        "$project":{
+            "Categories.category_name":1,
+            "section_name":1,
+            "Categories.Items.item_name":1,
+            "Categories.Items.item_id":1,
+            "_id":0
+        }
+    }])
+
+    documents = []
+    for doc in doc_cursor:
+        documents.append(doc)
+    
+    return documents

@@ -143,5 +143,10 @@ def set_order(id):
     confirm = od.set_order_to_delivery(id)
     return jsonify({'isSet':confirm})
 
+@app.route('/search/<pattern>')
+def search(pattern):
+    documents = od.search_product(pattern)
+    return jsonify({'search':documents})
+
 if __name__ == "__main__":
     app.run(debug=True)
