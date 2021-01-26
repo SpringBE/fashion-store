@@ -103,6 +103,11 @@ export class ShopeaseService {
         let url = `${this.baseurl}set-order-to-delivery/${id}`;
         return this.http.get(url);
     }
+
+    search_products(pattern){
+        let url = `${this.baseurl}search/${pattern}`;
+        return this.http.get(url);
+    }
 }
 
 

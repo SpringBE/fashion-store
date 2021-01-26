@@ -251,3 +251,11 @@ ul {
     color:salmon !important;
     text-decoration-color: salmon !important;
 }
+
+.header{
+    padding: 0px;
+    position: fixed;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100% !important;
+}

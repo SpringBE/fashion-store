@@ -9,6 +9,14 @@
     color: #201a2b !important;
 }
 
+.header{
+    padding: 0px;
+    position: fixed;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100% !important;
+}
+
 .shop-card h1:first-child{
     margin-top:110px;
     margin-left:45px;

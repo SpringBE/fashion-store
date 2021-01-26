@@ -1,9 +1,13 @@
 .profile-card{
     background-color: #FDF8F5;
     padding:20px;
-    margin:25px 100px 25px 100px !important;
+    margin:0px 100px 25px 100px !important;
     font-family: Raleway !important;
     height: max-content;
+}
+
+.row{
+    height:30px;
 }
 
 .acc-heading{

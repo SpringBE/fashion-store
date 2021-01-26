@@ -1,4 +1,6 @@
-<app-header></app-header>
+<!--<div class="header">
+    <app-header></app-header>
+</div>-->
 <div [hidden]="detail" class="page">
     <!--Filter starts here-->
     <div class="side_bar">
@@ -191,9 +193,9 @@
                 <div *ngIf="quantity == 0" class="right soldout">
                     <p><b>Item is Sold Out!!</b></p>
                 </div>
-                <div *ngIf="user!= true&&quantity>0" class="right soldout">
+                <!--<div *ngIf="user!= true&&quantity>0" class="right soldout">
                     <p><b>Please Login to add item to cart</b></p>
-                </div>
+                </div>-->
         </div>
     </form>
         </mat-card>

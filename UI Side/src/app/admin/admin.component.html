@@ -1,6 +1,7 @@
-<app-header></app-header>
-
-<div class="profile-wrapper">
+<!--<div class="header">
+    <app-header></app-header>
+</div>-->
+<div class="profile-wrapper" *ngIf = "user[0].email == 'shopeaseadmin@gmail.com'">
     <div class="profile-card">
         <div class="profile-heading">
             <p class="acc-heading">Hello ShopEase Admin</p>
@@ -104,10 +105,10 @@
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
-                                        Email: {{order.email}}
+                                        <p>Email: {{order.email}}</p>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        Date: {{order.order_date}}
+                                        <p>Date: {{order.order_date}}</p>
                                         <mat-icon class="text-success right" *ngIf = "order.delivered == true">check_circle</mat-icon>
                                         <mat-icon (click) = "set_delivery(i)" class="text-danger right" *ngIf = "order.delivered != true">check_circle_outline</mat-icon>
                                     </mat-panel-description>
@@ -157,15 +158,15 @@
                     </div>
                 </div>
                 <div class="orders-body" *ngIf="typeOfOrders == 'Delivered Orders'">
-                    <div *ngFor="let order of deliveredOrders">
-                        <mat-accordion class="example-headers-align">
+                    <div *ngFor="let order of all_orders">
+                        <mat-accordion class="example-headers-align" *ngIf = "order['delivered'] == true">
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
-                                        Email: {{order.email}}
+                                        <p>Email: {{order.email}}</p>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        Date: {{order.order_date}}
+                                        <p>Date: {{order.order_date}}</p>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <table class="table table-bordered table-hover">
@@ -212,15 +213,15 @@
                     </div>
                 </div>
                 <div class="orders-body" *ngIf="typeOfOrders == 'Undelivered Orders'">
-                    <div *ngFor="let order of UndeliveredOrders">
-                        <mat-accordion class="example-headers-align">
+                    <div *ngFor="let order of all_orders">
+                        <mat-accordion class="example-headers-align" *ngIf = "order['delivered'] != true">
                             <mat-expansion-panel>
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
-                                        Email: {{order.email}}
+                                        <p>Email: {{order.email}}</p>
                                     </mat-panel-title>
                                     <mat-panel-description>
-                                        Date: {{order.order_date}}
+                                        <p>Date: {{order.order_date}}</p>
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
                                 <table class="table table-bordered table-hover">

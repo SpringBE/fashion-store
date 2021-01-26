@@ -28,6 +28,10 @@ const routes: Routes = [
     component:DisplayComponent
   },
   {
+    path:'display/:section/:category_id/:search/:item_id',
+    component:DisplayComponent
+  },
+  {
     path:'about',
     component:AboutComponent
   },

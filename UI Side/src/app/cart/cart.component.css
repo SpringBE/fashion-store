@@ -1,12 +1,20 @@
 .cart{
     font-size:large;
-    margin: 80px;
+    margin: 0px 80px 50px 80px;
     text-align: center;
     line-height: 70px;
     background-color: white;
     opacity: 70%;
-    margin-bottom: 50px;
 }
+
+.row{
+    height:80px;
+}
+
+.ht{
+    height:30px !important;
+}
+
 .shop-cart {
     margin: 50px;
     padding-top: 70px;
@@ -135,6 +143,10 @@ p#grand_total {
         float: right;
 }
 
-
-
-
+.header{
+    padding: 0px;
+    position: fixed;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100% !important;
+}

@@ -1,0 +1,13 @@
+.header{
+    padding: 0px;
+    margin-top:0px !important;
+    position: fixed;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100% !important;
+}
+
+.router{
+    position:relative;
+    top:12% !important;
+}

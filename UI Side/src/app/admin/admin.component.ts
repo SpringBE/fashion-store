@@ -33,8 +33,6 @@ export class AdminComponent implements OnInit {
     change_password:FormGroup;
     typeOfOrders: any = 'Total Orders';
     all_orders: any;
-    deliveredOrders: any = [];
-    UndeliveredOrders: any = [];
     constructor(private route: ActivatedRoute,
       private fb: FormBuilder,
       private shopEaseService:ShopeaseService,
@@ -185,6 +183,7 @@ export class AdminComponent implements OnInit {
 
     onTabClickOrders(event){
         this.typeOfOrders = event['tab']['textLabel'];
+        this.getAllOrders();
     }
 
     save_password(){
@@ -224,21 +223,11 @@ export class AdminComponent implements OnInit {
             });
         }
     }
+
     getAllOrders(){
-        this.all_orders = this.deliveredOrders = this.UndeliveredOrders = [];
+        this.all_orders = [];
         this.shopEaseService.get_all_orders().subscribe(data=>{
             this.all_orders = data['orders'];
-            console.log(this.all_orders)
-            this.all_orders.forEach(element => {
-                if(element.delivered){
-                    this.deliveredOrders.push(element)
-                }
-                else{
-                    this.UndeliveredOrders.push(element)
-                }
-            });
-            console.log(this.deliveredOrders);
-            console.log(this.UndeliveredOrders);
         });
     }
 

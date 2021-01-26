@@ -1,14 +1,19 @@
 .about{
     line-height: 30px;
-    margin: 50px;
+    margin: 0px 50px 50px 50px;
     background-color: white;
     opacity: 70%;
     padding: 40px;
 }
+
 .instruction{
     line-height: 30px;
     margin: 50px;
     background-color: white;
     opacity: 70%;
     padding: 40px;
+}
+
+.row{
+    height:50px;
 }

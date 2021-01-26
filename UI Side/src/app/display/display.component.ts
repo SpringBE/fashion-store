@@ -40,6 +40,8 @@ export class DisplayComponent implements OnInit {
     cartDetails:FormGroup;
     user:any;
     wishList_items: any;
+    isSearchTrue:boolean;
+    search_selected_id: any;
     constructor(private route: ActivatedRoute, 
         private shopeaseService: ShopeaseService,
         private fb: FormBuilder,
@@ -57,12 +59,21 @@ export class DisplayComponent implements OnInit {
 
         this.route.params.subscribe(params => {
             this.sectionName = params['section'];
+            console.log(params)
+            if(params['search'] == "true"){
+                this.detail = true;
+                this.isSearchTrue = true;
+                this.search_selected_id = params['item_id']
+            }
+            else{
+                this.isSearchTrue = false;
+            }
             if (params['category_id']) {
                 this.imgURL=[];
                 this.categoryId = params['category_id']
                 this.get_data();
                 this.get_categories();       
-                this.get_items();     
+                this.get_items();
             }
         });
         this.displayService.allCartItems.subscribe(data=>{
@@ -76,7 +87,9 @@ export class DisplayComponent implements OnInit {
     }
     /*get the filters*/
     get_data() {
-        this.detail=false;
+        if(!this.isSearchTrue){
+            this.detail=false;
+        }
         this.shopeaseService.get_filters(this.sectionName, this.categoryId).subscribe(filters => {
             console.log(filters);
             this.brandFilter = filters.filters[0].Brands.sort();
@@ -88,14 +101,19 @@ export class DisplayComponent implements OnInit {
         })
     }
     get_categories() {
-        this.detail=false;
+        if(!this.isSearchTrue){
+            this.detail=false;
+        }
         this.shopeaseService.get_categories(this.sectionName).subscribe(categories => {
         this.categories=categories['categories'][0]['Categories']
         console.log(this.categories)
         })
     }
     get_items() {
-        this.detail=false;
+        if(!this.isSearchTrue){
+            this.detail=false;
+            console.log("Detail page")
+        }
         this.shopeaseService.get_items(this.sectionName, this.categoryId).subscribe(item_list => {
             this.items = item_list.items[0].Categories[0].Items;
             for (var i = 0; i < this.items.length; i++) {
@@ -113,6 +131,11 @@ export class DisplayComponent implements OnInit {
             }
             console.log(this.items)
             console.log(this.imgURL)
+            if(this.isSearchTrue){
+                this.product_detail(this.search_selected_id);
+                console.log("Yes");
+                console.log(this.selectedItem);
+            }
         })
     }
     
@@ -215,6 +238,7 @@ export class DisplayComponent implements OnInit {
             if(id==this.items[i]['item_id'])
             {
                 this.selectedItem.push(this.items[i])
+                console.log(id);
             }
         }
         console.log(this.selectedItem)

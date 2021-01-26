@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <div class="col-md-6 text-left heading">
+    <div class="col-md-4 text-left heading">
         <a routerLink="/home"><img src="assets/logo.png" width="125px" height="70px"></a>
         <a routerLink="/home">
             <h1><b><span style="color:#C73044ff">S</span><span style="color:#4E919Dff">H</span>
@@ -12,26 +12,30 @@
         <a class="navigation" [routerLink]="['/display','Men','mcs']" routerLinkActive="active"><b>Men</b></a>
         <div class="dropdown-content">
             <mat-card class="popover-content">
-                    <div class= "popover-inline">
-                        <table>
-                            <td>
-                                <tr *ngFor = "let men of men_categories; let i = index">
-                                    <div *ngIf = "i <= 3">
-                                        <img src="http://localhost:5000/images/{{men.category_image}}" height="50px" width="50px">
-                                        <a [routerLink]="[ '/display','Men', men.category_id]"><b>{{men.category_name}}</b></a>
-                                    </div>
-                                </tr>
-                            </td>
-                            <td>
-                                <tr *ngFor = "let men of men_categories; let i = index">
-                                    <div *ngIf = "i > 3">
-                                        <img src="http://localhost:5000/images/{{men.category_image}}" height="50px" width="50px">
-                                        <a [routerLink]="[ '/display','Men', men.category_id]"><b>{{men.category_name}}</b></a>
-                                    </div>
-                                </tr>
-                            </td>
-                        </table>
-                    </div>  
+                <div class="popover-inline">
+                    <table>
+                        <td>
+                            <tr *ngFor="let men of men_categories; let i = index">
+                                <div *ngIf="i <= 3">
+                                    <img src="http://localhost:5000/images/{{men.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Men', men.category_id]"><b>{{men.category_name}}</b></a>
+                                </div>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr *ngFor="let men of men_categories; let i = index">
+                                <div *ngIf="i > 3">
+                                    <img src="http://localhost:5000/images/{{men.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Men', men.category_id]"><b>{{men.category_name}}</b></a>
+                                </div>
+                            </tr>
+                        </td>
+                    </table>
+                </div>
             </mat-card>
         </div>
     </div>
@@ -41,18 +45,22 @@
             <mat-card class="popover-content">
                 <table>
                     <td>
-                        <tr *ngFor = "let women of women_categories; let i = index">
-                            <div *ngIf = "i <= 5">
-                                <img src="http://localhost:5000/images/{{women.category_image}}" height="50px" width="50px">
-                                <a [routerLink]="[ '/display','Women', women.category_id]"><b>{{women.category_name}}</b></a>
+                        <tr *ngFor="let women of women_categories; let i = index">
+                            <div *ngIf="i <= 5">
+                                <img src="http://localhost:5000/images/{{women.category_image}}" height="50px"
+                                    width="50px">
+                                <a
+                                    [routerLink]="[ '/display','Women', women.category_id]"><b>{{women.category_name}}</b></a>
                             </div>
                         </tr>
                     </td>
                     <td>
-                        <tr *ngFor = "let women of women_categories; let i = index">
-                            <div *ngIf = "i > 5">
-                                <img src="http://localhost:5000/images/{{women.category_image}}" height="50px" width="50px">
-                                <a [routerLink]="[ '/display','Women', women.category_id]"><b>{{women.category_name}}</b></a>
+                        <tr *ngFor="let women of women_categories; let i = index">
+                            <div *ngIf="i > 5">
+                                <img src="http://localhost:5000/images/{{women.category_image}}" height="50px"
+                                    width="50px">
+                                <a
+                                    [routerLink]="[ '/display','Women', women.category_id]"><b>{{women.category_name}}</b></a>
                             </div>
                         </tr>
                     </td>
@@ -64,48 +72,79 @@
         <a class="navigation" routerLink='/display/Boy' routerLinkActive="active"><b>Kids</b></a>
         <div class="dropdown-content">
             <mat-card class="popover-content">
-                    <table>
-                        <tbody>
-                            <td>
-                                <tr><p>Boy</p></tr>
-                                <tr *ngFor="let boy of boys_categories">
-                                    <div>
-                                        <img src="http://localhost:5000/images/{{boy.category_image}}" height="50px" width="50px">
-                                        <a [routerLink]="[ '/display','Boys', boy.category_id]"><b>{{boy.category_name}}</b></a>
-                                    </div>
-                                </tr>
-                                <tr class = "no-div"><p></p></tr>
-                            </td>
-                            <td>
-                                <tr><p>Girl</p></tr>
-                                <tr *ngFor="let girl of girls_categories">
-                                    <div >
-                                        <img src="http://localhost:5000/images/{{girl.category_image}}" height="50px" width="50px">
-                                        <a [routerLink]="[ '/display','Girls', girl.category_id]"><b>{{girl.category_name}}</b></a>
-                                    </div>
-                                </tr>
-                            </td>
-                        </tbody>
-                    </table>                    
+                <table>
+                    <tbody>
+                        <td>
+                            <tr>
+                                <p>Boy</p>
+                            </tr>
+                            <tr *ngFor="let boy of boys_categories">
+                                <div>
+                                    <img src="http://localhost:5000/images/{{boy.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Boys', boy.category_id]"><b>{{boy.category_name}}</b></a>
+                                </div>
+                            </tr>
+                            <tr class="no-div">
+                                <p>Dummy</p>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <p>Girl</p>
+                            </tr>
+                            <tr *ngFor="let girl of girls_categories">
+                                <div>
+                                    <img src="http://localhost:5000/images/{{girl.category_image}}" height="50px"
+                                        width="50px">
+                                    <a
+                                        [routerLink]="[ '/display','Girls', girl.category_id]"><b>{{girl.category_name}}</b></a>
+                                </div>
+                            </tr>
+                        </td>
+                    </tbody>
+                </table>
             </mat-card>
         </div>
     </div>
-
-    <a class="navigation" *ngIf = "!user || user[0].isAdmin != true" routerLink='/cart' routerLinkActive="active"><span class="fa fa-lg fa-shopping-cart"></span>
+    <a class="navigation" *ngIf="!user || user[0].isAdmin != true" routerLink='/cart' routerLinkActive="active"><span
+            class="fa fa-lg fa-shopping-cart"></span>
         <b> Cart</b></a>
-    <a class="navigation" *ngIf = '!user' (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b> Login</b></a>
+    <div class="search-wrapper">
+        <div class="search">
+            <input type="text" (keypress)="search($event)" placeholder="Search Here" id = "search"><span
+                class="fa fa fa-search"></span>
+        </div>
+        <mat-card class="search-result" *ngIf="search_items.length > 0">
+            <table>
+                <tbody>
+                    <tr><span class="fa fa fa-close fright" (click) = "clear_search()"></span></tr>
+                    <tr *ngFor="let item of search_items">
+                        <td><a
+                                [routerLink]="['/display',item.section_name,item.Categories.category_id, true, item.Categories.Items.item_id]"><b>{{item.Categories.Items.item_name}}</b></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card>
+    </div>
+    <a class="navigation" *ngIf='!user' (click)="login_popUp()"><span class="fa fa-lg fa-sign-out"></span> <b>
+            Login</b></a>
     <div class="dropdown1">
-        <a class="navigation" *ngIf = "user && user[0].isAdmin != true" routerLink = '/my/profile' routerLinkActive = "active"><span class="fa fa-lg fa-user"></span><b>{{user[0].name}}</b></a>
+        <a class="navigation" *ngIf="user && user[0].isAdmin != true" routerLink='/my/profile'
+            routerLinkActive="active"><span class="fa fa-lg fa-user"></span><b>{{user[0].name}}</b></a>
         <div class="dropdown-content1" id="dc">
             <mat-card class="popover-content">
-                    <table>
-                        <tbody>
-                            <tr><a routerLink = '/my/profile' routerLinkActive = "active">Profile</a></tr>
-                            <tr><a (click) = "log_out()"><b>Logout</b></a></tr>
-                        </tbody>
-                    </table>                    
+                <table>
+                    <tbody>
+                        <tr><a routerLink='/my/profile' routerLinkActive="active">Profile</a></tr>
+                        <tr><a (click)="log_out()"><b>Logout</b></a></tr>
+                    </tbody>
+                </table>
             </mat-card>
         </div>
     </div>
-    <a class="navigation" *ngIf = "user && user[0].isAdmin == true" routerLink = '/admin/overview' routerLinkActive = "active"><span class="fa fa-lg fa-user"></span><b> Admin</b></a>
+    <a class="navigation" *ngIf="user && user[0].isAdmin == true" routerLink='/admin/overview'
+        routerLinkActive="active"><span class="fa fa-lg fa-user"></span><b> Admin</b></a>
 </mat-toolbar>

@@ -1,4 +1,8 @@
-<app-header></app-header>
+<!--<div class="header">
+    <app-header></app-header>
+</div>-->
+<div class="row" *ngIf = "grand_total==0 && !user || grand_total==0&&user"></div>
+<div class="row ht"></div>
 <div *ngIf = "grand_total==0 && !user" class="cart">
     <img height="150px" width="150px" src="assets/cart.jpg">
     <p><b>Please Login to add items to cart</b></p>
