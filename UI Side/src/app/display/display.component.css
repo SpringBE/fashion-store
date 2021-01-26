@@ -73,11 +73,11 @@ margin: 0px 15px;
 }
 .card_bottom{
     display: flex;
-    float:right;
 }
 
 p{
-    padding-right: 12px;
+  padding-right: 7px;
+  font-size: 13px;
 }
 
 .slider {
@@ -160,6 +160,9 @@ margin-bottom:15px;
 .right>p{
   font-size: large;
   
+}
+.pdetail{
+  font-size:15px;
 }
 i.fa.fa-inr.fa-lg {
   color: red;

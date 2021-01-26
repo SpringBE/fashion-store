@@ -2,7 +2,9 @@
     padding: 25px 100px 25px 100px;
     font-family: Raleway !important;
 }
-
+a{
+    cursor:pointer;
+}
 .profile-card{
     background-color: #FDF8F5;
     padding:20px;

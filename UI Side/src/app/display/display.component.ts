@@ -242,6 +242,7 @@ export class DisplayComponent implements OnInit {
             }
         }
         console.log(this.selectedItem)
+        console.log(this.categoryId)
         this.quantity=this.selectedItem[0].item_qty;
         var n=this.selectedItem[0].colors.length
         if(n>1){
@@ -266,6 +267,7 @@ export class DisplayComponent implements OnInit {
         "item_name":"",
         "item_brand":"",
         "item_price":"",
+        "prev_item_qty":"",
         "item_color":"",
         "item_quantity":"",
         "item_size":"",
@@ -283,11 +285,13 @@ export class DisplayComponent implements OnInit {
             current_item["item_name"]=this.selectedItem[0].item_name;
             current_item["item_brand"]=this.selectedItem[0].item_brand;
             current_item["item_price"]=this.selectedItem[0].item_price;
+            current_item["prev_item_qty"]=this.selectedItem[0].item_qty;
             current_item["item_color"]=this.selectedcolor;
             current_item["item_quantity"]=this.selectedquantity;
             current_item["item_size"]=this.selectedsize;
             current_item["item_image"]=this.selectedItem[0].item_image[0][this.selectedcolor];
             current_item["item_section"]=this.sectionName;
+            current_item["item_category"]=this.categoryId;
             console.log(this.categories)
             this.categories.forEach(element=>{
                     if(this.categoryId == element.category_id){

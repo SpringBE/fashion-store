@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ShopeaseService } from '../services/shopease.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../services/login.service';
+import { DisplayService } from '../services/display.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit {
         private shopEaseService:ShopeaseService,
         private _snackBar: MatSnackBar,
         private loginService: LoginService,
-        private router: Router) {
+        private router: Router,
+        private displayService:DisplayService) {
 
         this.addressForm = this.fb.group({
             name: ['', Validators.required],
@@ -144,6 +146,7 @@ export class ProfileComponent implements OnInit {
                 });
                 this.shopEaseService.get_currentUser_details(this.user[0].email).subscribe(data=>{
                     this.user = data['details'];
+                    this.loginService.sendUserData(data['details']);
                     console.log(this.user)
                 })
                 this.goToAddress();
@@ -176,6 +179,7 @@ export class ProfileComponent implements OnInit {
       log_out(){
           this.user = null;
           this.loginService.sendUserData(this.user);
+          this.displayService.sendCartItemData(null);
           this.router.navigate(['/home'])
       }
 }

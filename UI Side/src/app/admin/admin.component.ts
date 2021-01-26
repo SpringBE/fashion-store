@@ -234,7 +234,7 @@ export class AdminComponent implements OnInit {
     set_delivery(i){
         this.shopEaseService.set_order(this.all_orders[i].order_id).subscribe(data=>{
             if(data['isSet']){
-                this._snackBar.open("Order is set to delivery", "", {
+                this._snackBar.open("Order is set to delivered", "", {
                     duration: 2000,
                 });
                 this.getAllOrders();

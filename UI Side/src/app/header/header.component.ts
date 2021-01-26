@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../services/login.service';
 import { ShopeaseService } from '../services/shopease.service';
 import { Router } from '@angular/router';
+import { DisplayService } from '../services/display.service';
 
 @Component({
     selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
     constructor(public dialogRef: MatDialog,
         private shopEaseService: ShopeaseService,
         private loginService: LoginService,
-        private router: Router) { }
+        private router: Router,
+        private displayService:DisplayService) { }
 
     ngOnInit(): void {
         this.shopEaseService.get_categories('Men').subscribe(data => {
@@ -59,6 +61,7 @@ export class HeaderComponent implements OnInit {
     log_out() {
         this.user = null;
         this.loginService.sendUserData(this.user);
+        this.displayService.sendCartItemData(null);
         this.router.navigate(['/home'])
         let element = document.getElementById('dc');
         element.setAttribute('style', 'display:none;')

@@ -27,8 +27,8 @@ def get_items(section,category_id):
 
 @app.route('/images/<section>/<category>/<image_name>')
 def display_image(section,category,image_name):
-    #return send_from_directory('D:/angular/ShopEase/Server Side/images/'+section+'/'+category+'/', filename = image_name)
-    return send_from_directory('F:/Web Mini Project/online fashion store/Server Side/images/'+section+'/'+category+'/', filename = image_name)
+    return send_from_directory('D:/angular/ShopEase/Server Side/images/'+section+'/'+category+'/', filename = image_name)
+    #return send_from_directory('F:/Web Mini Project/online fashion store/Server Side/images/'+section+'/'+category+'/', filename = image_name)
 
 @app.route('/filtered-items/<brand>/<size>/<color>/<minprice>/<maxprice>/<section_name>/<category_id>')
 def get_filtered_data(brand,size,color,minprice,maxprice,section_name,category_id):
@@ -94,8 +94,8 @@ def add_product():
         extension = image.filename.split(".")[-1]
         filename = details['name'] + " " + details['colors'][i] + '.' + extension
         filename = secure_filename(filename)
-        #path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + details['section'].lower() + '/' + details['category'].lower + '/'
-        path = 'F:/Web Mini Project/online fashion store/Server Side/images/' + details['section'].lower() + '/' + details['category'].replace(" ","-").lower() + '/'
+        path = 'E:/projects/celestia/Celestia/MusiCafe/Server Side/images/' + details['section'].lower() + '/' + details['category'].lower + '/'
+        #path = 'F:/Web Mini Project/online fashion store/Server Side/images/' + details['section'].lower() + '/' + details['category'].replace(" ","-").lower() + '/'
         image.save(os.path.join(path,filename))
         path = str(details['section']).lower() + '/' + details['category'].replace(" ","-").lower() + '/' + filename
         details['images'][i][details['colors'][i]] = path

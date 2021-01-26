@@ -46,7 +46,7 @@
                 <table>
                     <td>
                         <tr *ngFor="let women of women_categories; let i = index">
-                            <div *ngIf="i <= 5">
+                            <div *ngIf="i <= 4">
                                 <img src="http://localhost:5000/images/{{women.category_image}}" height="50px"
                                     width="50px">
                                 <a
@@ -56,7 +56,7 @@
                     </td>
                     <td>
                         <tr *ngFor="let women of women_categories; let i = index">
-                            <div *ngIf="i > 5">
+                            <div *ngIf="i > 4">
                                 <img src="http://localhost:5000/images/{{women.category_image}}" height="50px"
                                     width="50px">
                                 <a
@@ -145,6 +145,18 @@
             </mat-card>
         </div>
     </div>
+    <div class="dropdown1">
     <a class="navigation" *ngIf="user && user[0].isAdmin == true" routerLink='/admin/overview'
         routerLinkActive="active"><span class="fa fa-lg fa-user"></span><b> Admin</b></a>
+        <div class="dropdown-content1" id="dc">
+            <mat-card class="popover-content">
+                <table>
+                    <tbody>
+                        <tr><a routerLink='/admin/overview' routerLinkActive="active">Profile</a></tr>
+                        <tr><a (click)="log_out()"><b>Logout</b></a></tr>
+                    </tbody>
+                </table>
+            </mat-card>
+        </div>
+    </div>
 </mat-toolbar>

@@ -12,6 +12,7 @@ mydb=db['fashionstore']
 products = mydb['Products']
 login = mydb['login']
 orders=mydb['Orders']
+dummy=mydb['dummy']
 
 def get_categories(section):
     category_cursor = products.find({"section_name":section},
@@ -264,7 +265,26 @@ def add_to_cart(cart_items,grand_total,date,address,email):
             "delivered":False
         }
     )
-
+    print(cart_items)
+    for i in range(len(cart_items)):
+        success1=products.update_many(
+            {
+                "section_name":cart_items[i]["item_section"],
+                "Categories.category_name": cart_items[i]["item_category"],
+                "Categories.Items.item_id": cart_items[i]["item_id"]
+            },
+            {
+            "$set":{
+                    "Categories.$[updateCategory].Items.$[updateItem].item_qty" : cart_items[i]["prev_item_qty"]-int(cart_items[i]["item_quantity"])
+                }
+            }, 
+            {
+                "array_filters": [
+                    {"updateCategory.category_name" : cart_items[i]["item_category"]},
+                    {"updateItem.item_id" : cart_items[i]["item_id"]}
+                ]
+        }
+        )
     if success.inserted_id:
         flag = True
         print("Here")
